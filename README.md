@@ -5,7 +5,7 @@ S2 Epita Project: Consists of creating a video game by a 4 group of developpers.
 * Alexandre Privat
 * Erwann Lesech {R-One}
 * Guillaume Jolivalt
-* Raphaël Heng
+* Raphaël Heng {Noton}
 
 ### Commit's conventions
 * Types:
