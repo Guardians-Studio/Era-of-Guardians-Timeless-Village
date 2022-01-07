@@ -3,7 +3,7 @@ S2 Epita Project: Consists of creating a video game by a 4 group of developpers.
 
 ## Produced by
 * Alexandre Privat
-* Erwann Lesech
+* Erwann Lesech {R-One}
 * Guillaume Jolivalt
 * Raphaël Heng
 
@@ -20,7 +20,7 @@ S2 Epita Project: Consists of creating a video game by a 4 group of developpers.
 
 * ": [File]":
     - name of file or folder modified
-    
+
 * Description:
     - Infinitiv verbs
     - Short 
