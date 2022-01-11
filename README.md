@@ -13,6 +13,7 @@ S2 Epita Project: Consists of creating a video game by a 4 group of developpers.
     - fix
     - feat
     - build
+    - merge
 
 * <Impact>:
     - core
