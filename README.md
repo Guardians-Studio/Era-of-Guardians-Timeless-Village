@@ -1,4 +1,4 @@
-# Era-of-Guardians-The-Wild-Odyssey
+# Era-of-Guardians-TimelessVillage
 S2 Epita Project: Consists of creating a video game by a 4 group of developpers.
 
 ## Produced by
@@ -19,7 +19,7 @@ S2 Epita Project: Consists of creating a video game by a 4 group of developpers.
     - core
     - unityProj
 
-* ": [File]":
+* ": [File] -":
     - name of file or folder modified
 
 * Description:
