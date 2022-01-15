@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    
     [Header("GameObject Assignement")]
     [SerializeField] Transform orientation;
     [SerializeField] Transform groundCheck;
@@ -22,19 +23,18 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("ground")]
     [SerializeField] float movementSpeed = 6f;
-    [SerializeField] float walkSpeed = 3f;
+    [SerializeField] float walkSpeed = 4f;
     [SerializeField] float sprintSpeed = 6f;
-    [SerializeField] float acceleration = 6f;
+    [SerializeField] float acceleration = 10f;
     [SerializeField] float movementMultiplier = 10f;
     [SerializeField] float groundDrag = 6f;
     [SerializeField] bool isGrounded;
-    [SerializeField] float groundDistance = 0.4f;
+    [SerializeField] float groundDistance = 0.2f;
 
     [Header("jump/air")]
-    [SerializeField] float jumpForce = 8f;
+    [SerializeField] float jumpForce = 12f;
     [SerializeField] float airMultiplier = 0.4f;
     [SerializeField] float airDrag = 2f;
-
 
     private float horizontalMovement;
     private float verticalMovement;
@@ -129,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void ControlSpeed()
+    private void ControlSpeed() 
     {
         if(Input.GetKey(sprintKey) && isGrounded)
         {
@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool OnSlope()
+    private bool OnSlope() // check if player is on slope
     {
         if(Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight / 2 + 0.5f))
         {
