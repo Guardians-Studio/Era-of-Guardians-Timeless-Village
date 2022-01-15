@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("KeyAssignement")]
+    [Header("GameObject Assignement")]
+    [SerializeField] Transform orientation;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask groundMask;
+
+    [Header("Key Assignement")]
     [SerializeField] KeyCode leftKey = KeyCode.Q;
     [SerializeField] KeyCode rightKey = KeyCode.D;
     [SerializeField] KeyCode frontKey = KeyCode.Z;
@@ -12,21 +17,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
 
     [Header("Variables")]
-
-    [Header("ground")]
     [SerializeField] float movementSpeed = 6f;
     [SerializeField] float movementMultiplier = 10f;
     [SerializeField] float groundDrag = 6f;
     [SerializeField] bool isGrounded;
-    
+    [SerializeField] float groundDistance = 0.4f;
+
     [Header("jump/air")]
     [SerializeField] float jumpForce = 8f;
     [SerializeField] float airMultiplier = 0.4f;
     [SerializeField] float airDrag = 2f;
-    
-    [Header("Others")]
-    [SerializeField] float playerHeight = 2f; // modify regarding playerHeight bcs of isGrounded verification
-    
+
 
     private float horizontalMovement;
     private float verticalMovement;
@@ -43,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight / 2 + 0.1f); // detect if player is grounded or not 
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); // detect if player is grounded or not 
 
         GetInput();
         ControlDrag();
@@ -62,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
@@ -97,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // affect the direction
-        moveDirection = transform.forward * verticalMovement + transform.right * horizontalMovement;
+        moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
 
     }
 

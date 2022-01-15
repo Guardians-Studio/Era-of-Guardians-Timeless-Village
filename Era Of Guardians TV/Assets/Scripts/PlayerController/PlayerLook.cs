@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerLook : MonoBehaviour
 {
     [Header("GameObjects affectation")]
-    Camera cam;
+    [SerializeField] Transform cam;
+    [SerializeField] Transform orientation;
 
     [Header("Variables affectation")]
     public float sensitivityX = 100f;
@@ -20,8 +21,6 @@ public class PlayerLook : MonoBehaviour
 
     private void Start()
     {
-        cam = GetComponentInChildren<Camera>();
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -30,8 +29,8 @@ public class PlayerLook : MonoBehaviour
     {
         GetInput();
 
-        cam.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-        transform.rotation = Quaternion.Euler(0, rotationY, 0);
+        cam.transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0);
+        orientation.transform.rotation = Quaternion.Euler(0, rotationY, 0);
     }
 
     private void GetInput()
