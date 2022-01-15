@@ -10,17 +10,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
     [SerializeField] Camera cam;
-
-    [Header("Key Assignement")]
-    [SerializeField] KeyCode leftKey = KeyCode.Q;
-    [SerializeField] KeyCode rightKey = KeyCode.D;
-    [SerializeField] KeyCode frontKey = KeyCode.Z;
-    [SerializeField] KeyCode backKey = KeyCode.S;
-    [SerializeField] KeyCode jumpKey = KeyCode.Space;
-    [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
+    public KeyConfiguration keyConfiguration;
 
     [Header("Variables")]
-    [SerializeField] float playerHeight = 2f;
+    
+    CapsuleCollider playerCollider;
+    private float playerHeight;
+    private float normalHeight;
 
     [Header("ground")]
     [SerializeField] float movementSpeed = 6f;
@@ -29,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float acceleration = 10f;
     [SerializeField] float movementMultiplier = 10f;
     [SerializeField] float groundDrag = 6f;
+    
     public bool isGrounded { get; private set; }
     [SerializeField] float groundDistance = 0.2f;
 
@@ -56,6 +53,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        playerCollider = GetComponentInChildren<CapsuleCollider>();
+        (playerHeight, normalHeight) = (playerCollider.height, playerCollider.height);
+
     }
 
     private void Update()
@@ -66,9 +67,18 @@ public class PlayerMovement : MonoBehaviour
         ControlDrag();
         ControlSpeed();
 
-        if (Input.GetKeyDown(jumpKey) && isGrounded)
+        if (Input.GetKeyDown(keyConfiguration.jumpKey) && isGrounded)
         {
             Jump();
+        }
+
+        if (Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded)
+        {
+            OnCrouch();
+        }
+        else if(Input.GetKeyUp(keyConfiguration.crouchKey) && isGrounded)
+        {
+            OffCrouch();
         }
 
         slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
@@ -88,14 +98,23 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnCrouch()
+    {
+        playerHeight /= 2;
+    }
+    private void OffCrouch()
+    {
+        playerHeight = normalHeight;
+    }
+
     private void GetInput()
     {
         // get horizontal movement
-        if(Input.GetKey(leftKey))
+        if(Input.GetKey(keyConfiguration.leftKey))
         {
             horizontalMovement = -1f;
         }
-        else if(Input.GetKey(rightKey))
+        else if(Input.GetKey(keyConfiguration.rightKey))
         {
             horizontalMovement = 1f;
         }
@@ -106,11 +125,11 @@ public class PlayerMovement : MonoBehaviour
 
 
         // get vertical movement
-        if (Input.GetKey(backKey))
+        if (Input.GetKey(keyConfiguration.backKey))
         {
             verticalMovement = -1f;
         }
-        else if (Input.GetKey(frontKey))
+        else if (Input.GetKey(keyConfiguration.frontKey))
         {
             verticalMovement = 1f;
         }
@@ -138,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ControlSpeed() 
     {
-        if(Input.GetKey(sprintKey) && isGrounded)
+        if(Input.GetKey(keyConfiguration.sprintKey) && isGrounded)
         {
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, sprintFov, SprintFovTime * Time.deltaTime);
             movementSpeed = Mathf.Lerp(movementSpeed, sprintSpeed, acceleration * Time.deltaTime);

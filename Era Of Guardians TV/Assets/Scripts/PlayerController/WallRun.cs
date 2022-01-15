@@ -7,13 +7,14 @@ public class WallRun : MonoBehaviour
     [Header("GameObject Affectation")]
     [SerializeField] Transform orientation;
     [SerializeField] Camera cam;
+    public KeyConfiguration keyConfiguration;
 
     [Header("Varaibles")]
-    [SerializeField] float wallDistance = 1f;
-    [SerializeField] float minimumJumpHeight = 0.5f;
+    [SerializeField] float wallDistance = 0.5f;
+    [SerializeField] float minimumJumpHeight = 1f;
     [SerializeField] float wallRunGravity = 0.2f;
-    [SerializeField] float wallRunJumpForce = 1.5f;
-    [SerializeField] public bool isWallRunning = false;
+    [SerializeField] float wallRunJumpForce = 2f;
+
     [Header("Camera effects")]
     [SerializeField] float fov = 60f;
     [SerializeField] float wallRunFov = 80f;
@@ -31,21 +32,11 @@ public class WallRun : MonoBehaviour
 
     private Rigidbody rb;
 
-    private bool CanWallRun()
-    {
-        return !Physics.Raycast(transform.position, Vector3.down, minimumJumpHeight);
-    }
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    private void CheckWall()
-    {
-        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallDistance);
-        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallDistance);
-    }
 
     private void Update()
     {
@@ -68,6 +59,17 @@ public class WallRun : MonoBehaviour
         }
     }
 
+    private bool CanWallRun()
+    {
+        return !Physics.Raycast(transform.position, Vector3.down, minimumJumpHeight);
+    }
+
+
+    private void CheckWall()
+    {
+        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallDistance);
+        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallDistance);
+    }
     private void StartWallRun()
     {
         rb.useGravity = false;
@@ -85,19 +87,19 @@ public class WallRun : MonoBehaviour
             tilt = Mathf.Lerp(tilt, camTilt, camTiltTime * Time.deltaTime);
         }
            
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(keyConfiguration.jumpKey))
         {
             if (wallLeft)
             {
                 Vector3 wallRunJumpDirection = transform.up + leftWallHit.normal;
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 200, ForceMode.Force);
+                rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 150, ForceMode.Force);
             }
             else if (wallRight)
             {
                 Vector3 wallRunJumpDirection = transform.up + rightWallHit.normal;
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); 
-                rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 200, ForceMode.Force);
+                rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 150, ForceMode.Force);
             }
         }
     }
