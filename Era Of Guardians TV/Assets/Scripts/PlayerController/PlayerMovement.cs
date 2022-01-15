@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform orientation;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
+    [SerializeField] Camera cam;
 
     [Header("Key Assignement")]
     [SerializeField] KeyCode leftKey = KeyCode.Q;
@@ -28,13 +29,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float acceleration = 10f;
     [SerializeField] float movementMultiplier = 10f;
     [SerializeField] float groundDrag = 6f;
-    [SerializeField] bool isGrounded;
+    public bool isGrounded { get; private set; }
     [SerializeField] float groundDistance = 0.2f;
 
-    [Header("jump/air")]
+    [Header("Jump/air")]
     [SerializeField] float jumpForce = 12f;
     [SerializeField] float airMultiplier = 0.4f;
     [SerializeField] float airDrag = 2f;
+
+    [Header("Camera effects")]
+    [SerializeField] float fov = 60f;
+    [SerializeField] float sprintFov = 70f;
+    [SerializeField] float SprintFovTime = 10f;
 
     private float horizontalMovement;
     private float verticalMovement;
@@ -60,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         ControlDrag();
         ControlSpeed();
 
-        if(Input.GetKeyDown(jumpKey) && isGrounded)
+        if (Input.GetKeyDown(jumpKey) && isGrounded)
         {
             Jump();
         }
@@ -71,14 +77,15 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-
-
     }
 
     private void Jump()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        if(isGrounded)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     private void GetInput()
@@ -133,10 +140,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetKey(sprintKey) && isGrounded)
         {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, sprintFov, SprintFovTime * Time.deltaTime);
             movementSpeed = Mathf.Lerp(movementSpeed, sprintSpeed, acceleration * Time.deltaTime);
         }
         else
         {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, fov, SprintFovTime * Time.deltaTime);
             movementSpeed = Mathf.Lerp(movementSpeed, walkSpeed, acceleration * Time.deltaTime);
         }
     }
@@ -153,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.AddForce(moveDirection.normalized * movementSpeed * airMultiplier, ForceMode.Acceleration);
+            rb.AddForce(moveDirection.normalized * movementSpeed * movementMultiplier * airMultiplier, ForceMode.Acceleration);
         }
     }
 
@@ -170,6 +179,6 @@ public class PlayerMovement : MonoBehaviour
                 return false;
             }
         }
-            return false;
+        return false;
     }
 }

@@ -307,7 +307,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659031378}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -317,7 +317,7 @@ Transform:
   - {fileID: 348744261}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &659031380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,10 +332,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 1849635044}
   cam: {fileID: 963194227}
-  wallDistance: 0.5
-  minimumJumpHeight: 1
-  wallRunGravity: 1
-  wallRunJumpForce: 6
+  wallDistance: 1
+  minimumJumpHeight: 1.5
+  wallRunGravity: 0.2
+  wallRunJumpForce: 1.5
+  isWallRunning: 0
   fov: 60
   wallRunFov: 80
   wallRunFovTime: 10
@@ -372,8 +373,8 @@ MonoBehaviour:
   cam: {fileID: 1222629765}
   orientation: {fileID: 1849635044}
   wallRun: {fileID: 659031380}
-  sensitivityX: 150
-  sensitivityY: 150
+  sensitivityX: 100
+  sensitivityY: 100
   sensitivityMultiplier: 0.01
 --- !u!114 &659031383
 MonoBehaviour:
@@ -392,6 +393,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  cam: {fileID: 963194227}
   leftKey: 113
   rightKey: 100
   frontKey: 122
@@ -405,11 +407,13 @@ MonoBehaviour:
   acceleration: 10
   movementMultiplier: 10
   groundDrag: 6
-  isGrounded: 0
   groundDistance: 0.2
-  jumpForce: 5
+  jumpForce: 8
   airMultiplier: 0.4
   airDrag: 2
+  fov: 60
+  sprintFov: 70
+  SprintFovTime: 10
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,20 +5,21 @@ using UnityEngine;
 public class WallRun : MonoBehaviour
 {
     [Header("GameObject Affectation")]
-    [SerializeField] private Transform orientation;
-    [SerializeField] private Camera cam;
+    [SerializeField] Transform orientation;
+    [SerializeField] Camera cam;
 
     [Header("Varaibles")]
-    [SerializeField] private float wallDistance = 1f;
-    [SerializeField] private float minimumJumpHeight = 1.5f;
-    [SerializeField] private float wallRunGravity = 0.2f;
-    [SerializeField] private float wallRunJumpForce = 1.5f;
+    [SerializeField] float wallDistance = 1f;
+    [SerializeField] float minimumJumpHeight = 0.5f;
+    [SerializeField] float wallRunGravity = 0.2f;
+    [SerializeField] float wallRunJumpForce = 1.5f;
+    [SerializeField] public bool isWallRunning = false;
     [Header("Camera effects")]
-    [SerializeField] private float fov = 60f;
-    [SerializeField] private float wallRunFov = 80f;
-    [SerializeField] private float wallRunFovTime = 10f;
-    [SerializeField] private float camTilt = 10f;
-    [SerializeField] private float camTiltTime = 10f;
+    [SerializeField] float fov = 60f;
+    [SerializeField] float wallRunFov = 80f;
+    [SerializeField] float wallRunFovTime = 10f;
+    [SerializeField] float camTilt = 10f;
+    [SerializeField] float camTiltTime = 10f;
 
     public float tilt { get; private set; }
 
@@ -90,13 +91,13 @@ public class WallRun : MonoBehaviour
             {
                 Vector3 wallRunJumpDirection = transform.up + leftWallHit.normal;
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 100, ForceMode.Force);
+                rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 200, ForceMode.Force);
             }
             else if (wallRight)
             {
                 Vector3 wallRunJumpDirection = transform.up + rightWallHit.normal;
                 rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); 
-                rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 100, ForceMode.Force);
+                rb.AddForce(wallRunJumpDirection * wallRunJumpForce * 200, ForceMode.Force);
             }
         }
     }
