@@ -10,34 +10,31 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
     [SerializeField] Camera cam;
+    [SerializeField] GameObject playerCapsule;
     public KeyConfiguration keyConfiguration;
 
-    [Header("Variables")]
-    
     CapsuleCollider playerCollider;
     private float playerHeight;
-    private float normalHeight;
 
-    [Header("ground")]
-    [SerializeField] float movementSpeed = 6f;
-    [SerializeField] float walkSpeed = 4f;
-    [SerializeField] float sprintSpeed = 6f;
-    [SerializeField] float acceleration = 10f;
-    [SerializeField] float movementMultiplier = 10f;
-    [SerializeField] float groundDrag = 6f;
+    private float movementSpeed = 6f;
+    private float walkSpeed = 4f;
+    private float sprintSpeed = 6f;
+    private float acceleration = 10f;
+    private float movementMultiplier = 10f;
+    private float groundDrag = 6f;
     
     public bool isGrounded { get; private set; }
-    [SerializeField] float groundDistance = 0.2f;
+    private bool isCrouching = false;
+    private float groundDistance = 0.2f;
 
-    [Header("Jump/air")]
-    [SerializeField] float jumpForce = 12f;
-    [SerializeField] float airMultiplier = 0.4f;
-    [SerializeField] float airDrag = 2f;
+    private float jumpForce = 7f;
+    private float airMultiplier = 0.4f;
+    private float airDrag = 2f;
 
-    [Header("Camera effects")]
-    [SerializeField] float fov = 60f;
-    [SerializeField] float sprintFov = 70f;
-    [SerializeField] float SprintFovTime = 10f;
+
+    private float fov = 60f;
+    private float sprintFov = 80f;
+    private float SprintFovTime = 10f;
 
     private float horizontalMovement;
     private float verticalMovement;
@@ -55,8 +52,7 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         playerCollider = GetComponentInChildren<CapsuleCollider>();
-        (playerHeight, normalHeight) = (playerCollider.height, playerCollider.height);
-
+        playerHeight = playerCollider.height;
     }
 
     private void Update()
@@ -72,13 +68,15 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
-        if (Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded)
+        if (Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded && !isCrouching)
         {
-            OnCrouch();
+            isCrouching = true;
+            HandleCrouch();
         }
-        else if(Input.GetKeyUp(keyConfiguration.crouchKey) && isGrounded)
+        else if(Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded && !Physics.Raycast(transform.position, Vector3.up, 0.5f) && isCrouching)
         {
-            OffCrouch();
+            isCrouching = false;
+            CrouchStand();
         }
 
         slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
@@ -98,13 +96,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCrouch()
+    private void HandleCrouch()
     {
-        playerHeight /= 2;
+        playerCapsule.transform.localScale -= new Vector3(0, 0.5f, 0);
+        playerCapsule.transform.position -= new Vector3(0, 0.5f, 0);
     }
-    private void OffCrouch()
+    private void CrouchStand()
     {
-        playerHeight = normalHeight;
+        playerCapsule.transform.position += new Vector3(0, 0.5f, 0);
+        playerCapsule.transform.localScale += new Vector3(0, 0.5f, 0);
     }
 
     private void GetInput()

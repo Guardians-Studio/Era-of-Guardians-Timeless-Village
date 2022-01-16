@@ -7,20 +7,20 @@ public class WallRun : MonoBehaviour
     [Header("GameObject Affectation")]
     [SerializeField] Transform orientation;
     [SerializeField] Camera cam;
+    [SerializeField] PlayerMovement playerMovement;
     public KeyConfiguration keyConfiguration;
 
-    [Header("Varaibles")]
-    [SerializeField] float wallDistance = 0.5f;
-    [SerializeField] float minimumJumpHeight = 1f;
-    [SerializeField] float wallRunGravity = 0.2f;
-    [SerializeField] float wallRunJumpForce = 2f;
+    private float wallDistance = 1f;
+    private float minimumJumpHeight = 0.5f;
+    private float wallRunGravity = 0.2f;
+    private float wallRunJumpForce = 2f;
 
     [Header("Camera effects")]
-    [SerializeField] float fov = 60f;
-    [SerializeField] float wallRunFov = 80f;
-    [SerializeField] float wallRunFovTime = 10f;
-    [SerializeField] float camTilt = 10f;
-    [SerializeField] float camTiltTime = 10f;
+    private float fov = 60f;
+    private float wallRunFov = 80f;
+    private float wallRunFovTime = 10f;
+    private float camTilt = 10f;
+    private float camTiltTime = 10f;
 
     public float tilt { get; private set; }
 
@@ -41,9 +41,10 @@ public class WallRun : MonoBehaviour
     private void Update()
     {
         CheckWall();
-
+        print("héa");
         if (CanWallRun())
         {
+            print("héu");
             if (wallLeft || wallRight)
             {
                 StartWallRun();
@@ -61,7 +62,7 @@ public class WallRun : MonoBehaviour
 
     private bool CanWallRun()
     {
-        return !Physics.Raycast(transform.position, Vector3.down, minimumJumpHeight);
+        return (!Physics.Raycast(transform.position, Vector3.down, minimumJumpHeight) && !playerMovement.isGrounded);
     }
 
 
@@ -72,6 +73,7 @@ public class WallRun : MonoBehaviour
     }
     private void StartWallRun()
     {
+        print("héo");
         rb.useGravity = false;
 
         rb.AddForce(Vector3.down * wallRunGravity, ForceMode.Force);
@@ -107,8 +109,10 @@ public class WallRun : MonoBehaviour
     private void StopWallRun()
     {
         rb.useGravity = true;
-
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, fov, wallRunFovTime * Time.deltaTime);
+        if(playerMovement.isGrounded)
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, fov, wallRunFovTime * Time.deltaTime);
+        }
         tilt = Mathf.Lerp(tilt, 0, camTiltTime * Time.deltaTime);
     }
 }

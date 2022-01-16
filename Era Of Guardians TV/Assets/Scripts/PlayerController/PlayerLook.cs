@@ -9,10 +9,9 @@ public class PlayerLook : MonoBehaviour
     [SerializeField] Transform orientation;
     [SerializeField] WallRun wallRun;
 
-    [Header("Variables affectation")]
-    public float sensitivityX = 100f;
-    public float sensitivityY = 100f;
-    public float sensitivityMultiplier = 0.01f;
+    private float sensitivityX = 100f;
+    private float sensitivityY = 100f;
+    private float sensitivityMultiplier = 0.01f;
 
     private float mouseX;
     private float mouseY;
