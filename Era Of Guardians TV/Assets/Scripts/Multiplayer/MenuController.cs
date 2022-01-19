@@ -67,7 +67,7 @@ public class MenuController : MonoBehaviour
         PhotonNetwork.LoadLevel("testScene");
         if (PhotonNetwork.IsConnected)
         {
-            print("youuuu");
+            print("Connected in the room");
         }
     }
 
@@ -77,6 +77,11 @@ public class MenuController : MonoBehaviour
         roomOptions.MaxPlayers = 4;
         PhotonNetwork.JoinOrCreateRoom(joindGameInput.text, roomOptions, TypedLobby.Default);
         PhotonNetwork.LoadLevel("testScene");
+
+        if (PhotonNetwork.IsConnected)
+        {
+            print("Connected in the room");
+        }
     }
 
 }
