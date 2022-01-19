@@ -20,6 +20,7 @@ public class MenuController : MonoBehaviour
 
     private void Awake()
     {
+        print("Connecting to server.");
         PhotonNetwork.ConnectUsingSettings(versionName);
     }
 
@@ -31,7 +32,12 @@ public class MenuController : MonoBehaviour
     private void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby(TypedLobby.Default);
-        Debug.Log("Connected");
+        Debug.Log("Connected to server.");
+    }
+
+    public void OnDisconnected(DisconnectCause cause)
+    {
+        print("Disconnected from server for reason:" + cause.ToString());
     }
 
     public void ChangeUserNameInput()
@@ -51,4 +57,26 @@ public class MenuController : MonoBehaviour
         userNameMenu.SetActive(false);
         PhotonNetwork.playerName = userNameInput.text;
     }
+    
+
+    public void CreateGame()
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 4;
+        PhotonNetwork.CreateRoom(createGameInput.text, roomOptions, TypedLobby.Default);
+        PhotonNetwork.LoadLevel("testScene");
+        if (PhotonNetwork.IsConnected)
+        {
+            print("youuuu");
+        }
+    }
+
+    public void JoinGame()
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 4;
+        PhotonNetwork.JoinOrCreateRoom(joindGameInput.text, roomOptions, TypedLobby.Default);
+        PhotonNetwork.LoadLevel("testScene");
+    }
+
 }

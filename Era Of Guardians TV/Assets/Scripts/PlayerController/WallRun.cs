@@ -41,10 +41,8 @@ public class WallRun : MonoBehaviour
     private void Update()
     {
         CheckWall();
-        print("héa");
         if (CanWallRun())
         {
-            print("héu");
             if (wallLeft || wallRight)
             {
                 StartWallRun();
