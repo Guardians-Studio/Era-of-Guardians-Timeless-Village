@@ -66,6 +66,11 @@ namespace Photon.Pun
         /// <summary>Version number of PUN. Used in the AppVersion, which separates your playerbase in matchmaking.</summary>
         public const string PunVersion = "2.40";
 
+        public static void ConnectUsingSettings()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>Version number of your game. Setting this updates the AppVersion, which separates your playerbase in matchmaking.</summary>
         /// <remarks>
         /// In PUN, the GameVersion is only one component of the LoadBalancingClient.AppVersion.
@@ -1015,6 +1020,7 @@ namespace Photon.Pun
             set { if (NetworkingClient != null) NetworkingClient.ServerPortOverrides = value; }
         }
 
+        public static string playerName { get; set; }
 
         private static int lastUsedViewSubId = 0;  // each player only needs to remember it's own (!) last used subId to speed up assignment
         private static int lastUsedViewSubIdStatic = 0;  // per room, the master is able to instantiate GOs. the subId for this must be unique too
@@ -1119,7 +1125,7 @@ namespace Photon.Pun
         ///
         /// In general check out the <see cref="DisconnectCause"/> from the <see cref="IConnectionCallbacks.OnDisconnected"/> callback.
         ///  </remarks>
-        public static bool ConnectUsingSettings()
+        public static bool ConnectUsingSettings(string versioName)
         {
             if (PhotonServerSettings == null)
             {
