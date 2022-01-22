@@ -32,8 +32,8 @@ public class PlayerMovement : MonoBehaviour
     private float airDrag = 2f;
 
 
-    private float fov = 60f;
-    private float sprintFov = 80f;
+    private float fov = 80f;
+    private float sprintFov = 90f;
     private float SprintFovTime = 10f;
 
     private float horizontalMovement;

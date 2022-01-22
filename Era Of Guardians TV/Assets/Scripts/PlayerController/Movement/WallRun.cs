@@ -16,8 +16,8 @@ public class WallRun : MonoBehaviour
     private float wallRunJumpForce = 2f;
 
     [Header("Camera effects")]
-    private float fov = 60f;
-    private float wallRunFov = 80f;
+    private float fov = 80f;
+    private float wallRunFov = 90f;
     private float wallRunFovTime = 10f;
     private float camTilt = 10f;
     private float camTiltTime = 10f;
@@ -71,7 +71,6 @@ public class WallRun : MonoBehaviour
     }
     private void StartWallRun()
     {
-        print("héo");
         rb.useGravity = false;
 
         rb.AddForce(Vector3.down * wallRunGravity, ForceMode.Force);

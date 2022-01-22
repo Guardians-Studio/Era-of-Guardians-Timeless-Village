@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a55466c222c1bb4cb4b5cfcfbf712e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 4146235936788497537, guid: bbaaf355cb319d04d8d2e4301ae86613, type: 3}
+  playerPrefab: {fileID: 1682056833022271283, guid: bbaaf355cb319d04d8d2e4301ae86613, type: 3}
   spawnpoint: {fileID: 1576101724}
 --- !u!4 &223974228
 Transform:
