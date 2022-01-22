@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -47,8 +46,6 @@ public class PlayerMovement : MonoBehaviour
 
     RaycastHit slopeHit;
 
-    PhotonView view;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -56,38 +53,33 @@ public class PlayerMovement : MonoBehaviour
 
         playerCollider = GetComponentInChildren<CapsuleCollider>();
         playerHeight = playerCollider.height;
-
-        view = GetComponent<PhotonView>();
     }
 
     private void Update()
     {
-        if (view.IsMine)
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); // detect if player is grounded or not 
+
+        GetInput();
+        ControlDrag();
+        ControlSpeed();
+
+        if (Input.GetKeyDown(keyConfiguration.jumpKey) && isGrounded)
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); // detect if player is grounded or not 
+            Jump();
+        }
 
-            GetInput();
-            ControlDrag();
-            ControlSpeed();
+        if (Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded && !isCrouching)
+        {
+            isCrouching = true;
+            HandleCrouch();
+        }
+        else if(Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded && !Physics.Raycast(transform.position, Vector3.up, 0.5f) && isCrouching)
+        {
+            isCrouching = false;
+            CrouchStand();
+        }
 
-            if (Input.GetKeyDown(keyConfiguration.jumpKey) && isGrounded)
-            {
-                Jump();
-            }
-
-            if (Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded && !isCrouching)
-            {
-                isCrouching = true;
-                HandleCrouch();
-            }
-            else if (Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded && !Physics.Raycast(transform.position, Vector3.up, 0.5f) && isCrouching)
-            {
-                isCrouching = false;
-                CrouchStand();
-            }
-
-            slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
-        }   
+        slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
     }
 
     private void FixedUpdate()
