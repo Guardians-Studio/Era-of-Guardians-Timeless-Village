@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -32,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
     private float airDrag = 2f;
 
 
-    private float fov = 80f;
-    private float sprintFov = 90f;
+    private float fov = 60f;
+    private float sprintFov = 80f;
     private float SprintFovTime = 10f;
 
     private float horizontalMovement;
@@ -46,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
 
     RaycastHit slopeHit;
 
+    PhotonView view;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -53,33 +56,38 @@ public class PlayerMovement : MonoBehaviour
 
         playerCollider = GetComponentInChildren<CapsuleCollider>();
         playerHeight = playerCollider.height;
+
+        view = GetComponent<PhotonView>();
     }
 
     private void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); // detect if player is grounded or not 
-
-        GetInput();
-        ControlDrag();
-        ControlSpeed();
-
-        if (Input.GetKeyDown(keyConfiguration.jumpKey) && isGrounded)
+        if (view.IsMine)
         {
-            Jump();
-        }
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); // detect if player is grounded or not 
 
-        if (Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded && !isCrouching)
-        {
-            isCrouching = true;
-            HandleCrouch();
-        }
-        else if(Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded && !Physics.Raycast(transform.position, Vector3.up, 0.5f) && isCrouching)
-        {
-            isCrouching = false;
-            CrouchStand();
-        }
+            GetInput();
+            ControlDrag();
+            ControlSpeed();
 
-        slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
+            if (Input.GetKeyDown(keyConfiguration.jumpKey) && isGrounded)
+            {
+                Jump();
+            }
+
+            if (Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded && !isCrouching)
+            {
+                isCrouching = true;
+                HandleCrouch();
+            }
+            else if (Input.GetKeyDown(keyConfiguration.crouchKey) && isGrounded && !Physics.Raycast(transform.position, Vector3.up, 0.5f) && isCrouching)
+            {
+                isCrouching = false;
+                CrouchStand();
+            }
+
+            slopeDirection = Vector3.ProjectOnPlane(moveDirection, slopeHit.normal);
+        }   
     }
 
     private void FixedUpdate()
@@ -112,11 +120,11 @@ public class PlayerMovement : MonoBehaviour
         // get horizontal movement
         if(Input.GetKey(keyConfiguration.leftKey))
         {
-            horizontalMovement = -1f;
+            horizontalMovement = 1f;
         }
         else if(Input.GetKey(keyConfiguration.rightKey))
         {
-            horizontalMovement = 1f;
+            horizontalMovement = -1f;
         }
         else
         {
@@ -127,11 +135,11 @@ public class PlayerMovement : MonoBehaviour
         // get vertical movement
         if (Input.GetKey(keyConfiguration.backKey))
         {
-            verticalMovement = -1f;
+            verticalMovement = 1f;
         }
         else if (Input.GetKey(keyConfiguration.frontKey))
         {
-            verticalMovement = 1f;
+            verticalMovement = -1f;
         }
         else
         {
