@@ -58,6 +58,11 @@ public class PlayerMovement : MonoBehaviour
         playerHeight = playerCollider.height;
 
         view = GetComponent<PhotonView>();
+
+        if (!view.IsMine)
+        {
+            GetComponentInChildren<Camera>().gameObject.SetActive(false);
+        }
     }
 
     private void Update()
@@ -120,11 +125,11 @@ public class PlayerMovement : MonoBehaviour
         // get horizontal movement
         if(Input.GetKey(keyConfiguration.leftKey))
         {
-            horizontalMovement = 1f;
+            horizontalMovement = -1f;
         }
         else if(Input.GetKey(keyConfiguration.rightKey))
         {
-            horizontalMovement = -1f;
+            horizontalMovement = 1f;
         }
         else
         {
@@ -135,11 +140,11 @@ public class PlayerMovement : MonoBehaviour
         // get vertical movement
         if (Input.GetKey(keyConfiguration.backKey))
         {
-            verticalMovement = 1f;
+            verticalMovement = -1f;
         }
         else if (Input.GetKey(keyConfiguration.frontKey))
         {
-            verticalMovement = -1f;
+            verticalMovement = 1f;
         }
         else
         {

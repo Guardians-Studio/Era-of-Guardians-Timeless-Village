@@ -80,11 +80,11 @@ public class WallRun : MonoBehaviour
 
         if (wallLeft)
         {
-            tilt = Mathf.Lerp(tilt, -camTilt, camTiltTime * Time.deltaTime);
+            tilt = Mathf.Lerp(tilt, camTilt, camTiltTime * Time.deltaTime);
         }
         else if (wallRight)
         {
-            tilt = Mathf.Lerp(tilt, camTilt, camTiltTime * Time.deltaTime);
+            tilt = Mathf.Lerp(tilt, -camTilt, camTiltTime * Time.deltaTime);
         }
            
         if (Input.GetKeyDown(keyConfiguration.jumpKey))
