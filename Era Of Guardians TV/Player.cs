@@ -2,26 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public class Player : Character
 {
     [Header("GameObject Assignement")]
     [SerializeField] GameObject sword;
+    [SerializeField] bool canAttack = true;
+    public bool isAttacking = false;
+    [SerializeField] float attackCooldown = 1f;
     [SerializeField] AudioClip swordAttack;
     [SerializeField] AudioClip swordMiss;
     public KeyConfiguration keyConfiguration;
-
-    private bool canAttack = true;
-    private bool isAttacking = false;
-    private float swordCooldown = 1f;
-
-    Animator anim;
-    AudioSource ac;
-
-    private void Start()
-    {
-        anim = sword.GetComponent<Animator>();
-        ac = GetComponent<AudioSource>();
-    }
 
     private void Update()
     {
@@ -39,15 +29,19 @@ public class WeaponController : MonoBehaviour
         canAttack = false;
         isAttacking = true;
 
+        Animator anim = sword.GetComponent<Animator>();
+        AudioSource ac = GetComponent<AudioSource>();
+
         anim.SetTrigger("Attack");
         ac.PlayOneShot(swordAttack);
+
 
         StartCoroutine(ResetAttackCooldown());
     }
 
     IEnumerator ResetAttackCooldown()
     {
-        yield return new WaitForSeconds(swordCooldown);
+        yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
 }

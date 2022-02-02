@@ -10,9 +10,10 @@ public class FightDetection : MonoBehaviour
     {
         if (other.tag == "Player") // modify to Enemy
         {
-            print("yes");
+            Debug.Log("Hit");
             // other.GetComponent<Animator>().SetTrigger("Hit");
-            // other.health -= damages;
+
+            other.gameObject.GetComponentInParent<Player>().TakeDamage(20);
             Instantiate(hitParticle, new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z), other.transform.rotation);
         }
     }
