@@ -13,4 +13,5 @@ public class KeyConfiguration : MonoBehaviour
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
     public int leftMouseKey = 0;
+    public int rightMouseKey = 1;
 }
