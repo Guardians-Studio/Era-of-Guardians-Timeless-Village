@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    [Header("GameObject Assignement")]
+    [SerializeField] Camera cam;
     public KeyConfiguration keyConfiguration;
     [SerializeField] GameObject weaponHolder;
     [Header("Sword")]
     [SerializeField] GameObject sword;
-    [SerializeField] AudioClip swordAttack;
+    [SerializeField] Sword swordScript;
     // [SerializeField] AudioClip swordMiss;
     [Header("Bow")]
     [SerializeField] GameObject bow;
-    [SerializeField] GameObject arrow;
-    [SerializeField] AudioClip bowAttack;
+    [SerializeField] Bow bowScript;
 
     private int selectedWeapon = 0;
     int previousSelectedWeapon;
@@ -22,7 +21,9 @@ public class WeaponController : MonoBehaviour
     private bool canAttack = true;
     
     private float swordCooldown = 1f;
-    private float bowCooldown = 2.5f;
+    private float bowCooldown = 1f;
+
+    private Vector3 rayHit;
 
     Animator anim;
     AudioSource ac;
@@ -126,7 +127,7 @@ public class WeaponController : MonoBehaviour
         
         anim.SetTrigger("Attack");
 
-        ac.PlayOneShot(swordAttack);
+        ac.PlayOneShot(swordScript.swordAttack);
 
         StartCoroutine(ResetAttackCooldown(swordCooldown));
     }
@@ -139,22 +140,43 @@ public class WeaponController : MonoBehaviour
 
         anim.SetTrigger("Attack");
 
-        ac.PlayOneShot(bowAttack);
         StartCoroutine(PrepareFire());
-
-        Fire();
 
         StartCoroutine(ResetAttackCooldown(bowCooldown));
     }
 
     private void Fire()
     {
-        Instantiate(arrow, this.transform);
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            rayHit = hit.point;
+        }
+        else
+        {
+            rayHit = ray.GetPoint(1000);        
+        }
+
+        InstantiateProjectile(bowScript.projectileSpawnPoint.transform);
+
+    }
+
+    private void InstantiateProjectile(Transform firePoint)
+    {
+       GameObject bullet = Instantiate(bowScript.projectile, firePoint.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody>().velocity = (rayHit - firePoint.position).normalized * bowScript.projectileSpeed;
     }
 
     IEnumerator PrepareFire()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
+        ac.PlayOneShot(bowScript.bowAttack);
+        yield return new WaitForSeconds(1f);
+        Fire();
+        
+
     }
 
     IEnumerator ResetAttackCooldown(float cd)

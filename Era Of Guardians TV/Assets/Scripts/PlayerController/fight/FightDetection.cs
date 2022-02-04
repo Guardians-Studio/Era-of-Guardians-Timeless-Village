@@ -7,15 +7,40 @@ public class FightDetection : MonoBehaviour
     [SerializeField] ParticleSystem hitParticle;
 
     public bool isAttacking;
+    private float damage;
+    private string currentWeapon;
+
+    private bool isCollided = true;
+
+    private void Start()
+    {
+        if (this.tag == "Sword")
+        {
+            currentWeapon = "Sword";
+            damage = GetComponent<Sword>().damage;
+        }
+        else if(this.tag == "Bullet")
+        {
+            currentWeapon = "MageParticle";
+            damage = 40f; // does not do link with Bow Script
+        }
+        Debug.Log(currentWeapon);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (currentWeapon == "MageParticle" && other.gameObject.tag != "Player" && other.gameObject.tag != "Bullet" && isCollided)
+        {
+            isCollided = false;
+            Destroy(gameObject);
+        }
+
         if (other.tag == "Player") // modify to Enemy
         {
             isAttacking = true;
             // other.GetComponent<Animator>().SetTrigger("Hit");
 
-            other.gameObject.GetComponentInParent<Player>().TakeDamage(20);
+            other.gameObject.GetComponentInParent<Player>().TakeDamage(damage);
 
             if (isAttacking)
             {
@@ -28,3 +53,4 @@ public class FightDetection : MonoBehaviour
         }
     }
 }
+
