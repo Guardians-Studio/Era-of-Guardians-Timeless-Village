@@ -8,6 +8,7 @@ TagManager:
   - Sword
   - weapons
   - Environment
+  - Enemy
   layers:
   - Default
   - TransparentFX

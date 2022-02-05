@@ -14,15 +14,15 @@ public class WeaponController : MonoBehaviour
     [Header("Bow")]
     [SerializeField] GameObject bow;
     [SerializeField] Bow bowScript;
+    [Header("Wand")]
+    [SerializeField] GameObject wand;
+    [SerializeField] Wand wandScript;
 
     private int selectedWeapon = 0;
     int previousSelectedWeapon;
 
-    private bool canAttack = true;
-    
-    private float swordCooldown = 1f;
-    private float bowCooldown = 1f;
-
+    private bool canAttack;
+  
     private Vector3 rayHit;
 
     Animator anim;
@@ -31,8 +31,10 @@ public class WeaponController : MonoBehaviour
     private void Start()
     {
         ac = GetComponentInParent<AudioSource>();
+        canAttack = true;
 
-        SelectWeapon();
+
+    SelectWeapon();
     }
 
     private void Update()
@@ -41,7 +43,8 @@ public class WeaponController : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            if (selectedWeapon >= transform.childCount - 1)
+            Debug.Log(transform.childCount);
+            if (selectedWeapon >= transform.childCount)
             {
                 selectedWeapon = 0;
             }
@@ -54,7 +57,7 @@ public class WeaponController : MonoBehaviour
         {
             if (selectedWeapon <= 0)
             {
-                selectedWeapon = transform.childCount - 1;
+                selectedWeapon = transform.childCount;
             }
             else
             {
@@ -69,13 +72,13 @@ public class WeaponController : MonoBehaviour
         {
             selectedWeapon = 1;
         }
-        else if (Input.GetKey(keyConfiguration.threeKey))// modif qd available
+        else if (Input.GetKey(keyConfiguration.threeKey))
         {
-            selectedWeapon = 1;
+            selectedWeapon = 2;
         }
         else if (Input.GetKey(keyConfiguration.fourKey))// modif qd available
         {
-            selectedWeapon = 1;
+            selectedWeapon = 2;
         }
 
         if (previousSelectedWeapon != selectedWeapon)
@@ -97,6 +100,14 @@ public class WeaponController : MonoBehaviour
             if (canAttack)
             {
                 BowAttack();
+            }
+        }
+
+        if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && wand.activeSelf)
+        {
+            if (canAttack)
+            {
+                WandAttack();
             }
         }
     }
@@ -129,7 +140,7 @@ public class WeaponController : MonoBehaviour
 
         ac.PlayOneShot(swordScript.swordAttack);
 
-        StartCoroutine(ResetAttackCooldown(swordCooldown));
+        StartCoroutine(ResetAttackCooldown(swordScript.cooldown));
     }
 
     private void BowAttack()
@@ -140,12 +151,26 @@ public class WeaponController : MonoBehaviour
 
         anim.SetTrigger("Attack");
 
-        StartCoroutine(PrepareFire());
+        StartCoroutine(PrepareWandFire());
 
-        StartCoroutine(ResetAttackCooldown(bowCooldown));
+        StartCoroutine(ResetAttackCooldown(bowScript.cooldown));
     }
 
-    private void Fire()
+    private void WandAttack()
+    {
+        anim = wand.GetComponentInChildren<Animator>();
+
+        canAttack = false;
+
+        anim.SetTrigger("Attack");
+
+        StartCoroutine(PrepareWandFire());
+
+        Debug.Log(wandScript.cooldown + "é");
+        StartCoroutine(ResetAttackCooldown(wandScript.cooldown));
+    }
+
+    private void WandFire()
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
@@ -159,28 +184,26 @@ public class WeaponController : MonoBehaviour
             rayHit = ray.GetPoint(1000);        
         }
 
-        InstantiateProjectile(bowScript.projectileSpawnPoint.transform);
+        InstantiateWandProjectile(wandScript.wandProjectileSpawnPoint.transform);
 
     }
 
-    private void InstantiateProjectile(Transform firePoint)
+    private void InstantiateWandProjectile(Transform firePoint)
     {
-       GameObject bullet = Instantiate(bowScript.projectile, firePoint.position, Quaternion.identity);
-        bullet.GetComponent<Rigidbody>().velocity = (rayHit - firePoint.position).normalized * bowScript.projectileSpeed;
+       GameObject bullet = Instantiate(wandScript.wandProjectile, firePoint.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody>().velocity = (rayHit - firePoint.position).normalized * wandScript.projectileSpeed;
     }
 
-    IEnumerator PrepareFire()
+    IEnumerator PrepareWandFire()
     {
         yield return new WaitForSeconds(1f);
-        ac.PlayOneShot(bowScript.bowAttack);
-        yield return new WaitForSeconds(1f);
-        Fire();
-        
-
+        ac.PlayOneShot(wandScript.wandAttack);
+        WandFire();
     }
 
     IEnumerator ResetAttackCooldown(float cd)
     {
+        Debug.Log(cd);
         yield return new WaitForSeconds(cd);
         canAttack = true;
     }

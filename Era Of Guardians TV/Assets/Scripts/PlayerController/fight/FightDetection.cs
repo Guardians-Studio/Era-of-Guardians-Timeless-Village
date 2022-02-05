@@ -22,9 +22,8 @@ public class FightDetection : MonoBehaviour
         else if(this.tag == "Bullet")
         {
             currentWeapon = "MageParticle";
-            damage = 40f; // does not do link with Bow Script
+            damage = 30f; // does not do link with Bow Script
         }
-        Debug.Log(currentWeapon);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,7 +34,7 @@ public class FightDetection : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.tag == "Player") // modify to Enemy
+        if (other.tag == "Enemy")
         {
             isAttacking = true;
             // other.GetComponent<Animator>().SetTrigger("Hit");
