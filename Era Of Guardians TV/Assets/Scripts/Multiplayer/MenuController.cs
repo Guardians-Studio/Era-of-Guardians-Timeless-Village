@@ -59,7 +59,7 @@ public class MenuController : MonoBehaviour
     }
     
 
-    public void CreateGame()
+    public void CreateGame() // Pas de mess d'erreur si aucun nom d'instance n'est inscrite -- à fix
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 4;
