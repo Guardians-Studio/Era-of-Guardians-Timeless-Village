@@ -6,7 +6,6 @@ public class FightDetection : MonoBehaviour
 {
     [SerializeField] ParticleSystem hitParticle;
 
-    public bool isAttacking;
     private float damage;
     private string currentWeapon;
 
@@ -36,19 +35,17 @@ public class FightDetection : MonoBehaviour
 
         if (other.tag == "Enemy")
         {
-            isAttacking = true;
             // other.GetComponent<Animator>().SetTrigger("Hit");
 
-            other.gameObject.GetComponentInParent<Player>().TakeDamage(damage);
+            other.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage);
 
-            if (isAttacking)
+            if (this.enabled)
             {
                 ParticleSystem particle = Instantiate(hitParticle, other.gameObject.GetComponentInParent<Transform>());
                 particle.Play();
-                isAttacking = false;
+                this.enabled = false;
             }
-            
-            Instantiate(hitParticle, new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z), other.transform.rotation);
+
         }
     }
 }

@@ -132,6 +132,8 @@ public class WeaponController : MonoBehaviour
 
     private void SwordAttack()
     {
+        sword.GetComponent<FightDetection>().enabled = true; // to disable attack just by passing on enemy
+        
         anim = sword.GetComponentInChildren<Animator>();
 
         canAttack = false;
@@ -203,7 +205,6 @@ public class WeaponController : MonoBehaviour
 
     IEnumerator ResetAttackCooldown(float cd)
     {
-        Debug.Log(cd);
         yield return new WaitForSeconds(cd);
         canAttack = true;
     }
