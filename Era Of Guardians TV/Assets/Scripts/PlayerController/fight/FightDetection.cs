@@ -37,12 +37,11 @@ public class FightDetection : MonoBehaviour
         {
             // other.GetComponent<Animator>().SetTrigger("Hit");
 
-            other.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage);
-
             if (this.enabled)
             {
                 ParticleSystem particle = Instantiate(hitParticle, other.gameObject.GetComponentInParent<Transform>());
                 particle.Play();
+                other.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage);
                 this.enabled = false;
             }
 

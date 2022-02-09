@@ -12,9 +12,30 @@ public class Enemy : MonoBehaviour
     private List<GameObject> items;
     private int level = 1;
 
-    public void TakeDamage(float damage)
+    private bool canAttack = true;
+
+    [Header("Sword")]
+    [SerializeField] GameObject sword;
+    [SerializeField] Sword swordScript;
+    Animator anim;
+    AudioSource ac;
+
+    private void Start()
     {
-        this.health -= damage;
+        ac = GetComponentInParent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        if (canAttack)
+        {
+            AttackAuto();
+        }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        this.health -= amount;
         healthBarExtern.UpdateHealth(this.health / 100);
 
         if (this.health <= 0)
@@ -23,13 +44,34 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Heal(float heal)
+    private void Heal(float amount)
     {
-        this.health += heal;
+        this.health += amount;
     }
 
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void AttackAuto()
+    {
+        sword.GetComponent<FightEnemyDetection>().enabled = true;
+
+        canAttack = false;
+
+        anim = sword.GetComponentInChildren<Animator>();
+
+        anim.SetTrigger("Attack");
+
+        // ac.PlayOneShot(swordScript.swordAttack);
+
+        StartCoroutine(ResetAttackCooldown(swordScript.cooldown));
+    }
+
+    IEnumerator ResetAttackCooldown(float cd)
+    {
+        yield return new WaitForSeconds(cd);
+        canAttack = true;
     }
 }

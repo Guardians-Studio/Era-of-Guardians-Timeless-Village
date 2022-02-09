@@ -160,7 +160,6 @@ public class WeaponController : MonoBehaviour
 
         StartCoroutine(PrepareWandFire());
 
-        Debug.Log(wandScript.cooldown + "é");
         StartCoroutine(ResetAttackCooldown(wandScript.cooldown));
     }
 
