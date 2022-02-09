@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] Camera cam;
     public KeyConfiguration keyConfiguration;
-    [SerializeField] GameObject weaponHolder;
     [Header("Sword")]
     [SerializeField] GameObject sword;
     [SerializeField] Sword swordScript;
@@ -21,6 +21,16 @@ public class WeaponController : MonoBehaviour
     [SerializeField] GameObject[] weapons;
     private int selectedWeapon = 0;
 
+    [Header("UI Player Cooldown")]
+    [SerializeField] Image cooldownImage;
+    [SerializeField] Image cdFinishedImage;
+
+    [SerializeField] Image[] weaponsImages;
+
+    private float cooldownTime;
+    private float cooldownTimer;
+    private bool isCooldown = false;
+
     private bool canAttack;
   
     private Vector3 rayHit;
@@ -32,9 +42,9 @@ public class WeaponController : MonoBehaviour
     {
         ac = GetComponentInParent<AudioSource>();
         canAttack = true;
+        cooldownImage.fillAmount = 0.0f;
 
-
-    SelectWeapon();
+        SelectWeapon();
     }
 
     private void Update()
@@ -85,6 +95,9 @@ public class WeaponController : MonoBehaviour
             if (canAttack)
             {
                 SwordAttack();
+                cooldownTime = swordScript.cooldown;
+                cooldownTimer = cooldownTime;
+                isCooldown = true;
             }
         }
 
@@ -93,6 +106,9 @@ public class WeaponController : MonoBehaviour
             if (canAttack)
             {
                 BowAttack();
+                cooldownTime = bowScript.cooldown;
+                cooldownTimer = cooldownTime;
+                isCooldown = true;
             }
         }
 
@@ -101,7 +117,33 @@ public class WeaponController : MonoBehaviour
             if (canAttack)
             {
                 WandAttack();
+                cooldownTime = wandScript.cooldown;
+                cooldownTimer = cooldownTime;
+                isCooldown = true;
             }
+        }
+
+        if (isCooldown)
+        {
+            ApplyCooldown();
+        }
+    }
+    private void ApplyCooldown()
+    {
+        cooldownTimer -= Time.deltaTime;
+        cdFinishedImage.gameObject.SetActive(true);
+        cooldownImage.gameObject.SetActive(true);
+
+        if (cooldownTimer < 0.0f)
+        {
+            isCooldown = false;
+            cooldownImage.gameObject.SetActive(false);
+            cdFinishedImage.gameObject.SetActive(false);
+            cooldownImage.fillAmount = 0.0f;
+        }
+        else
+        {
+            cooldownImage.fillAmount = cooldownTimer / cooldownTime;
         }
     }
 
@@ -117,6 +159,19 @@ public class WeaponController : MonoBehaviour
             else
             {
                 weapon.gameObject.SetActive(false);
+            }
+            i++;
+        }
+        i = 0;
+        foreach(Image img in weaponsImages)
+        {
+            if (i == selectedWeapon)
+            {
+                img.gameObject.SetActive(true);
+            }
+            else
+            {
+                img.gameObject.SetActive(false);
             }
             i++;
         }
