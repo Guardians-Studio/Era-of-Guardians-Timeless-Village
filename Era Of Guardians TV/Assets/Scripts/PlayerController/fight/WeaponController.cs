@@ -200,7 +200,7 @@ public class WeaponController : MonoBehaviour
 
         anim.SetTrigger("Attack");
 
-        StartCoroutine(PrepareWandFire());
+        StartCoroutine(PreparebowFire());
 
         StartCoroutine(ResetAttackCooldown(bowScript.cooldown));
     }
@@ -236,10 +236,42 @@ public class WeaponController : MonoBehaviour
 
     }
 
+    private void BowFire()
+    {
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            rayHit = hit.point;
+        }
+        else
+        {
+            rayHit = ray.GetPoint(1000);
+        }
+
+        InstantiateBowProjectile(bowScript.bowProjectileSpawnPoint.transform);
+
+    }
+
+
+    private void InstantiateBowProjectile(Transform firePoint)
+    {
+        GameObject bullet = Instantiate(bowScript.bowProjectile, firePoint.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody>().velocity = (rayHit - firePoint.position).normalized * wandScript.projectileSpeed;
+    }
+
     private void InstantiateWandProjectile(Transform firePoint)
     {
        GameObject bullet = Instantiate(wandScript.wandProjectile, firePoint.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().velocity = (rayHit - firePoint.position).normalized * wandScript.projectileSpeed;
+    }
+
+    IEnumerator PreparebowFire()
+    {
+        yield return new WaitForSeconds(1f);
+        ac.PlayOneShot(wandScript.wandAttack);
+        BowFire();
     }
 
     IEnumerator PrepareWandFire()

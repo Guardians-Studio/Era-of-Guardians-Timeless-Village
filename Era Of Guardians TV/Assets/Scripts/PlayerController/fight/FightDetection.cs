@@ -27,7 +27,7 @@ public class FightDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (currentWeapon == "MageParticle" && other.gameObject.tag != "Player" && other.gameObject.tag != "Bullet" && isCollided)
+        if (currentWeapon == "MageParticle" && other.gameObject.tag != "Player" && isCollided)
         {
             isCollided = false;
             Destroy(gameObject);

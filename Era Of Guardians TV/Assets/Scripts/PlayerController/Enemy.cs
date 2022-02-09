@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        Debug.Log(this.health);
         this.health -= amount;
         healthBarExtern.UpdateHealth(this.health / 100);
 
