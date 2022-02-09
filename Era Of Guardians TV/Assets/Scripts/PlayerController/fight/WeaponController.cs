@@ -18,8 +18,8 @@ public class WeaponController : MonoBehaviour
     [SerializeField] GameObject wand;
     [SerializeField] Wand wandScript;
 
+    [SerializeField] GameObject[] weapons;
     private int selectedWeapon = 0;
-    int previousSelectedWeapon;
 
     private bool canAttack;
   
@@ -39,12 +39,9 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
-        previousSelectedWeapon = selectedWeapon;
-
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            Debug.Log(transform.childCount);
-            if (selectedWeapon >= transform.childCount)
+            if (selectedWeapon >= weapons.Length - 1)
             {
                 selectedWeapon = 0;
             }
@@ -57,7 +54,7 @@ public class WeaponController : MonoBehaviour
         {
             if (selectedWeapon <= 0)
             {
-                selectedWeapon = transform.childCount;
+                selectedWeapon = weapons.Length - 1;
             }
             else
             {
@@ -81,10 +78,6 @@ public class WeaponController : MonoBehaviour
             selectedWeapon = 2;
         }
 
-        if (previousSelectedWeapon != selectedWeapon)
-        {
-            return;
-        }
         SelectWeapon();
 
         if (Input.GetMouseButtonDown(keyConfiguration.leftMouseKey) && sword.activeSelf)
@@ -115,7 +108,7 @@ public class WeaponController : MonoBehaviour
     private void SelectWeapon()
     {
         int i = 0;
-        foreach (Transform weapon in weaponHolder.transform)
+        foreach (GameObject weapon in weapons)
         {
             if (i == selectedWeapon)
             {
@@ -127,7 +120,6 @@ public class WeaponController : MonoBehaviour
             }
             i++;
         }
-        weaponHolder.transform.GetChild(selectedWeapon).gameObject.SetActive(true);
     }
 
     private void SwordAttack()

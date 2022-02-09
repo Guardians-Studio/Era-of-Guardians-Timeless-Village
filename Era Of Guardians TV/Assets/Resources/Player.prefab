@@ -837,6 +837,10 @@ MonoBehaviour:
   bowScript: {fileID: 2604262210786944218}
   wand: {fileID: 7007721729536242761}
   wandScript: {fileID: 2701005404247280835}
+  weapons:
+  - {fileID: 7901912575226955460}
+  - {fileID: 4303081919644362606}
+  - {fileID: 7007721729536242761}
 --- !u!1 &4146235936947553056
 GameObject:
   m_ObjectHideFlags: 0
