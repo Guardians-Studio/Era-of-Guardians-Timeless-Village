@@ -18,22 +18,32 @@ public class FightDetection : MonoBehaviour
             currentWeapon = "Sword";
             damage = GetComponent<Sword>().damage;
         }
+        else if (this.tag == "Axe")
+        {
+            currentWeapon = "Axe";
+            damage = GetComponent<Axe>().damage;
+        }
+        else if (this.tag == "Arrow")
+        {
+            currentWeapon = "Projectile";
+            damage = 30f; // does not do link with Bow Script
+        }
         else if(this.tag == "Bullet")
         {
-            currentWeapon = "MageParticle";
-            damage = 30f; // does not do link with Bow Script
+            currentWeapon = "Projectile";
+            damage = 50f; // does not do link with Bow Script
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (currentWeapon == "MageParticle" && other.gameObject.tag != "Player" && isCollided)
+        if (currentWeapon == "Projectile" && other.gameObject.tag != "Player" && isCollided)
         {
             isCollided = false;
             Destroy(gameObject);
         }
 
-        if (other.tag == "Enemy")
+        if (other.tag == "Enemy") // can hit twice +, need this.enable = false;
         {
             // other.GetComponent<Animator>().SetTrigger("Hit");
             ParticleSystem particle = Instantiate(hitParticle, other.gameObject.GetComponentInParent<Transform>());

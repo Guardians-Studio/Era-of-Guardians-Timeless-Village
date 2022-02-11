@@ -9,6 +9,9 @@ TagManager:
   - weapons
   - Environment
   - Enemy
+  - Axe
+  - Arrow
+  - Shield
   layers:
   - Default
   - TransparentFX

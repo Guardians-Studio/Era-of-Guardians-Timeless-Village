@@ -18,4 +18,6 @@ public class KeyConfiguration : MonoBehaviour
     public KeyCode twoKey = KeyCode.Alpha2;
     public KeyCode threeKey = KeyCode.Alpha3;
     public KeyCode fourKey = KeyCode.Alpha4;
+    public KeyCode aKey = KeyCode.A;
+    public KeyCode eKey = KeyCode.E;
 }

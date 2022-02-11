@@ -4876,7 +4876,7 @@ GameObject:
   - component: {fileID: 314170679281195367}
   m_Layer: 0
   m_Name: MageParticles
-  m_TagString: Bullet
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4939,7 +4939,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitParticle: {fileID: 2731419704269464761, guid: d5f672cec95e5c044add7a985051cd5f, type: 3}
-  isAttacking: 0
 --- !u!1 &3419769186282757519
 GameObject:
   m_ObjectHideFlags: 0
