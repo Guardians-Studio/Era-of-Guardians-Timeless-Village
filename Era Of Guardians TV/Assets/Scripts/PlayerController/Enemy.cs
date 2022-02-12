@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private float health = 100;
     private float armor = 10;
     private List<GameObject> items;
+    // public float xpValue = 10;
     private int level = 1;
 
     private bool canAttack = true;
@@ -33,7 +34,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float amount)
+    public bool TakeDamage(float amount)
     {
         Debug.Log(this.health);
         this.health -= amount;
@@ -42,7 +43,10 @@ public class Enemy : MonoBehaviour
         if (this.health <= 0)
         {
             Die();
+            return false;
         }
+
+        return true;
     }
 
     private void Heal(float amount)

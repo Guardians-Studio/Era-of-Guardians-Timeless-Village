@@ -19,5 +19,7 @@ public class KeyConfiguration : MonoBehaviour
     public KeyCode threeKey = KeyCode.Alpha3;
     public KeyCode fourKey = KeyCode.Alpha4;
     public KeyCode aKey = KeyCode.A;
+    public string aKeyString = "A";
     public KeyCode eKey = KeyCode.E;
+    public string eKeyString = "E";
 }
