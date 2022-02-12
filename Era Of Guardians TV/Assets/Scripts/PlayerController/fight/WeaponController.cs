@@ -226,7 +226,7 @@ public class WeaponController : MonoBehaviour
             i++;
         }
         i = 0;
-        foreach(Image img in weaponsImages)
+        foreach (Image img in weaponsImages)
         {
             if (i == selectedWeapon0)
             {
@@ -277,6 +277,8 @@ public class WeaponController : MonoBehaviour
 
         anim.SetTrigger("Defense");
 
+        shield.GetComponent<BoxCollider>().isTrigger = false;
+
         shield.GetComponent<Shield>().isDefending = true;
 
         // ac.PlayOneShot(shieldScript.shieldDefense);
@@ -287,6 +289,8 @@ public class WeaponController : MonoBehaviour
         anim = shield.GetComponentInChildren<Animator>();
 
         anim.SetTrigger("DefenseOff");
+
+        shield.GetComponent<BoxCollider>().isTrigger = true;
 
         shield.GetComponent<Shield>().isDefending = false;
 

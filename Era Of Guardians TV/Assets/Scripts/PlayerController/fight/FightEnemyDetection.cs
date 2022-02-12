@@ -12,42 +12,20 @@ public class FightEnemyDetection : MonoBehaviour
     {
         damage = GetComponent<Sword>().damage;
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Shield")
+        if (other.tag == "Player")
         {
-            if (!other.GetComponent<Shield>().isDefending)
+            // other.GetComponent<Animator>().SetTrigger("Hit");
+
+            if (this.enabled)
             {
-                if (other.tag == "Player")
-                {
-                    // other.GetComponent<Animator>().SetTrigger("Hit");
-
-                    if (this.enabled)
-                    {
-                        ParticleSystem particle = Instantiate(hitParticle, other.gameObject.GetComponentInParent<Transform>());
-                        particle.Play();
-                        other.gameObject.GetComponentInParent<Player>().TakeDamage(damage);
-                        this.enabled = false;
-                    }
-
-                }
+                ParticleSystem particle = Instantiate(hitParticle, other.gameObject.GetComponentInParent<Transform>());
+                particle.Play();
+                other.gameObject.GetComponentInParent<Player>().TakeDamage(damage);
+                this.enabled = false;
             }
         }
-        else
-        {
-            if (other.tag == "Player")
-            {
-                // other.GetComponent<Animator>().SetTrigger("Hit");
-
-                if (this.enabled)
-                {
-                    ParticleSystem particle = Instantiate(hitParticle, other.gameObject.GetComponentInParent<Transform>());
-                    particle.Play();
-                    other.gameObject.GetComponentInParent<Player>().TakeDamage(damage);
-                    this.enabled = false;
-                }
-
-            }
-        }   
     }
 }
