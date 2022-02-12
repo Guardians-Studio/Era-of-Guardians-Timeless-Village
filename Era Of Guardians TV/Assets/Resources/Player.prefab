@@ -1381,6 +1381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarExtern: {fileID: 6416488709300482354}
   healthBarUI: {fileID: 3063967963598318608}
+  uiPlayer: {fileID: 0}
 --- !u!114 &4146235936788497540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,7 +2604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aText: {fileID: 7397736192684087841}
   eText: {fileID: 7220155633083272726}
-  player: {fileID: 0}
+  xpBar: {fileID: 0}
   keyConfiguration: {fileID: 4146235936788497539}
 --- !u!1 &6854852430748904655
 GameObject:
@@ -3287,7 +3288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1936cb69ddb2ed94b80717b88483f8a2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1936cb69ddb2ed94b80717b88483f8a2, type: 3}
       propertyPath: m_TagString
@@ -3424,7 +3425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 26430834ea307e24083f9e03d7fc4f0f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 26430834ea307e24083f9e03d7fc4f0f, type: 3}
       propertyPath: m_TagString
@@ -3568,7 +3569,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 67be24e8ee52ec04497cfee5403c5fa3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d9d38dee12e39754f80ea91dc68102ac, type: 2}
+      objectReference: {fileID: 2100000, guid: 01adec13b5bee0a4fa62209d4664b7eb, type: 2}
     - target: {fileID: 919132149155446097, guid: 67be24e8ee52ec04497cfee5403c5fa3, type: 3}
       propertyPath: m_Name
       value: Wand

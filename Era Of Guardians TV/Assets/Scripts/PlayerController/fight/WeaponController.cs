@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+
 
 public class WeaponController : MonoBehaviour
 {
@@ -48,132 +50,139 @@ public class WeaponController : MonoBehaviour
 
     Animator anim;
     AudioSource ac;
+    PhotonView view;
 
     private void Start()
     {
         ac = GetComponentInParent<AudioSource>();
         canAttack = true;
         cooldownImage.fillAmount = 0.0f;
-        
+
+        view = GetComponent<PhotonView>();
+
         SelectWeapon();
     }
 
     private void Update()
     {
-        SelectAbility();
-
-        if (selectedAbility == 0)
+        if (view.IsMine)
         {
-            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+
+                SelectAbility();
+
+            if (selectedAbility == 0)
             {
-                if (selectedWeapon0 >= weapons.Length - 1)
+                if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+                {
+                    if (selectedWeapon0 >= weapons.Length - 1)
+                    {
+                        selectedWeapon0 = 0;
+                    }
+                    else
+                    {
+                        selectedWeapon0++;
+                    }
+                }
+                else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+                {
+                    if (selectedWeapon0 <= 0)
+                    {
+                        selectedWeapon0 = weapons.Length - 1;
+                    }
+                    else
+                    {
+                        selectedWeapon0--;
+                    }
+                }
+                else if (Input.GetKey(keyConfiguration.oneKey))
                 {
                     selectedWeapon0 = 0;
                 }
-                else
+                else if (Input.GetKey(keyConfiguration.twoKey))
                 {
-                    selectedWeapon0++;
+                    selectedWeapon0 = 1;
                 }
-            }
-            else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-            {
-                if (selectedWeapon0 <= 0)
+                else if (Input.GetKey(keyConfiguration.threeKey))
                 {
-                    selectedWeapon0 = weapons.Length - 1;
+                    selectedWeapon0 = 2;
                 }
-                else
+                else if (Input.GetKey(keyConfiguration.fourKey))// modif qd available
                 {
-                    selectedWeapon0--;
+                    selectedWeapon0 = 3;
                 }
-            }
-            else if (Input.GetKey(keyConfiguration.oneKey))
-            {
-                selectedWeapon0 = 0;
-            }
-            else if (Input.GetKey(keyConfiguration.twoKey))
-            {
-                selectedWeapon0 = 1;
-            }
-            else if (Input.GetKey(keyConfiguration.threeKey))
-            {
-                selectedWeapon0 = 2;
-            }
-            else if (Input.GetKey(keyConfiguration.fourKey))// modif qd available
-            {
-                selectedWeapon0 = 3;
-            }
 
-            SelectWeapon();
+                SelectWeapon();
 
-            if (Input.GetMouseButtonDown(keyConfiguration.leftMouseKey) && sword.activeSelf)
-            {
-                if (canAttack)
+                if (Input.GetMouseButtonDown(keyConfiguration.leftMouseKey) && sword.activeSelf)
                 {
-                    SwordAttack();
-                    cooldownTime = swordScript.cooldown;
-                    cooldownTimer = cooldownTime;
-                    isCooldown = true;
+                    if (canAttack)
+                    {
+                        SwordAttack();
+                        cooldownTime = swordScript.cooldown;
+                        cooldownTimer = cooldownTime;
+                        isCooldown = true;
+                    }
+                }
+
+                if (Input.GetMouseButtonDown(keyConfiguration.leftMouseKey) && axe.activeSelf)
+                {
+                    if (canAttack)
+                    {
+                        AxeAttack();
+                        cooldownTime = axeScript.cooldown;
+                        cooldownTimer = cooldownTime;
+                        isCooldown = true;
+                    }
+                }
+
+                if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && bow.activeSelf)
+                {
+                    if (canAttack)
+                    {
+                        BowAttack();
+                        cooldownTime = bowScript.cooldown;
+                        cooldownTimer = cooldownTime;
+                        isCooldown = true;
+                    }
+                }
+
+                if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && wand.activeSelf)
+                {
+                    if (canAttack)
+                    {
+                        WandAttack();
+                        cooldownTime = wandScript.cooldown;
+                        cooldownTimer = cooldownTime;
+                        isCooldown = true;
+                    }
+                }
+
+                if (isCooldown)
+                {
+                    ApplyCooldown();
                 }
             }
-
-            if (Input.GetMouseButtonDown(keyConfiguration.leftMouseKey) && axe.activeSelf)
+            else if (selectedAbility == 1)
             {
-                if (canAttack)
+                selectedWeapon1 = 0;
+
+                SelectWeapon();
+
+                if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && shield.activeSelf)
                 {
-                    AxeAttack();
-                    cooldownTime = axeScript.cooldown;
-                    cooldownTimer = cooldownTime;
-                    isCooldown = true;
+                    if (!shieldScript.isDefending)
+                    {
+                        ShieldDefense();
+                    }
+                    else
+                    {
+                        ShieldDefenseOff();
+                    }
                 }
             }
-
-            if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && bow.activeSelf)
-            {
-                if (canAttack)
-                {
-                    BowAttack();
-                    cooldownTime = bowScript.cooldown;
-                    cooldownTimer = cooldownTime;
-                    isCooldown = true;
-                }
-            }
-
-            if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && wand.activeSelf)
-            {
-                if (canAttack)
-                {
-                    WandAttack();
-                    cooldownTime = wandScript.cooldown;
-                    cooldownTimer = cooldownTime;
-                    isCooldown = true;
-                }
-            }
-
-            if (isCooldown)
-            {
-                ApplyCooldown();
-            }
-        }
-        else if (selectedAbility == 1)
-        {
-            selectedWeapon1 = 0;
-
-            SelectWeapon();
-
-            if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && shield.activeSelf)
-            {
-                if (!shieldScript.isDefending)
-                {
-                    ShieldDefense();
-                }
-                else
-                {
-                    ShieldDefenseOff();
-                }
-            }
-            
         }
     }
+
     private void ApplyCooldown()
     {
         cooldownTimer -= Time.deltaTime;
