@@ -402,7 +402,7 @@ public class WeaponController : MonoBehaviour
 
     private void InstantiateBowProjectile(Transform firePoint)
     {
-        GameObject bullet = Instantiate(bowScript.bowProjectile, firePoint.position, firePoint.rotation);
+        GameObject bullet = Instantiate(bowScript.bowProjectile, firePoint.position, Quaternion.Euler(0, capsule.transform.localRotation.y, 90)) ;
         bullet.GetComponent<Rigidbody>().velocity = (rayHit - firePoint.position).normalized * wandScript.projectileSpeed;
     }
 

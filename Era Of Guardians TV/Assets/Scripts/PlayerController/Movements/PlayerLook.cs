@@ -36,11 +36,12 @@ public class PlayerLook : MonoBehaviour
         if (view.IsMine)
         {
             GetInput();
-
             cam.transform.localRotation = Quaternion.Euler(rotationX, 0, wallRun.tilt);
-            capsule.transform.localRotation = Quaternion.Euler(0, rotationY, 0);
-            weaponHolder.transform.localRotation = Quaternion.Euler(rotationX, 0, 0); // rotate position of weapons with capsule
         }
+            
+        capsule.transform.localRotation = Quaternion.Euler(0, rotationY, 0);
+        weaponHolder.transform.localRotation = Quaternion.Euler(rotationX, 0, 0); // rotate position of weapons with capsule
+        
     }
 
     private void GetInput()
