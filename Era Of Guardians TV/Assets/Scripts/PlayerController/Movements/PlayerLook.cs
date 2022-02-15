@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerLook : MonoBehaviour
 {
     [Header("GameObjects affectation")]
     [SerializeField] Transform cam;
-    [SerializeField] Transform orientation;
+    [SerializeField] Transform capsule;
     [SerializeField] WallRun wallRun;
+    [SerializeField] GameObject weaponHolder;
 
     private float sensitivityX = 100f;
     private float sensitivityY = 100f;
@@ -19,18 +21,27 @@ public class PlayerLook : MonoBehaviour
     private float rotationX;
     private float rotationY;
 
+    PhotonView view;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        view = GetComponent<PhotonView>();
     }
 
     private void Update()
     {
-        GetInput();
-
-        cam.transform.localRotation = Quaternion.Euler(rotationX, rotationY, wallRun.tilt);
-        orientation.transform.rotation = Quaternion.Euler(0, rotationY, 0);
+        if (view.IsMine)
+        {
+            GetInput();
+            cam.transform.localRotation = Quaternion.Euler(rotationX, 0, wallRun.tilt);
+        }
+            
+        capsule.transform.localRotation = Quaternion.Euler(0, rotationY, 0);
+        weaponHolder.transform.localRotation = Quaternion.Euler(rotationX, 0, 0); // rotate position of weapons with capsule
+        
     }
 
     private void GetInput()

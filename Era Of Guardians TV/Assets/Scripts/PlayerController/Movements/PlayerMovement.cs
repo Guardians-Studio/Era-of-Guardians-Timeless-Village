@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
 {
     
     [Header("GameObject Assignement")]
-    [SerializeField] Transform orientation;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
     [SerializeField] Camera cam;
@@ -152,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // affect the direction
-        moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
+        moveDirection = playerCapsule.transform.forward * verticalMovement + playerCapsule.transform.right * horizontalMovement;
 
     }
 
