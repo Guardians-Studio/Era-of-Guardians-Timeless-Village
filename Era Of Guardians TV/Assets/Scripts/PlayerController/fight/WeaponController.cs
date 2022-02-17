@@ -28,10 +28,10 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] GameObject[] weapons;
     [SerializeField] GameObject[] weapons1;
+    
     private int selectedAbility = 0;
     private int selectedWeapon0 = 0;
     private int selectedWeapon1 = 0;
-
 
     [Header("UI Player Cooldown")]
     [SerializeField] Image cooldownImage;
@@ -67,8 +67,7 @@ public class WeaponController : MonoBehaviour
     {
         if (view.IsMine)
         {
-
-                SelectAbility();
+            SelectAbility(); // check which ability is selected
 
             if (selectedAbility == 0)
             {
@@ -111,7 +110,7 @@ public class WeaponController : MonoBehaviour
                     selectedWeapon0 = 3;
                 }
 
-                SelectWeapon();
+                SelectWeapon(); // check which weapon is selected
 
                 if (Input.GetMouseButtonDown(keyConfiguration.leftMouseKey) && sword.activeSelf)
                 {
@@ -166,7 +165,7 @@ public class WeaponController : MonoBehaviour
             {
                 selectedWeapon1 = 0;
 
-                SelectWeapon();
+                SelectWeapon(); // check which weapon is selected
 
                 if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && shield.activeSelf)
                 {
@@ -293,7 +292,7 @@ public class WeaponController : MonoBehaviour
         // ac.PlayOneShot(shieldScript.shieldDefense);
     }
 
-    private void ShieldDefenseOff()
+    private void ShieldDefenseOff() // cancel shield
     {
         anim = shield.GetComponentInChildren<Animator>();
 
@@ -411,6 +410,8 @@ public class WeaponController : MonoBehaviour
        GameObject bullet = Instantiate(wandScript.wandProjectile, firePoint.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().velocity = (rayHit - firePoint.position).normalized * wandScript.projectileSpeed;
     }
+
+    // coroutines
 
     IEnumerator PreparebowFire()
     {

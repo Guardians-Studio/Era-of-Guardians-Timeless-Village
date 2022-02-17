@@ -6,16 +6,17 @@ using Photon.Pun;
 public class PlayerMovement : MonoBehaviour
 {
     
-    [Header("GameObject Assignement")]
+    [Header("Affectation")]
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask groundMask;
     [SerializeField] Camera cam;
     [SerializeField] GameObject playerCapsule;
-    public KeyConfiguration keyConfiguration;
+    [SerializeField] KeyConfiguration keyConfiguration;
 
-    CapsuleCollider playerCollider;
+    [SerializeField] CapsuleCollider playerCollider;
     private float playerHeight;
 
+    // groundMvmt
     private float movementSpeed = 6f;
     private float walkSpeed = 4f;
     private float sprintSpeed = 6f;
@@ -27,11 +28,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching = false;
     private float groundDistance = 0.2f;
 
+    // airMvmt
     private float jumpForce = 7f;
     private float airMultiplier = 0.4f;
     private float airDrag = 2f;
 
-
+    // camFov
     private float fov = 60f;
     private float sprintFov = 80f;
     private float SprintFovTime = 10f;
@@ -66,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (view.IsMine)
+        if (view.IsMine) // detect if it's my pov
         {
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); // detect if player is grounded or not 
 

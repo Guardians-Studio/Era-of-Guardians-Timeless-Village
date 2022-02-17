@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class PlayerLook : MonoBehaviour
 {
-    [Header("GameObjects affectation")]
+    [Header("Affectation")]
     [SerializeField] Transform cam;
     [SerializeField] Transform capsule;
     [SerializeField] WallRun wallRun;

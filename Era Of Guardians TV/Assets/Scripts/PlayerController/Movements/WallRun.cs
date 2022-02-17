@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class WallRun : MonoBehaviour
 {
-    [Header("GameObject Affectation")]
+    [Header("Affectation")]
     [SerializeField] Transform orientation;
     [SerializeField] Camera cam;
     [SerializeField] PlayerMovement playerMovement;
     public KeyConfiguration keyConfiguration;
 
+    // wallrun detection
     private float wallDistance = 1f;
     private float minimumJumpHeight = 0.5f;
     private float wallRunGravity = 0.2f;
     private float wallRunJumpForce = 2f;
 
-    [Header("Camera effects")]
+    // cameraMvmt
     private float fov = 60f;
     private float wallRunFov = 80f;
     private float wallRunFovTime = 10f;

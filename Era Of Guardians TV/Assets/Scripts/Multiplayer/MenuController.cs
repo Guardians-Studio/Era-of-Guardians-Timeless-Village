@@ -7,7 +7,7 @@ using Photon.Realtime;
 
 public class MenuController : MonoBehaviour
 {
-    [Header("GameObject Attribution")]
+    [Header("Affectation")]
     [SerializeField] string versionName = "0.1";
     [SerializeField] GameObject userNameMenu;
     [SerializeField] GameObject connectPannel;
@@ -65,6 +65,7 @@ public class MenuController : MonoBehaviour
         roomOptions.MaxPlayers = 4;
         PhotonNetwork.CreateRoom(createGameInput.text, roomOptions, TypedLobby.Default);
         PhotonNetwork.LoadLevel("hazeltown");
+        
         if (PhotonNetwork.IsConnected)
         {
             print("Connected in the room");
