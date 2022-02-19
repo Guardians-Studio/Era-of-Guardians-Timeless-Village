@@ -10,6 +10,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] Camera cam;
     public KeyConfiguration keyConfiguration;
     [SerializeField] GameObject capsule;
+    [SerializeField] Image[] selectors;
     [Header("Sword")]
     [SerializeField] GameObject sword;
     [SerializeField] Sword swordScript;
@@ -208,10 +209,14 @@ public class WeaponController : MonoBehaviour
         if (Input.GetKeyDown(keyConfiguration.eKey))
         {
             selectedAbility = 0;
+            selectors[0].gameObject.SetActive(true);
+            selectors[1].gameObject.SetActive(false);
         }
         else if (Input.GetKeyDown(keyConfiguration.aKey))
         {
             selectedAbility = 1;
+            selectors[1].gameObject.SetActive(true);
+            selectors[0].gameObject.SetActive(false);
         }
     }
 
