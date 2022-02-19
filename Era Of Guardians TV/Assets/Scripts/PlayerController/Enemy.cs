@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 { 
-    [SerializeField] HealthBar healthBarExtern;
+    [SerializeField] HealthBarExtern healthBarExtern;
 
     private string name;
     private float health = 100;

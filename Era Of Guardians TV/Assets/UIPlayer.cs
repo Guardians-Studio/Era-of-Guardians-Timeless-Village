@@ -9,6 +9,7 @@ public class UIPlayer : MonoBehaviour
     [SerializeField] Text aText;
     [SerializeField] Text eText;
     [SerializeField] Image xpBar;
+    [SerializeField] Text xpTxt;
     // [SerializeField] Text levelText;
     [SerializeField] KeyConfiguration keyConfiguration;
 
@@ -18,10 +19,11 @@ public class UIPlayer : MonoBehaviour
         eText.text = keyConfiguration.eKeyString;
     }
 
-   /* public void UpdateXPBar(float fraction)
+   public void UpdateXPBar(float fraction)
     {
        xpBar.fillAmount = fraction;
-    }*/
+       xpTxt.text = (fraction * 100).ToString("0") + " / 100";
+    }
 
     public void UpdateLevel(int level)
     {
