@@ -8,6 +8,8 @@ public class UIPlayer : MonoBehaviour
     [Header("UI Player Text")]
     [SerializeField] Text aText;
     [SerializeField] Text eText;
+    [SerializeField] Text wText;
+    [SerializeField] Text xText;
     [SerializeField] Image xpBar;
     [SerializeField] Text xpTxt;
     // [SerializeField] Text levelText;
@@ -17,6 +19,8 @@ public class UIPlayer : MonoBehaviour
     {
         aText.text = keyConfiguration.aKeyString;
         eText.text = keyConfiguration.eKeyString;
+        wText.text = keyConfiguration.wKeyString;
+        xText.text = keyConfiguration.xKeyString;
     }
 
    public void UpdateXPBar(float fraction)
