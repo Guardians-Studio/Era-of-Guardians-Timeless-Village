@@ -4927,6 +4927,7 @@ MonoBehaviour:
   audiosource: {fileID: 4127519083117525983}
   slider: {fileID: 5619325412730270942}
   TxtVolume: {fileID: 5254111759657087313}
+  player: {fileID: 6971409149016529781}
 --- !u!1 &7577682683618709366
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class Option : MonoBehaviour
     public AudioSource audiosource;
     public Slider slider;
     public Text TxtVolume;
+    public Player player;
 
 
     void Update()
@@ -55,11 +56,17 @@ public class Option : MonoBehaviour
         Menu.SetActive(false);
         visible=false;
         settingsWindow.SetActive(false);
+
+        player.GetComponent<PlayerLook>().enabled = true;
+        player.GetComponent<WeaponController>().enabled = true;
     }
     void PauseGame()
     {
         Menu.SetActive(true);
         settingsWindow.SetActive(false);
+        
+        player.GetComponent<PlayerLook>().enabled = false;
+        player.GetComponent<WeaponController>().enabled = false;
     }
     public void LoadSettings()
     {
@@ -69,6 +76,6 @@ public class Option : MonoBehaviour
     }
     public void QuitGame()
     {
-        SceneManager.LoadScene("Menu");  //Pour charger la Scene du menu d'accueil faut modif
+        SceneManager.LoadScene("MainMenu");  //Pour charger la Scene du menu d'accueil faut modif
     }
 }
