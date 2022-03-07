@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        print("health");
         this.health -= amount;
         healthBarExtern.UpdateHealth(this.health / 100);
         healthBarUI.UpdateHealth(this.health / 100);
