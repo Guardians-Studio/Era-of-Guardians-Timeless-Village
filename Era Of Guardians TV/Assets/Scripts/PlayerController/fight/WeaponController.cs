@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] Camera cam;

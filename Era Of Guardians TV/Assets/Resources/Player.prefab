@@ -1414,14 +1414,14 @@ RectTransform:
   m_GameObject: {fileID: 3383328686498377747}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.82343507, y: 1.0827693, z: 1}
+  m_LocalScale: {x: 0.82343507, y: 0.9337261, z: 1}
   m_Children: []
   m_Father: {fileID: 7275837548600255603}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.6793365, y: -1.875061}
+  m_AnchoredPosition: {x: 1.6793365, y: -1.8751}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6211311336552857469
@@ -1489,7 +1489,7 @@ RectTransform:
   m_GameObject: {fileID: 3789265650160461018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5069611, y: 1.432252, z: 1}
+  m_LocalScale: {x: 1.5069611, y: 1.2351025, z: 1}
   m_Children: []
   m_Father: {fileID: 7275837548600255603}
   m_RootOrder: 1
@@ -3717,7 +3717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6266409340020742734
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4573,7 +4573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bowProjectileSpawnPoint: {fileID: 1381461518881739019}
   bowProjectile: {fileID: 6263420066961304771, guid: 7cae955c5a643d84d86e09c178d0ec00, type: 3}
-  bowAttack: {fileID: 8300000, guid: 0229028200b37ef4aad236a1eff36d68, type: 3}
+  bowAttack: {fileID: 8300000, guid: 1d8e819978b7d7443a972ee1900950a9, type: 3}
   damage: 40
   projectileSpeed: 30
   cooldown: 2.5
@@ -5002,7 +5002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wandProjectileSpawnPoint: {fileID: 1544134799696553144}
   wandProjectile: {fileID: 2139141016800117622, guid: b75b54dd7b12f104889d4ec655365051, type: 3}
-  wandAttack: {fileID: 8300000, guid: c127ddde5e6b2704a9bee9b4eba648fa, type: 3}
+  wandAttack: {fileID: 8300000, guid: f8e6cf7b5fed5d24a8a28ce31611345e, type: 3}
   damage: 50
   projectileSpeed: 20
   cooldown: 3
