@@ -22,4 +22,9 @@ public class KeyConfiguration : MonoBehaviour
     public string aKeyString = "A";
     public KeyCode eKey = KeyCode.E;
     public string eKeyString = "E";
+    public KeyCode wKey = KeyCode.W;
+    public string wKeyString = "W";
+    public KeyCode xKey = KeyCode.X;
+    public string xKeyString = "X";
+    public KeyCode escape = KeyCode.Escape;
 }

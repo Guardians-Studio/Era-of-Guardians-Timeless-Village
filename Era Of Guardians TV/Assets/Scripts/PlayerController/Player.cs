@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] HealthBar healthBarExtern;
+    [SerializeField] HealthBarExtern healthBarExtern;
     [SerializeField] HealthBar healthBarUI;
     [SerializeField] UIPlayer uiPlayer;
 
@@ -13,8 +13,14 @@ public class Player : MonoBehaviour
     private float health = 100;
     private float armor = 10;
     private List<GameObject> items;
-    // public float xpAmount = 0;
+    public float xpAmount = 0;
     private int level = 1;
+
+    private void Start()
+    {
+        TakeDamage(0);
+        XP(50);
+    }
 
     public void TakeDamage(float amount)
     {
@@ -41,8 +47,8 @@ public class Player : MonoBehaviour
             this.level++;
             xpAmount = 0;
             // uiPlayer.UpdateLvl;
-        }
-        uiPlayer.UpdateXPBar(xpAmount / 100);*/
+        }*/
+        uiPlayer.UpdateXPBar(xpAmount / 100);
     }
 
 
