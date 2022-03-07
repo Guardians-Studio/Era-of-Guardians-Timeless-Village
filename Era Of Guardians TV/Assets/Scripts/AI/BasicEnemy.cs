@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class BasicEnemy : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform player, startPosition;
+    private Transform player;
+    [SerializeField] Transform startPosition;
     [SerializeField] LayerMask whatIsGround, whatIsPlayer;
     // [SerializeField] float health;
 
@@ -28,13 +29,14 @@ public class BasicEnemy : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         startPosition = GameObject.Find("central_place_ground").transform;
     }
 
     private void Update()
     {
+        player = GameObject.FindWithTag("Player").transform;
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer); 
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
