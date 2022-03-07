@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private List<GameObject> items;
     // public float xpValue = 10;
     private int level = 1;
+    [SerializeField] BasicEnemy bE;
 
     private bool canAttack = true;
 
@@ -28,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (canAttack)
+        if (bE.playerInAttackRange)
         {
             AttackAuto();
         }
