@@ -21,7 +21,7 @@ public class Option : MonoBehaviour
     {
         if (Input.GetKeyDown(keyConfiguration.escape))
         {
-            visible = !visible;
+            visible =! visible;
             if (visible)
             {
                 Cursor.lockState = CursorLockMode.None;
