@@ -10,6 +10,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] Camera cam;
     public KeyConfiguration keyConfiguration;
     [SerializeField] GameObject capsule;
+    [SerializeField] Image[] selectors;
     [Header("Sword")]
     [SerializeField] GameObject sword;
     [SerializeField] Sword swordScript;
@@ -25,13 +26,22 @@ public class WeaponController : MonoBehaviour
     [Header("Shield")]
     [SerializeField] GameObject shield;
     [SerializeField] Shield shieldScript;
+    [Header("Shield")]
+    [SerializeField] GameObject healthPot;
+    [Header("Shield")]
+    [SerializeField] GameObject xpPot;
 
     [SerializeField] GameObject[] weapons;
     [SerializeField] GameObject[] weapons1;
-    
+    [SerializeField] GameObject[] weapons2;
+    [SerializeField] GameObject[] weapons3;
+
     private int selectedAbility = 0;
     private int selectedWeapon0 = 0;
     private int selectedWeapon1 = 0;
+    private int selectedWeapon2 = 0;
+    private int selectedWeapon3 = 0;
+
 
     [Header("UI Player Cooldown")]
     [SerializeField] Image cooldownImage;
@@ -39,6 +49,8 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] Image[] weaponsImages;
     [SerializeField] Image[] weaponsImages1;
+    [SerializeField] Image[] weaponsImages2;
+    [SerializeField] Image[] weaponsImages3;
 
     private float cooldownTime;
     private float cooldownTimer;
@@ -67,7 +79,8 @@ public class WeaponController : MonoBehaviour
     {
         if (view.IsMine)
         {
-            SelectAbility(); // check which ability is selected
+
+                SelectAbility();
 
             if (selectedAbility == 0)
             {
@@ -105,12 +118,12 @@ public class WeaponController : MonoBehaviour
                 {
                     selectedWeapon0 = 2;
                 }
-                else if (Input.GetKey(keyConfiguration.fourKey))// modif qd available
+                else if (Input.GetKey(keyConfiguration.fourKey))
                 {
                     selectedWeapon0 = 3;
                 }
 
-                SelectWeapon(); // check which weapon is selected
+                SelectWeapon();
 
                 if (Input.GetMouseButtonDown(keyConfiguration.leftMouseKey) && sword.activeSelf)
                 {
@@ -165,7 +178,7 @@ public class WeaponController : MonoBehaviour
             {
                 selectedWeapon1 = 0;
 
-                SelectWeapon(); // check which weapon is selected
+                SelectWeapon();
 
                 if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && shield.activeSelf)
                 {
@@ -178,6 +191,49 @@ public class WeaponController : MonoBehaviour
                         ShieldDefenseOff();
                     }
                 }
+            }
+            else if (selectedAbility == 2)
+            {
+                selectedWeapon2 = 0;
+
+                if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+                {
+                    if (selectedWeapon2 >= weapons2.Length - 1)
+                    {
+                        selectedWeapon2 = 0;
+                    }
+                    else
+                    {
+                        selectedWeapon2++;
+                    }
+                }
+                else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+                {
+                    if (selectedWeapon2 <= 0)
+                    {
+                        selectedWeapon2 = weapons.Length - 1;
+                    }
+                    else
+                    {
+                        selectedWeapon2--;
+                    }
+                }
+                else if (Input.GetKey(keyConfiguration.oneKey))
+                {
+                    selectedWeapon2 = 0;
+                }
+                else if (Input.GetKey(keyConfiguration.twoKey))
+                {
+                    selectedWeapon2 = 1;
+                }
+            }
+            else if (selectedAbility == 2)
+            {
+                selectedWeapon2 = 0;
+            }
+            else if (selectedAbility == 3)
+            {
+                selectedWeapon3 = 0;
             }
         }
     }
@@ -202,15 +258,39 @@ public class WeaponController : MonoBehaviour
     }
 
 
-    private void SelectAbility()
+        private void SelectAbility()
     {
         if (Input.GetKeyDown(keyConfiguration.eKey))
         {
             selectedAbility = 0;
+            selectors[0].gameObject.SetActive(true);
+            selectors[1].gameObject.SetActive(false);
+            selectors[2].gameObject.SetActive(false);
+            selectors[3].gameObject.SetActive(false);
         }
         else if (Input.GetKeyDown(keyConfiguration.aKey))
         {
             selectedAbility = 1;
+            selectors[1].gameObject.SetActive(true);
+            selectors[0].gameObject.SetActive(false);
+            selectors[2].gameObject.SetActive(false);
+            selectors[3].gameObject.SetActive(false);
+        }
+        else if (Input.GetKeyDown(keyConfiguration.wKey))
+        {
+            selectedAbility = 2;
+            selectors[1].gameObject.SetActive(false);
+            selectors[0].gameObject.SetActive(false);
+            selectors[2].gameObject.SetActive(true);
+            selectors[3].gameObject.SetActive(false);
+        }
+        else if (Input.GetKeyDown(keyConfiguration.xKey))
+        {
+            selectedAbility = 3;
+            selectors[1].gameObject.SetActive(false);
+            selectors[0].gameObject.SetActive(false);
+            selectors[2].gameObject.SetActive(false);
+            selectors[3].gameObject.SetActive(true);
         }
     }
 
@@ -292,7 +372,7 @@ public class WeaponController : MonoBehaviour
         // ac.PlayOneShot(shieldScript.shieldDefense);
     }
 
-    private void ShieldDefenseOff() // cancel shield
+    private void ShieldDefenseOff()
     {
         anim = shield.GetComponentInChildren<Animator>();
 
@@ -410,8 +490,6 @@ public class WeaponController : MonoBehaviour
        GameObject bullet = Instantiate(wandScript.wandProjectile, firePoint.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().velocity = (rayHit - firePoint.position).normalized * wandScript.projectileSpeed;
     }
-
-    // coroutines
 
     IEnumerator PreparebowFire()
     {
