@@ -18,8 +18,12 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        TakeDamage(0);
         XP(50);
+    }
+
+    private void Update()
+    {
+        TakeDamage(0);
     }
 
     public void TakeDamage(float amount)
