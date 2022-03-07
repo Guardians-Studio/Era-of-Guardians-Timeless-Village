@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (bE.playerInAttackRange)
+        if (bE.attack)
         {
             AttackAuto();
         }

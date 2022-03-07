@@ -10,6 +10,8 @@ public class BasicEnemy : MonoBehaviour
     [SerializeField] LayerMask whatIsGround, whatIsPlayer;
     // [SerializeField] float health;
 
+    public bool attack;
+
     // Patterns
     [SerializeField] Vector3 walkPoint;
     bool walkPointSet;
@@ -20,9 +22,9 @@ public class BasicEnemy : MonoBehaviour
     bool alreadyAttacked;
 
     // Etats
-    [SerializeField] float sightRange, attackRange;
+    public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
-    [SerializeField] bool patroling, fixedPos;
+    public bool patroling, fixedPos;
 
     private void Awake()
     {
@@ -36,24 +38,26 @@ public class BasicEnemy : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer); 
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (playerInAttackRange && playerInSightRange)
+        if (!playerInAttackRange && playerInSightRange)
         {
+            attack = false;
             ChasePlayer();
-            print("yes");
+
         }
-        /*
-        if (playerInAttackRange && playerInSightRange)
+        
+        else if (playerInAttackRange && playerInSightRange)
         {
-            AttackPlayer();
+            attack = true;
+            Stop();
         }
-        */
+       
         else
         {
             if (fixedPos)
             {
                 ReturnStartPos();
-
             }
+
             else
             {
                 Patroling();
@@ -101,7 +105,12 @@ public class BasicEnemy : MonoBehaviour
     {
         agent.SetDestination(player.position);
     }
-    
+
+    private void Stop()
+    {
+        agent.SetDestination(this.transform.position);
+    }
+
     private void ReturnStartPos ()
     {
         agent.SetDestination(startPosition.position);
