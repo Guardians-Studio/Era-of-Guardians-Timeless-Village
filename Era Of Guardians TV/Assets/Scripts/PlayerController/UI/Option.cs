@@ -6,19 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class Option : MonoBehaviour
 {
-    public GameObject Menu;
-    public GameObject settingsWindow;
+    [SerializeField] GameObject Menu;
+    [SerializeField] KeyConfiguration keyConfiguration;
+   //public GameObject settingsWindow;
     bool visible = false;
-    public Dropdown DResolution;
-    public AudioSource audiosource;
-    public Slider slider;
-    public Text TxtVolume;
-    public Player player;
+    
+    //public Dropdown DResolution;
+    //public AudioSource audiosource;
+    //public Slider slider;
+   // public Text TxtVolume;
+   // public Player player;
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(keyConfiguration.escape))
         {
             visible = !visible;
             if (visible)
@@ -33,7 +35,7 @@ public class Option : MonoBehaviour
     }
 
 
-    public void SetResolution()
+   /* public void SetResolution()
     {
         switch (DResolution.value)
         {
@@ -49,26 +51,26 @@ public class Option : MonoBehaviour
     {
         audiosource.volume = slider.value;
         TxtVolume.text = "volume " + (audiosource.volume * 100).ToString("00") + "%";
-    }
+    }*/
 
     public void ResumeGame()
     {
         Menu.SetActive(false);
         visible=false;
-        settingsWindow.SetActive(false);
+       // settingsWindow.SetActive(false);
 
-        player.GetComponent<PlayerLook>().enabled = true;
-        player.GetComponent<WeaponController>().enabled = true;
+        /*player.GetComponent<PlayerLook>().enabled = true;
+        player.GetComponent<WeaponController>().enabled = true;*/
     }
     void PauseGame()
     {
         Menu.SetActive(true);
-        settingsWindow.SetActive(false);
+       // settingsWindow.SetActive(false);
         
-        player.GetComponent<PlayerLook>().enabled = false;
-        player.GetComponent<WeaponController>().enabled = false;
+        /*player.GetComponent<PlayerLook>().enabled = false;
+        player.GetComponent<WeaponController>().enabled = false;*/
     }
-    public void LoadSettings()
+   /* public void LoadSettings()
     {
         Menu.SetActive(false);
         settingsWindow.SetActive(visible);
@@ -77,5 +79,5 @@ public class Option : MonoBehaviour
     public void QuitGame()
     {
         SceneManager.LoadScene("MainMenu");  //Pour charger la Scene du menu d'accueil faut modif
-    }
+    }*/
 }
