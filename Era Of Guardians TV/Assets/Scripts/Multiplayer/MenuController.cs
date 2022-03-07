@@ -9,7 +9,7 @@ public class MenuController : MonoBehaviour
 {
     [Header("Affectation")]
     [SerializeField] string versionName = "0.1";
-    [SerializeField] GameObject userNameMenu;
+    [SerializeField] GameObject userName;
     [SerializeField] GameObject connectPannel;
 
     [SerializeField] InputField userNameInput;
@@ -26,7 +26,7 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
-        userNameMenu.SetActive(true);
+        userName.SetActive(true);
     }
 
     private void OnConnectedToMaster()
@@ -54,12 +54,12 @@ public class MenuController : MonoBehaviour
 
     public void SetUserName()
     {
-        userNameMenu.SetActive(false);
+        userName.SetActive(false);
         PhotonNetwork.playerName = userNameInput.text;
     }
     
 
-    public void CreateGame() // Pas de mess d'erreur si aucun nom d'instance n'est inscrite -- à fix
+    public void CreateGame() // Pas de mess d'erreur si aucun nom d'instance n'est inscrite -- ï¿½ fix
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 4;
