@@ -21,7 +21,7 @@ public class BasicEnemy : MonoBehaviour
 
     // Etats
     [SerializeField] float sightRange, attackRange;
-    [SerializeField] bool playerInSightRange, playerInAttackRange;
+    public bool playerInSightRange, playerInAttackRange;
     [SerializeField] bool patroling, fixedPos;
 
     private void Awake()

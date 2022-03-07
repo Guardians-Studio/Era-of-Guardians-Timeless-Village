@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 7445054860809100653}
   - component: {fileID: 4498082888460066211}
   - component: {fileID: 2435268845993967394}
+  - component: {fileID: 4691525764958673112}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -542,6 +543,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4691525764958673112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7445054860809100651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3bb5ee3db78f946857781639b7cc76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  player: {fileID: 0}
+  startPosition: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 0
+  timeBetweenAttacks: 0
+  sightRange: 0
+  attackRange: 0
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  patroling: 0
+  fixedPos: 0
 --- !u!1 &8866932864058600599
 GameObject:
   m_ObjectHideFlags: 0
