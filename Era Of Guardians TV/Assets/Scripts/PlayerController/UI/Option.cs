@@ -61,20 +61,26 @@ public class Option : MonoBehaviour
 
     public void ResumeGame()
     {
+        player.GetComponent<PlayerLook>().enabled = true;
+        player.GetComponent<WeaponController>().enabled = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         Menu.SetActive(false);
         visible=false;
         Settings.SetActive(false);
-
-        player.GetComponent<PlayerLook>().enabled = true;
-        player.GetComponent<WeaponController>().enabled = true;
     }
     void PauseGame()
     {
-        Menu.SetActive(true);
-        Settings.SetActive(false);
-        
         player.GetComponent<PlayerLook>().enabled = false;
         player.GetComponent<WeaponController>().enabled = false;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Menu.SetActive(true);
+        Settings.SetActive(false);
     }
     public void LoadSettings()
     {
