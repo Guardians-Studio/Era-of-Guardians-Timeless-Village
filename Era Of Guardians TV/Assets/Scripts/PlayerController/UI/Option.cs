@@ -25,11 +25,13 @@ public class Option : MonoBehaviour
             if (visible)
             {
                 Cursor.lockState = CursorLockMode.None;
-                 Cursor.visible = true;
+                Cursor.visible = true;
                 PauseGame();
             }
             else
             {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 ResumeGame();
             }
         }
