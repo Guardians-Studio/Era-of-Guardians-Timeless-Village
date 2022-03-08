@@ -195,7 +195,7 @@ public class WeaponController : MonoBehaviour
                     }
                 }
             }
-            else if (selectedAbility == 2)
+           /* else if (selectedAbility == 2)
             {
                 selectedWeapon2 = 0;
 
@@ -229,7 +229,7 @@ public class WeaponController : MonoBehaviour
                 {
                     selectedWeapon2 = 1;
                 }
-            }
+            }*/
             else if (selectedAbility == 2)
             {
                 selectedWeapon1 = 0;

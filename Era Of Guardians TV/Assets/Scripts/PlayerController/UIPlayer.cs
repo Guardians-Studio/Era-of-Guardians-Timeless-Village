@@ -12,6 +12,8 @@ public class UIPlayer : MonoBehaviour
     [SerializeField] Text xText;
     [SerializeField] Image xpBar;
     [SerializeField] Text xpTxt;
+    [SerializeField] Image healthBar;
+    [SerializeField] Text healthTxt;
     // [SerializeField] Text levelText;
     [SerializeField] KeyConfiguration keyConfiguration;
 
@@ -23,7 +25,13 @@ public class UIPlayer : MonoBehaviour
         xText.text = keyConfiguration.xKeyString;
     }
 
-   public void UpdateXPBar(float fraction)
+    public void UpdateHealth(float fraction)
+    {
+        healthBar.fillAmount = fraction;
+        healthTxt.text = (fraction * 100).ToString("0") + " / 100";
+    }
+
+    public void UpdateXPBar(float fraction)
     {
        xpBar.fillAmount = fraction;
        xpTxt.text = (fraction * 100).ToString("0") + " / 100";

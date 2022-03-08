@@ -100,7 +100,7 @@ public class MenuController : MonoBehaviour
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 4;
         PhotonNetwork.CreateRoom(createGameInput.text, roomOptions, TypedLobby.Default);
-        PhotonNetwork.LoadLevel("testScene");
+        PhotonNetwork.LoadLevel("hazeltown");
         
         if (PhotonNetwork.IsConnected)
         {
@@ -113,7 +113,7 @@ public class MenuController : MonoBehaviour
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 4;
         PhotonNetwork.JoinOrCreateRoom(joindGameInput.text, roomOptions, TypedLobby.Default);
-        PhotonNetwork.LoadLevel("testScene");
+        PhotonNetwork.LoadLevel("hazeltown");
 
         if (PhotonNetwork.IsConnected)
         {

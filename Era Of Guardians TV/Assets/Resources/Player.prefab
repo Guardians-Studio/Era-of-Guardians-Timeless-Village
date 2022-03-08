@@ -420,7 +420,7 @@ MonoBehaviour:
   audiosource: {fileID: 4127519083117525983}
   slider: {fileID: 8600887178707323146}
   TxtVolume: {fileID: 6147355573440206491}
-  player: {fileID: 6971409149016529781}
+  player: {fileID: 4881315725545461216}
 --- !u!1 &1045010293711640478
 GameObject:
   m_ObjectHideFlags: 0
@@ -1824,7 +1824,6 @@ GameObject:
   - component: {fileID: 5429547752200259599}
   - component: {fileID: 99721657154359}
   - component: {fileID: 5164438039983019842}
-  - component: {fileID: 3063967963598318608}
   m_Layer: 7
   m_Name: healthBar
   m_TagString: Untagged
@@ -1889,19 +1888,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3063967963598318608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2057863695134765958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fbd0950cad4e7d499942fae848b7d94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthTxt: {fileID: 8369691824177107622}
 --- !u!1 &2089409238038727512
 GameObject:
   m_ObjectHideFlags: 0
@@ -3125,7 +3111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4146235936788497542}
   - component: {fileID: 4146235936788497543}
-  - component: {fileID: 6971409149016529781}
+  - component: {fileID: 4881315725545461216}
   - component: {fileID: 4146235936788497540}
   - component: {fileID: 4146235936788497541}
   - component: {fileID: 4146235936788497538}
@@ -3175,7 +3161,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6971409149016529781
+--- !u!114 &4881315725545461216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3188,7 +3174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarExtern: {fileID: 130504860804248951}
-  healthBarUI: {fileID: 3063967963598318608}
   uiPlayer: {fileID: 7385009143513802934}
   xpAmount: 50
 --- !u!114 &4146235936788497540
@@ -5810,6 +5795,8 @@ MonoBehaviour:
   xText: {fileID: 7505743144908805237}
   xpBar: {fileID: 1918122141862525265}
   xpTxt: {fileID: 924858086524160929}
+  healthBar: {fileID: 5164438039983019842}
+  healthTxt: {fileID: 8369691824177107622}
   keyConfiguration: {fileID: 4146235936788497539}
 --- !u!1 &6854852430748904655
 GameObject:
@@ -6522,7 +6509,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
