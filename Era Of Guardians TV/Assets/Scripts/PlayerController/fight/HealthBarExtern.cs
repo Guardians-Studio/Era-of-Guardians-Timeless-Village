@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour
+public class HealthBarExtern : MonoBehaviour
 {
     private Image healthBar;
-    [SerializeField] Text healthTxt;
 
     private void Start()
     {
@@ -16,7 +15,5 @@ public class HealthBar : MonoBehaviour
     public void UpdateHealth(float fraction)
     {
         healthBar.fillAmount = fraction;
-        healthTxt.text = (fraction * 100).ToString("0") + " / 100";
     }
-
 }
