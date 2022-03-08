@@ -17,6 +17,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] InputField joindGameInput;
 
     [SerializeField] GameObject startButton;
+    [SerializeField] AudioSource ac;
 
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        ac.Play();
         userName.SetActive(true);
     }
 
