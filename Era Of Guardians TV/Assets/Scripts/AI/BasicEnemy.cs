@@ -35,7 +35,10 @@ public class BasicEnemy : MonoBehaviour
 
     private void Update()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        if (GameObject.FindWithTag("Player"))
+        {
+            player = GameObject.FindWithTag("Player").transform;
+        }
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer); 
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
