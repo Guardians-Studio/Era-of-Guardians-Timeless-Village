@@ -90,6 +90,8 @@ public class Option : MonoBehaviour
     }
     public void QuitGame()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene("MainMenu");  //Pour charger la Scene du menu d'accueil faut modif
     }
 }
