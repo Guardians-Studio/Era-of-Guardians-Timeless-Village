@@ -24,11 +24,11 @@ public class Player : MonoBehaviour
     private void Update()
     {
         TakeDamage(0);
+        XP(0);
     }
 
     public void TakeDamage(float amount)
     {
-        print("health");
         this.health -= amount;
         healthBarExtern.UpdateHealth(this.health / 100);
         healthBarUI.UpdateHealth(this.health / 100);
@@ -39,21 +39,21 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Heal(float amount)
+    public void Heal(float amount)
     {
         this.health += amount;
     }
 
-    private void XP(float amount)
+    public void XP(float amount)
     {
-        /*this.xpAmount += amount;
+        this.xpAmount += amount;
         if (xpAmount >= 100)
         {
             this.level++;
             xpAmount = 0;
             // uiPlayer.UpdateLvl;
-        }*/
-        uiPlayer.UpdateXPBar(xpAmount / 100);
+        }
+        uiPlayer.UpdateXPBar(this.xpAmount / 100);
     }
 
 

@@ -63,6 +63,8 @@ public class WeaponController : MonoBehaviour
     AudioSource ac;
     PhotonView view;
 
+    private Player player;
+
     private void Start()
     {
         ac = GetComponentInParent<AudioSource>();
@@ -70,6 +72,8 @@ public class WeaponController : MonoBehaviour
         cooldownImage.fillAmount = 0.0f;
 
         view = GetComponent<PhotonView>();
+
+        player = GetComponent<Player>();
 
         SelectWeapon();
     }
@@ -228,11 +232,24 @@ public class WeaponController : MonoBehaviour
             }
             else if (selectedAbility == 2)
             {
-                selectedWeapon2 = 0;
+                selectedWeapon1 = 0;
+                if(Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && canAttack)
+                {
+                    player.Heal(20);
+                    canAttack = false;
+                    StartCoroutine(ResetAttackCooldown(1f));
+                }
             }
             else if (selectedAbility == 3)
             {
                 selectedWeapon3 = 0;
+                if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && canAttack)
+                {
+                    print("xp");
+                    player.XP(20);
+                    canAttack = false;
+                    StartCoroutine(ResetAttackCooldown(1f));
+                }
             }
         }
     }

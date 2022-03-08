@@ -17,6 +17,11 @@ public class Option : MonoBehaviour
     public Text TxtVolume;
     public Player player;
 
+
+    void Start()
+    {
+        SetVolume();
+    }
     void Update()
     {
         if (Input.GetKeyDown(keyConfiguration.escape))
