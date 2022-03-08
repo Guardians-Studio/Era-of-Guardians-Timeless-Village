@@ -12,9 +12,19 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject userName;
     [SerializeField] GameObject connectPannel;
 
+    [SerializeField] GameObject gameCanvas;
+
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] Button playButton;
+    [SerializeField] Button settingsButton;
+    [SerializeField] Button quitButton;
+
+    [SerializeField] GameObject settingsMenu;
+
     [SerializeField] InputField userNameInput;
     [SerializeField] InputField createGameInput;
     [SerializeField] InputField joindGameInput;
+
 
     [SerializeField] GameObject startButton;
     [SerializeField] AudioSource ac;
@@ -28,7 +38,30 @@ public class MenuController : MonoBehaviour
     private void Start()
     {
         ac.Play();
+        mainMenu.SetActive(true);
+    }
+
+    public void Settings()
+    {
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+    }
+
+    public void Play()
+    {
+        mainMenu.SetActive(false);
         userName.SetActive(true);
+    }
+
+    public void menu()
+    {
+        settingsMenu.SetActive(false);
+        mainMenu.SetActive(true);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
     private void OnConnectedToMaster()
@@ -57,6 +90,7 @@ public class MenuController : MonoBehaviour
     public void SetUserName()
     {
         userName.SetActive(false);
+        gameCanvas.SetActive(true);
         PhotonNetwork.playerName = userNameInput.text;
     }
     
@@ -66,7 +100,7 @@ public class MenuController : MonoBehaviour
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 4;
         PhotonNetwork.CreateRoom(createGameInput.text, roomOptions, TypedLobby.Default);
-        PhotonNetwork.LoadLevel("hazeltown");
+        PhotonNetwork.LoadLevel("testScene");
         
         if (PhotonNetwork.IsConnected)
         {
@@ -79,7 +113,7 @@ public class MenuController : MonoBehaviour
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 4;
         PhotonNetwork.JoinOrCreateRoom(joindGameInput.text, roomOptions, TypedLobby.Default);
-        PhotonNetwork.LoadLevel("hazeltown");
+        PhotonNetwork.LoadLevel("testScene");
 
         if (PhotonNetwork.IsConnected)
         {
