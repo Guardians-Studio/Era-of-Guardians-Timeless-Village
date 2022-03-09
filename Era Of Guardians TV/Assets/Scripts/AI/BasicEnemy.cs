@@ -30,7 +30,6 @@ public class BasicEnemy : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        startPosition = GameObject.Find("central_place_ground").transform;
     }
 
     private void Update()

@@ -69,18 +69,15 @@ public class WeaponController : MonoBehaviour
     {
         view = GetComponent<PhotonView>();
 
-        if (view.IsMine)
-        {
-            selectors[0].gameObject.SetActive(true);
+        selectors[0].gameObject.SetActive(true);
 
-            ac = GetComponentInParent<AudioSource>();
-            canAttack = true;
-            cooldownImage.fillAmount = 0.0f; 
+        ac = GetComponentInParent<AudioSource>();
+        canAttack = true;
+        cooldownImage.fillAmount = 0.0f; 
 
-            player = GetComponent<Player>();
+        player = GetComponent<Player>();
 
-            SelectWeapon();
-        }
+        SelectWeapon();
     }
 
     private void Update()
@@ -88,7 +85,7 @@ public class WeaponController : MonoBehaviour
         if (view.IsMine)
         {
 
-                SelectAbility();
+            SelectAbility();
 
             if (selectedAbility == 0)
             {

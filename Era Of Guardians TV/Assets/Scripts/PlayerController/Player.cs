@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] UIPlayer uiPlayer;
 
     private string name;
-    private float health = 100;
+    private float health = 80;
     private float armor = 10;
     private List<GameObject> items;
     public float xpAmount = 50;
