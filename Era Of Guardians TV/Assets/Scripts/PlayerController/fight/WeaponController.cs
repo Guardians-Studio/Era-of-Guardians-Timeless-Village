@@ -67,17 +67,20 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        selectors[0].gameObject.SetActive(true);
+        if(view.IsMine)
+        {
+            selectors[0].gameObject.SetActive(true);
 
-        ac = GetComponentInParent<AudioSource>();
-        canAttack = true;
-        cooldownImage.fillAmount = 0.0f;
+            ac = GetComponentInParent<AudioSource>();
+            canAttack = true;
+            cooldownImage.fillAmount = 0.0f;
 
-        view = GetComponent<PhotonView>();
+            view = GetComponent<PhotonView>();
 
-        player = GetComponent<Player>();
+            player = GetComponent<Player>();
 
-        SelectWeapon();
+            SelectWeapon();
+        }
     }
 
     private void Update()
@@ -289,24 +292,24 @@ public class WeaponController : MonoBehaviour
         else if (Input.GetKeyDown(keyConfiguration.aKey))
         {
             selectedAbility = 1;
-            selectors[1].gameObject.SetActive(true);
             selectors[0].gameObject.SetActive(false);
+            selectors[1].gameObject.SetActive(true);
             selectors[2].gameObject.SetActive(false);
             selectors[3].gameObject.SetActive(false);
         }
         else if (Input.GetKeyDown(keyConfiguration.wKey))
         {
             selectedAbility = 2;
-            selectors[1].gameObject.SetActive(false);
             selectors[0].gameObject.SetActive(false);
+            selectors[1].gameObject.SetActive(false);
             selectors[2].gameObject.SetActive(true);
             selectors[3].gameObject.SetActive(false);
         }
         else if (Input.GetKeyDown(keyConfiguration.xKey))
         {
             selectedAbility = 3;
-            selectors[1].gameObject.SetActive(false);
             selectors[0].gameObject.SetActive(false);
+            selectors[1].gameObject.SetActive(false);
             selectors[2].gameObject.SetActive(false);
             selectors[3].gameObject.SetActive(true);
         }
