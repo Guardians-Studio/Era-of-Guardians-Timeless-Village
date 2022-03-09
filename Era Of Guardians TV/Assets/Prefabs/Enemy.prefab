@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3bb5ee3db78f946857781639b7cc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 6806302845409747962}
   startPosition: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
@@ -569,7 +569,7 @@ MonoBehaviour:
     m_Bits: 128
   attack: 0
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 0
+  walkPointRange: 5
   timeBetweenAttacks: 0.5
   sightRange: 15
   attackRange: 1.5
@@ -587,7 +587,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

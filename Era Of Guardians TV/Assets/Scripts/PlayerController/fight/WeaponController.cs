@@ -67,6 +67,8 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
+        selectors[0].gameObject.SetActive(true);
+
         ac = GetComponentInParent<AudioSource>();
         canAttack = true;
         cooldownImage.fillAmount = 0.0f;
@@ -275,7 +277,7 @@ public class WeaponController : MonoBehaviour
 
 
         private void SelectAbility()
-    {
+        {
         if (Input.GetKeyDown(keyConfiguration.eKey))
         {
             selectedAbility = 0;
