@@ -10,6 +10,9 @@ public class MainMenuSettings : MonoBehaviour
     public Slider slider;
     public Text TxtVolume;
 
+    public bool fullScreen = true;
+    public bool music = true;
+
     void Start()
     {
         SetVolume();
@@ -30,9 +33,21 @@ public class MainMenuSettings : MonoBehaviour
                 break;
         }
     }
+
+    public void FullScreen()
+    {
+        fullScreen = !fullScreen;
+        Screen.fullScreen = fullScreen;
+    }
+
     public void SetVolume()
     {
         audiosource.volume = slider.value;
         TxtVolume.text = "volume " + (audiosource.volume * 100).ToString("00") + "%";
+    }
+
+    public void Music()
+    {
+        music = !music;
     }
 }

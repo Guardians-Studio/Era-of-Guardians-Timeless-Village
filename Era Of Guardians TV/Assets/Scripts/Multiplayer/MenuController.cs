@@ -25,19 +25,38 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject createMenu;
     [SerializeField] GameObject joinMenu;
     [SerializeField] GameObject pseudoMenu;
-    [SerializeField] GameObject pseudoSoloMenu;
+    [SerializeField] GameObject pseudoSolo;                                           
 
     [SerializeField] InputField userNameInput;
     [SerializeField] InputField createGameInput;
     [SerializeField] InputField joindGameInput;
 
     [SerializeField] GameObject startButton;
+    [SerializeField] GameObject soloStartButton;
+    [SerializeField] InputField userNameInputSolo;
+    [SerializeField] MainMenuSettings mainMenuSettings;
     [SerializeField] AudioSource ac;
 
     private void Start()
     {
-        ac.Play();
+        if (mainMenuSettings.music)
+        {
+            ac.Play();
+        }
+       
         mainMenu.SetActive(true);
+    }
+
+    public void Update()
+    {
+        if (!mainMenuSettings.music)
+        {
+            ac.mute = true;
+        }
+        else
+        {
+            ac.mute = false;
+        }
     }
 
     public void Settings()
@@ -95,6 +114,13 @@ public class MenuController : MonoBehaviour
         settingsMenu.SetActive(false);
         mainMenu.SetActive(true);
     }
+    public void SelectionBack()
+    {
+        joinMenu.SetActive(false);
+        createMenu.SetActive(false);
+        gameCanvas.SetActive(true);
+    }
+
 
     public void Quit()
     {
@@ -118,9 +144,9 @@ public class MenuController : MonoBehaviour
         print("Disconnected from server for reason:" + cause.ToString());
     }
 
-    public void Pseudo()
+    public void PseudoSolo()
     {
-        pseudoMenu.SetActive(true);
+        pseudoSolo.SetActive(true);
     }
 
     public void ChangeUserNameInput()
@@ -134,9 +160,32 @@ public class MenuController : MonoBehaviour
             startButton.SetActive(false);
         }
     }
+    public void ChangeUserNameInputSolo()
+    {
+        if (userNameInputSolo.text.Length >= 1)
+        {
+            soloStartButton.SetActive(true);
+        }
+        else
+        {
+            soloStartButton.SetActive(false);
+        }
+    }
 
     public void SoloPlay()
     {
+        mainMenu.SetActive(false);
+        playMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        volumeMenu.SetActive(false);
+        resolutionMenu.SetActive(false);
+        keyConfigMenu.SetActive(false);
+        gameCanvas.SetActive(false);
+        createMenu.SetActive(false);
+        joinMenu.SetActive(false);
+        pseudoMenu.SetActive(false);
+        pseudoSolo.SetActive(false);
+
         SceneManager.LoadScene("hazeltown");
     }
 
@@ -144,11 +193,13 @@ public class MenuController : MonoBehaviour
     {
         playMenu.SetActive(false);
         gameCanvas.SetActive(true);
+        pseudoMenu.SetActive(true);
     }
 
     public void SetUserName()
     {
         PhotonNetwork.playerName = userNameInput.text;
+        pseudoMenu.SetActive(false);
     }
     
 

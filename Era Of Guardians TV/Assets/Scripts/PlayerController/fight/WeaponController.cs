@@ -69,7 +69,7 @@ public class WeaponController : MonoBehaviour
     {
         view = GetComponent<PhotonView>();
 
-        if (view.IsMine)
+        if (view.IsMine || PhotonNetwork.CurrentRoom == null)
         {
             selectors[0].gameObject.SetActive(true);
             SelectWeapon();
@@ -82,7 +82,7 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
-        if (view.IsMine)
+        if (view.IsMine || PhotonNetwork.CurrentRoom == null)
         {
 
             SelectAbility();

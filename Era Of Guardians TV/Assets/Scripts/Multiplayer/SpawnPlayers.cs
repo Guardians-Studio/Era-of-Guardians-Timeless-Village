@@ -10,8 +10,16 @@ public class SpawnPlayers : MonoBehaviour
 
     private bool firstInstantiate = true;
 
+
     private void Update()
     {
+        if (PhotonNetwork.CurrentRoom == null && firstInstantiate)
+        {
+            print("conn");
+            Instantiate(playerPrefab, new Vector3(spawnpoint.transform.position.x, spawnpoint.transform.position.y, spawnpoint.transform.position.z), Quaternion.identity);
+            firstInstantiate = false;
+        }
+
         if (PhotonNetwork.CurrentRoom != null && firstInstantiate)
         {
             PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(spawnpoint.transform.position.x, spawnpoint.transform.position.y, spawnpoint.transform.position.z), Quaternion.identity);
