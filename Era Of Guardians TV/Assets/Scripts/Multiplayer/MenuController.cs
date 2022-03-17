@@ -4,36 +4,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
     [Header("Affectation")]
     [SerializeField] string versionName = "0.1";
-    [SerializeField] GameObject userName;
-    [SerializeField] GameObject connectPannel;
+    /*[SerializeField] GameObject userName;
+    [SerializeField] GameObject connectPannel;*/
 
-    [SerializeField] GameObject gameCanvas;
 
+    [Header("Canvas")]
     [SerializeField] GameObject mainMenu;
-    [SerializeField] Button playButton;
-    [SerializeField] Button settingsButton;
-    [SerializeField] Button quitButton;
-
+    [SerializeField] GameObject playMenu;
     [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject volumeMenu;
+    [SerializeField] GameObject resolutionMenu;
+    [SerializeField] GameObject keyConfigMenu;
+    [SerializeField] GameObject gameCanvas;
+    [SerializeField] GameObject createMenu;
+    [SerializeField] GameObject joinMenu;
+    [SerializeField] GameObject pseudoMenu;
+    [SerializeField] GameObject pseudoSoloMenu;
 
     [SerializeField] InputField userNameInput;
     [SerializeField] InputField createGameInput;
     [SerializeField] InputField joindGameInput;
 
-
     [SerializeField] GameObject startButton;
     [SerializeField] AudioSource ac;
-
-    private void Awake()
-    {
-        print("Connecting to server.");
-        PhotonNetwork.ConnectUsingSettings(versionName);
-    }
 
     private void Start()
     {
@@ -47,13 +46,51 @@ public class MenuController : MonoBehaviour
         settingsMenu.SetActive(true);
     }
 
+    public void Volume()
+    {
+        settingsMenu.SetActive(false);
+        volumeMenu.SetActive(true);
+    }
+
+    public void Resolution()
+    {
+        settingsMenu.SetActive(false);
+        resolutionMenu.SetActive(true);
+    }
+
+    public void KeyConfig()
+    {
+        settingsMenu.SetActive(false);
+        keyConfigMenu.SetActive(true);
+    }
+
     public void Play()
     {
         mainMenu.SetActive(false);
-        userName.SetActive(true);
+        playMenu.SetActive(true);
+        Connect();
     }
 
-    public void menu()
+    public void Create()
+    {
+        playMenu.SetActive(false);
+        createMenu.SetActive(true);
+    }
+    public void Join()
+    {
+        playMenu.SetActive(false);
+        joinMenu.SetActive(true);
+    }
+
+    public void SettingsBack()
+    {
+        volumeMenu.SetActive(false);
+        resolutionMenu.SetActive(false);
+        keyConfigMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+    }
+
+    public void MenuBack()
     {
         settingsMenu.SetActive(false);
         mainMenu.SetActive(true);
@@ -62,6 +99,12 @@ public class MenuController : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    private void Connect()
+    {
+        print("Connecting to server.");
+        PhotonNetwork.ConnectUsingSettings(versionName);
     }
 
     private void OnConnectedToMaster()
@@ -73,6 +116,11 @@ public class MenuController : MonoBehaviour
     public void OnDisconnected(DisconnectCause cause)
     {
         print("Disconnected from server for reason:" + cause.ToString());
+    }
+
+    public void Pseudo()
+    {
+        pseudoMenu.SetActive(true);
     }
 
     public void ChangeUserNameInput()
@@ -87,10 +135,19 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    public void SoloPlay()
+    {
+        SceneManager.LoadScene("hazeltown");
+    }
+
+    public void MultiPlay()
+    {
+        playMenu.SetActive(false);
+        gameCanvas.SetActive(true);
+    }
+
     public void SetUserName()
     {
-        userName.SetActive(false);
-        gameCanvas.SetActive(true);
         PhotonNetwork.playerName = userNameInput.text;
     }
     
