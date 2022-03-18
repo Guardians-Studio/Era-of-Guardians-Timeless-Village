@@ -25,18 +25,25 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject createMenu;
     [SerializeField] GameObject joinMenu;
     [SerializeField] GameObject pseudoMenu;
-    [SerializeField] GameObject pseudoSolo;                                           
+    [SerializeField] GameObject pseudoSolo;
+    [SerializeField] GameObject pseudoMenuJoin;
 
     [SerializeField] InputField userNameInput;
+    [SerializeField] InputField userNameInputJoin;
     [SerializeField] InputField createGameInput;
     [SerializeField] InputField joindGameInput;
 
     [SerializeField] GameObject startButton;
+    [SerializeField] GameObject startButtonJoin;
     [SerializeField] GameObject soloStartButton;
     [SerializeField] InputField userNameInputSolo;
     [SerializeField] MainMenuSettings mainMenuSettings;
-    [SerializeField] AudioSource ac;
+     [SerializeField] AudioSource ac;
 
+    [SerializeField] Dropdown dropdownMaxPlayer;
+
+    private RoomOptions roomOptions = new RoomOptions();
+    
     private void Start()
     {
         if (mainMenuSettings.music)
@@ -92,12 +99,12 @@ public class MenuController : MonoBehaviour
 
     public void Create()
     {
-        playMenu.SetActive(false);
+        gameCanvas.SetActive(false);
         createMenu.SetActive(true);
     }
     public void Join()
     {
-        playMenu.SetActive(false);
+        gameCanvas.SetActive(false);
         joinMenu.SetActive(true);
     }
 
@@ -149,6 +156,16 @@ public class MenuController : MonoBehaviour
         pseudoSolo.SetActive(true);
     }
 
+    public void PseudoCreate()
+    {
+        pseudoMenu.SetActive(true);
+    }
+
+    public void PseudoJoin()
+    {
+        pseudoMenuJoin.SetActive(true);
+    }
+
     public void ChangeUserNameInput()
     {
         if (userNameInput.text.Length >= 1)
@@ -160,6 +177,19 @@ public class MenuController : MonoBehaviour
             startButton.SetActive(false);
         }
     }
+
+    public void ChangeUserNameInputJoin()
+    {
+        if (userNameInputJoin.text.Length >= 1)
+        {
+            startButtonJoin.SetActive(true);
+        }
+        else
+        {
+            startButtonJoin.SetActive(false);
+        }
+    }
+
     public void ChangeUserNameInputSolo()
     {
         if (userNameInputSolo.text.Length >= 1)
@@ -193,20 +223,47 @@ public class MenuController : MonoBehaviour
     {
         playMenu.SetActive(false);
         gameCanvas.SetActive(true);
-        pseudoMenu.SetActive(true);
+        // pseudoMenu.SetActive(true);
     }
 
     public void SetUserName()
     {
         PhotonNetwork.playerName = userNameInput.text;
         pseudoMenu.SetActive(false);
+        CreateGame();
+    }
+
+    public void SetUserNameJoin()
+    {
+        PhotonNetwork.playerName = userNameInput.text;
+        pseudoMenu.SetActive(false);
+        JoinGame();
+    }
+
+    public void SetMaxPlayer()
+    {
+        if (dropdownMaxPlayer.value == 0)
+        {
+            roomOptions.MaxPlayers = 4;
+        }
+        if (dropdownMaxPlayer.value == 1)
+        {
+            roomOptions.MaxPlayers = 3;
+        }
+        if (dropdownMaxPlayer.value == 2)
+        {
+            roomOptions.MaxPlayers = 2;
+        }
+        if (dropdownMaxPlayer.value == 3)
+        {
+            roomOptions.MaxPlayers = 1;
+        }
+        print(roomOptions.MaxPlayers);
     }
     
 
     public void CreateGame() // Pas de mess d'erreur si aucun nom d'instance n'est inscrite -- � fix
     {
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = 4;
         PhotonNetwork.CreateRoom(createGameInput.text, roomOptions, TypedLobby.Default);
         PhotonNetwork.LoadLevel("hazeltown");
         
@@ -218,7 +275,6 @@ public class MenuController : MonoBehaviour
 
     public void JoinGame()
     {
-        RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 4;
         PhotonNetwork.JoinOrCreateRoom(joindGameInput.text, roomOptions, TypedLobby.Default);
         PhotonNetwork.LoadLevel("hazeltown");
