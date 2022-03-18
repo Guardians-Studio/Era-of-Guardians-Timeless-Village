@@ -3,80 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BasicEnemy : MonoBehaviour
+public class BasicEnemy2 : MonoBehaviour
 {
+
     [SerializeField] NavMeshAgent agent;
     private Transform player;
-    [SerializeField] Transform startPosition;
     [SerializeField] LayerMask whatIsGround, whatIsPlayer;
-    // [SerializeField] float health;
 
-    public bool attack;
-
-    // Patterns
     [SerializeField] Vector3 walkPoint;
     bool walkPointSet;
-    [SerializeField] float walkPointRange;
 
-    // Attaques
     [SerializeField] float timeBetweenAttacks;
+
     bool alreadyAttacked;
 
-    // Etats
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
     public bool patroling, fixedPos;
 
-    private void Awake()
+    public float startX, startZ, endX, endZ;
+
+
+    private void Awake ()
     {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
+    private void Update ()
     {
         if (GameObject.FindWithTag("Player"))
         {
             player = GameObject.FindWithTag("Player").transform;
         }
 
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer); 
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer)
 
         if (!playerInAttackRange && playerInSightRange)
         {
             attack = false;
             ChasePlayer();
-
         }
-        
+
         else if (playerInAttackRange && playerInSightRange)
         {
             attack = true;
             Stop();
         }
-       
         else
         {
-            if (fixedPos)
-            {
-                ReturnStartPos();
-            }
-
-            else
-            {
-                Patroling();
-            }
+            FixedPatrol();
         }
     }
 
-    
-    private void Patroling ()
+    private void FixedPatrol ()
     {
+
         if (!walkPointSet)
         {
-            SearchWalkPoint();
+            Aller();
+            Retour();
         }
-
         if (walkPointSet)
         {
             agent.SetDestination(walkPoint);
@@ -88,16 +74,11 @@ public class BasicEnemy : MonoBehaviour
         {
             walkPointSet = false;
         }
-
     }
-    
 
-    private void SearchWalkPoint ()
+    private void Aller ()
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        walkPoint = new Vector3(transform.position.x + endX, transform.position.y, transform.position.z + endZ);
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         {
@@ -105,12 +86,23 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
+    private void Retour ()
+    {
+        walkPoint = new Vector3(transform.position.x + startX, transform.position.y, transform.position.z + startZ);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        {
+            walkPointSet = true;
+        }
+    }
+
+
     private void ChasePlayer ()
     {
         agent.SetDestination(player.position);
     }
 
-    private void Stop()
+    private void Stop ()
     {
         agent.SetDestination(this.transform.position);
     }
@@ -119,16 +111,9 @@ public class BasicEnemy : MonoBehaviour
     {
         agent.SetDestination(startPosition.position);
     }
-    public void DestroyEnemy ()
-    {
-        Destroy(gameObject);
-    }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRange); 
+        BasicEnemy.OnDrawGizmosSelected();
     }
 }
