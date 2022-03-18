@@ -13,15 +13,16 @@ public class SpawnPlayers : MonoBehaviour
 
     private void Update()
     {
-        if (PhotonNetwork.CurrentRoom == null && firstInstantiate)
+       /* if (PhotonNetwork.CurrentRoom == null && firstInstantiate)
         {
-            print("conn");
+            print("soloPlaying");
             Instantiate(playerPrefab, new Vector3(spawnpoint.transform.position.x, spawnpoint.transform.position.y, spawnpoint.transform.position.z), Quaternion.identity);
             firstInstantiate = false;
-        }
+        }*/
 
         if (PhotonNetwork.CurrentRoom != null && firstInstantiate)
         {
+            print("multiPlaying on " + PhotonNetwork.CurrentRoom.Name);
             PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(spawnpoint.transform.position.x, spawnpoint.transform.position.y, spawnpoint.transform.position.z), Quaternion.identity);
             firstInstantiate = false;
         }    
