@@ -16,6 +16,7 @@ public class UIPlayer : MonoBehaviour
     [SerializeField] Text healthTxt;
     // [SerializeField] Text levelText;
     [SerializeField] KeyConfiguration keyConfiguration;
+    [SerializeField] GameObject tabMenu;
 
     private void Start()
     {
@@ -25,6 +26,17 @@ public class UIPlayer : MonoBehaviour
         xText.text = keyConfiguration.xKeyString;
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(keyConfiguration.tab))
+        {
+            tabMenu.SetActive(true);
+        }
+        else
+        {
+            tabMenu.SetActive(false);
+        }
+    }
     public void UpdateHealth(float fraction)
     {
         healthBar.fillAmount = fraction;

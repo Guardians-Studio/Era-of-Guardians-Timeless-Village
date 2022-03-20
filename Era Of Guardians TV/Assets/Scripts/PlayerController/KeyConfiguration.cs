@@ -27,4 +27,5 @@ public class KeyConfiguration : MonoBehaviour
     public KeyCode xKey = KeyCode.X;
     public string xKeyString = "X";
     public KeyCode escape = KeyCode.Escape;
+    public KeyCode tab = KeyCode.Tab;
 }
