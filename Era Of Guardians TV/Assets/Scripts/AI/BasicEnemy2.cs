@@ -116,6 +116,4 @@ public class BasicEnemy2 : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
-
-
 }
