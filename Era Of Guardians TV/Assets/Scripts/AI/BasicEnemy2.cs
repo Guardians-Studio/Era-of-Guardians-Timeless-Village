@@ -38,7 +38,7 @@ public class BasicEnemy2 : MonoBehaviour
             player = GameObject.FindWithTag("Player").transform;
         }
 
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer)
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
 
         if (!playerInAttackRange && playerInSightRange)
         {
@@ -109,13 +109,13 @@ public class BasicEnemy2 : MonoBehaviour
         agent.SetDestination(this.transform.position);
     }
 
-    private void ReturnStartPos ()
-    {
-        agent.SetDestination(startPosition.position);
-    }
-
     private void OnDrawGizmosSelected()
     {
-        BasicEnemy.OnDrawGizmosSelected();
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
+
+
 }
