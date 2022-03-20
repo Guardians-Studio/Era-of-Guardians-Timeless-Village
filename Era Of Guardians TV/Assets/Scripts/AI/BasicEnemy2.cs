@@ -15,6 +15,8 @@ public class BasicEnemy2 : MonoBehaviour
 
     [SerializeField] float timeBetweenAttacks;
 
+    public bool attack;
+
     bool alreadyAttacked;
 
     public float sightRange, attackRange;
