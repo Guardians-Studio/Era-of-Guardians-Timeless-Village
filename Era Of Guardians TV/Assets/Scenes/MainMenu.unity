@@ -9500,11 +9500,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: 720 x 576
+    - m_Text: 1920 x 1080
       m_Image: {fileID: 0}
     - m_Text: 1280 x 720
       m_Image: {fileID: 0}
-    - m_Text: 1920 x 1080
+    - m_Text: 720 x 576
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -40790,7 +40790,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 720 x 576
+  m_Text: 1920 x 1080
 --- !u!222 &1529677297
 CanvasRenderer:
   m_ObjectHideFlags: 0

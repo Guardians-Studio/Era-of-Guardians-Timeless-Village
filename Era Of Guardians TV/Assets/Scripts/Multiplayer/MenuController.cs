@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
 
-public class MenuController : MonoBehaviour
+public class MenuController : MonoBehaviourPunCallbacks
 {
     [Header("Affectation")]
     [SerializeField] string versionName = "0.1";
@@ -94,7 +94,6 @@ public class MenuController : MonoBehaviour
     {
         mainMenu.SetActive(false);
         playMenu.SetActive(true);
-        Connect();
     }
 
     public void Create()
@@ -116,6 +115,12 @@ public class MenuController : MonoBehaviour
         settingsMenu.SetActive(true);
     }
 
+    public void PlayBack()
+    {
+        playMenu.SetActive(true);
+        gameCanvas.SetActive(false);
+    }
+
     public void MenuBack()
     {
         settingsMenu.SetActive(false);
@@ -132,23 +137,6 @@ public class MenuController : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-    }
-
-    private void Connect()
-    {
-        print("Connecting to server.");
-        PhotonNetwork.ConnectUsingSettings(versionName);
-    }
-
-    private void OnConnectedToMaster()
-    {
-        PhotonNetwork.JoinLobby(TypedLobby.Default);
-        Debug.Log("Connected to server.");
-    }
-
-    public void OnDisconnected(DisconnectCause cause)
-    {
-        print("Disconnected from server for reason:" + cause.ToString());
     }
 
     public void PseudoSolo()
@@ -221,6 +209,7 @@ public class MenuController : MonoBehaviour
 
     public void MultiPlay()
     {
+        Connect();
         playMenu.SetActive(false);
         gameCanvas.SetActive(true);
         // pseudoMenu.SetActive(true);
@@ -260,7 +249,24 @@ public class MenuController : MonoBehaviour
         }
         print(roomOptions.MaxPlayers);
     }
-    
+
+
+    private void Connect()
+    {
+        print("Connecting to server.");
+        PhotonNetwork.ConnectUsingSettings(versionName);
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinLobby(TypedLobby.Default);
+        Debug.Log("Connected to server.");
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        print("Disconnected from server for reason:" + cause.ToString());
+    }
 
     public void CreateGame() // Pas de mess d'erreur si aucun nom d'instance n'est inscrite -- � fix
     {

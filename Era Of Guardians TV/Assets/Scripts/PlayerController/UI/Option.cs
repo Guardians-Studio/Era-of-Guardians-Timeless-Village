@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class Option : MonoBehaviour
 {
@@ -98,5 +100,6 @@ public class Option : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         SceneManager.LoadScene("MainMenu");  //Pour charger la Scene du menu d'accueil faut modif
+        PhotonNetwork.Disconnect();
     }
 }
