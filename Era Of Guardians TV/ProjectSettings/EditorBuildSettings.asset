@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/hazeltown.unity
     guid: 7f23b9b75778d6544b3e3a3cb8127ac7
+  - enabled: 1
+    path: Assets/Scenes/langdale.unity
+    guid: 66d7af43d0191ab449d3058ddf95236d
   m_configObjects: {}
