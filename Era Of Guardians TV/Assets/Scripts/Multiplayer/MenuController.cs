@@ -31,7 +31,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     [SerializeField] InputField userNameInput;
     [SerializeField] InputField userNameInputJoin;
     [SerializeField] InputField createGameInput;
-    [SerializeField] InputField joindGameInput;
+    [SerializeField] InputField joinedGameInput;
 
     [SerializeField] GameObject startButton;
     [SerializeField] GameObject startButtonJoin;
@@ -218,6 +218,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     public void SetUserName()
     {
         PhotonNetwork.playerName = userNameInput.text;
+        
         pseudoMenu.SetActive(false);
         CreateGame();
     }
@@ -282,7 +283,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     public void JoinGame()
     {
         roomOptions.MaxPlayers = 4;
-        PhotonNetwork.JoinOrCreateRoom(joindGameInput.text, roomOptions, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom(joinedGameInput.text, roomOptions, TypedLobby.Default);
         PhotonNetwork.LoadLevel("hazeltown");
 
         if (PhotonNetwork.IsConnected)

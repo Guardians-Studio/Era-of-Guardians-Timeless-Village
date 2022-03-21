@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerListing : MonoBehaviourPunCallbacks
+public class PlayerListing : MonoBehaviour
 {
     [SerializeField] Text text;
 
-    public void SetPlayerInfo(Photon.Realtime.Player player, string cause)
+    public Photon.Realtime.Player Player { get; private set; }
+
+    public void SetPlayerInfo(Photon.Realtime.Player player)
     {
-        text.text = player.NickName + cause;
+        Player = player;
+        text.text = player.NickName;
     }
 }
