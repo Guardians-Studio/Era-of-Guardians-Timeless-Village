@@ -21,10 +21,8 @@ public class BasicEnemy2 : MonoBehaviour
 
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
-    public bool patroling, fixedPos;
 
-    public float startX, startZ, endX, endZ;
-
+    [SerializeField] Transform aller, retour;
 
     private void Awake ()
     {
@@ -33,12 +31,15 @@ public class BasicEnemy2 : MonoBehaviour
 
     private void Update ()
     {
+
         if (GameObject.FindWithTag("Player"))
         {
             player = GameObject.FindWithTag("Player").transform;
         }
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
 
         if (!playerInAttackRange && playerInSightRange)
         {
@@ -53,21 +54,20 @@ public class BasicEnemy2 : MonoBehaviour
         }
         else
         {
-            FixedPatrol();
+            Patroling();
         }
+        
     }
 
-    private void FixedPatrol ()
+    private void Patroling()
     {
-
         if (!walkPointSet)
         {
-            Aller();
-            Retour();
+            AllerRetour();
         }
         if (walkPointSet)
         {
-            agent.SetDestination(walkPoint);
+            agent.SetDestination(walkPoint);  
         }
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
@@ -77,27 +77,15 @@ public class BasicEnemy2 : MonoBehaviour
             walkPointSet = false;
         }
     }
+    
 
-    private void Aller ()
+    private void AllerRetour ()
     {
-        walkPoint = new Vector3(transform.position.x + endX, transform.position.y, transform.position.z + endZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        {
-            walkPointSet = true;
-        }
+        if (agent.SetDestination(aller.position))
+            agent.SetDestination(retour.position);
+        else
+            agent.SetDestination(aller.position);
     }
-
-    private void Retour ()
-    {
-        walkPoint = new Vector3(transform.position.x + startX, transform.position.y, transform.position.z + startZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        {
-            walkPointSet = true;
-        }
-    }
-
 
     private void ChasePlayer ()
     {
@@ -108,6 +96,9 @@ public class BasicEnemy2 : MonoBehaviour
     {
         agent.SetDestination(this.transform.position);
     }
+
+    
+
 
     private void OnDrawGizmosSelected()
     {
