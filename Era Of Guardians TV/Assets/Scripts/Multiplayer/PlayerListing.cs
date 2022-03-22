@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
+using Photon.Pun;
 
 public class PlayerListing : MonoBehaviour
 {
@@ -13,6 +14,6 @@ public class PlayerListing : MonoBehaviour
     public void SetPlayerInfo(Photon.Realtime.Player player)
     {
         Player = player;
-        text.text = player.NickName + " in the room";
+        text.text = (player.NickName + " - Ping : " + PhotonNetwork.GetPing());
     }
 }

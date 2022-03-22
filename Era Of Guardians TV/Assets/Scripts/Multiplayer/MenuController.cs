@@ -50,7 +50,8 @@ public class MenuController : MonoBehaviourPunCallbacks
         {
             ac.Play();
         }
-       
+
+        roomOptions.MaxPlayers = 4;
         mainMenu.SetActive(true);
     }
 

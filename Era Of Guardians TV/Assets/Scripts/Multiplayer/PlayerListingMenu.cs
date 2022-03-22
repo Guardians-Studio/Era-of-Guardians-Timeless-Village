@@ -22,7 +22,6 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         foreach (KeyValuePair<int, Photon.Realtime.Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
-            print(playerInfo.Value.NickName + " nom ");
             AddPlayerListing(playerInfo.Value);
         }
     }
@@ -40,17 +39,29 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
+
         AddPlayerListing(newPlayer);
         PlayerListingChat listingChat = Instantiate(playerListingChat, contentChat);
         listingChat.SetPlayerInfo(newPlayer, "has joined the room");
-        Destroy(listingChat, 5);
+        Destroy(listingChat.gameObject, 5);
     }
 
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
-        AddPlayerListing(otherPlayer);
+        int i = 0;
+        int n = _listing.Count;
+        
+        Destroy(_listing[n - 1].gameObject);
+        _listing.Remove(_listing[n - 1]);
+
+        foreach (PlayerListing playerListing in _listing)
+        {
+            playerListing.SetPlayerInfo(PhotonNetwork.PlayerList[i]);
+            i++;
+        }
+
         PlayerListingChat listingChat = Instantiate(playerListingChat, contentChat);
         listingChat.SetPlayerInfo(otherPlayer, "has left the room");
-        Destroy(listingChat, 5);
+        Destroy(listingChat.gameObject, 5);
     }
 }
