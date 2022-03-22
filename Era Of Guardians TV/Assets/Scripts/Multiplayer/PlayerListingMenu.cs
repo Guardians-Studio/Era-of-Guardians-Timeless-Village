@@ -7,27 +7,50 @@ using Photon.Realtime;
 public class PlayerListingMenu : MonoBehaviourPunCallbacks
 {
     [SerializeField] PlayerListing playerListing;
+    [SerializeField] PlayerListingChat playerListingChat;
     [SerializeField] Transform content;
+    [SerializeField] Transform contentChat;
 
-    private List<PlayerListing> _listings = new List<PlayerListing>();
+    private List<PlayerListing> _listing = new List<PlayerListing>();
 
-    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    private void Awake()
+    {
+        GetCurrentRoomPlayers();
+    }
+
+    private void GetCurrentRoomPlayers()
+    {
+        foreach (KeyValuePair<int, Photon.Realtime.Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
+        {
+            print(playerInfo.Value.NickName + " nom ");
+            AddPlayerListing(playerInfo.Value);
+        }
+    }
+
+    private void AddPlayerListing(Photon.Realtime.Player player)
     {
         PlayerListing listing = Instantiate(playerListing, content);
         if (listing != null)
         {
-            listing.SetPlayerInfo(newPlayer);
-            _listings.Add(listing);
+            listing.SetPlayerInfo(player);
+            _listing.Add(listing);
         }
+    }
+
+
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        AddPlayerListing(newPlayer);
+        PlayerListingChat listingChat = Instantiate(playerListingChat, contentChat);
+        listingChat.SetPlayerInfo(newPlayer, "has joined the room");
+        Destroy(listingChat, 5);
     }
 
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
-        int index = _listings.FindIndex(x => x.Player == otherPlayer);
-        if (index != -1)
-        {
-            Destroy(_listings[index].gameObject);
-            _listings.RemoveAt(index);
-        }
+        AddPlayerListing(otherPlayer);
+        PlayerListingChat listingChat = Instantiate(playerListingChat, contentChat);
+        listingChat.SetPlayerInfo(otherPlayer, "has left the room");
+        Destroy(listingChat, 5);
     }
 }

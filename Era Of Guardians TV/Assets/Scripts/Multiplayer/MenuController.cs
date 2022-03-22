@@ -217,7 +217,7 @@ public class MenuController : MonoBehaviourPunCallbacks
 
     public void SetUserName()
     {
-        PhotonNetwork.playerName = userNameInput.text;
+        PhotonNetwork.NickName = userNameInput.text;
         
         pseudoMenu.SetActive(false);
         CreateGame();
@@ -225,7 +225,7 @@ public class MenuController : MonoBehaviourPunCallbacks
 
     public void SetUserNameJoin()
     {
-        PhotonNetwork.playerName = userNameInput.text;
+        PhotonNetwork.NickName = userNameInputJoin.text;
         pseudoMenu.SetActive(false);
         JoinGame();
     }

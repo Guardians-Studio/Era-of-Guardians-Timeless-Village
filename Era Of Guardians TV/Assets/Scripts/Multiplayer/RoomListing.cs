@@ -17,7 +17,7 @@ public class RoomListing : MonoBehaviour
         text.text = "  " + roomInfo.Name + " | " + "max player : " + roomInfo.MaxPlayers;
     }
 
-    public void OnClick_Button()
+    /*public void OnClick_Button()
     {
         PhotonNetwork.JoinRoom(RoomInfo.Name);
         PhotonNetwork.LoadLevel("hazeltown");
@@ -26,5 +26,5 @@ public class RoomListing : MonoBehaviour
         {
             print("Connected in the room");
         }
-    }
+    }*/
 }

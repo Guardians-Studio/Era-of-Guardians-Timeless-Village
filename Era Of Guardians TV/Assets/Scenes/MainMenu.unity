@@ -878,7 +878,7 @@ MonoBehaviour:
   userNameInput: {fileID: 1174989956}
   userNameInputJoin: {fileID: 1824248657}
   createGameInput: {fileID: 258331891}
-  joindGameInput: {fileID: 658820350}
+  joinedGameInput: {fileID: 658820350}
   startButton: {fileID: 2037610468}
   startButtonJoin: {fileID: 326787306}
   soloStartButton: {fileID: 927579443}
@@ -12132,6 +12132,7 @@ MonoBehaviour:
   xKey: 120
   xKeyString: X
   escape: 27
+  tab: 9
 --- !u!1 &404198925
 GameObject:
   m_ObjectHideFlags: 0
