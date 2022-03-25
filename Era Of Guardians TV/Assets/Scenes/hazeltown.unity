@@ -4150,6 +4150,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1848553393}
     - target: {fileID: 4872316316489858908, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: attackRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4872316316489858908, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: whatIsPlayer.m_Bits
       value: 128
       objectReference: {fileID: 0}
