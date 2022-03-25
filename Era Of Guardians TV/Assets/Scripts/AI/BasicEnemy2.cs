@@ -8,10 +8,12 @@ public class BasicEnemy2 : MonoBehaviour
 
     [SerializeField] NavMeshAgent agent;
     private Transform player;
+    [SerializeField] Transform aller, retour;
     [SerializeField] LayerMask whatIsGround, whatIsPlayer;
 
     [SerializeField] Vector3 walkPoint;
     bool walkPointSet;
+    [SerializeField] float walkPointRange;
 
     [SerializeField] float timeBetweenAttacks;
 
@@ -21,8 +23,6 @@ public class BasicEnemy2 : MonoBehaviour
 
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
-
-    [SerializeField] Transform aller, retour;
 
     private void Awake ()
     {
@@ -54,37 +54,8 @@ public class BasicEnemy2 : MonoBehaviour
         }
         else
         {
-            Patroling();
+            RoundTrip();
         }
-        
-    }
-
-    private void Patroling()
-    {
-        if (!walkPointSet)
-        {
-            AllerRetour();
-        }
-        if (walkPointSet)
-        {
-            agent.SetDestination(walkPoint);  
-        }
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        if (distanceToWalkPoint.magnitude < 1f)
-        {
-            walkPointSet = false;
-        }
-    }
-    
-
-    private void AllerRetour ()
-    {
-        if (agent.SetDestination(aller.position))
-            agent.SetDestination(retour.position);
-        else
-            agent.SetDestination(aller.position);
     }
 
     private void ChasePlayer ()
@@ -97,7 +68,11 @@ public class BasicEnemy2 : MonoBehaviour
         agent.SetDestination(this.transform.position);
     }
 
-    
+    private void RoundTrip()
+    {
+        agent.SetDestination(aller.position);
+        agent.SetDestination(retour.position);
+    }
 
 
     private void OnDrawGizmosSelected()
