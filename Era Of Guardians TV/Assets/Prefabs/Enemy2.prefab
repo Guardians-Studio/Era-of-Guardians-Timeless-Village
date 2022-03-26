@@ -502,8 +502,8 @@ GameObject:
   - component: {fileID: -3727576517424735807}
   - component: {fileID: -5848461249663493883}
   - component: {fileID: 1504515500546173435}
-  - component: {fileID: 4872316316489858908}
   - component: {fileID: 5508628282231627729}
+  - component: {fileID: 4872316316489858908}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -604,35 +604,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4872316316489858908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7328033107812310023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0959738b8533b814e889f92fb20bf09f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 1504515500546173435}
-  aller: {fileID: 0}
-  retour: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 64
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 128
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 10
-  timeBetweenAttacks: 0
-  attack: 0
-  sightRange: 8
-  attackRange: 8
-  playerInSightRange: 0
-  playerInAttackRange: 0
 --- !u!114 &5508628282231627729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,6 +621,34 @@ MonoBehaviour:
   bE2: {fileID: 4872316316489858908}
   sword: {fileID: 3746306022511512037}
   swordScript: {fileID: 0}
+--- !u!114 &4872316316489858908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328033107812310023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0959738b8533b814e889f92fb20bf09f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1504515500546173435}
+  waypoints: []
+  waypointIndex: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  attack: 0
+  target: {x: 0, y: 0, z: 0}
+  timeBetweenAttacks: 0
+  sightRange: 8
+  attackRange: 8
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!1 &7449398942971023355
 GameObject:
   m_ObjectHideFlags: 0
