@@ -18,8 +18,9 @@ public class Enemy : MonoBehaviour
     private bool canAttack = true;
 
     [Header("Sword")]
-    [SerializeField] GameObject sword;
+    [SerializeField] GameObject sword, bow;
     [SerializeField] Sword swordScript;
+    [SerializeField] Bow bowScript;
     Animator anim;
     AudioSource ac;
 
@@ -33,6 +34,11 @@ public class Enemy : MonoBehaviour
         if (bE.attack)
         {
             AttackAuto();
+        }
+
+        if (bE2.attack)
+        {
+            BowAttacking();
         }
     }
 
@@ -74,6 +80,16 @@ public class Enemy : MonoBehaviour
         // ac.PlayOneShot(swordScript.swordAttack);
 
         StartCoroutine(ResetAttackCooldown(swordScript.cooldown));
+    }
+
+    private void BowAttacking ()
+    {
+        bow.GetComponent<FightEnemyDetection>().enabled = true; 
+        anim = bow.GetComponentInChildren<Animator>();
+        canAttack = false;
+        anim.SetTrigger("Attack");
+        StartCoroutine(ResetAttackCooldown(bowScript.cooldown));
+        // Add Code ...
     }
 
     IEnumerator ResetAttackCooldown(float cd)
