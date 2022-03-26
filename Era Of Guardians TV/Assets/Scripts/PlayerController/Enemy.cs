@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     // public float xpValue = 10;
     private int level = 1;
     [SerializeField] BasicEnemy bE;
-    [SerializeField] BasicEnemy2 bE2;
+    [SerializeField] BasicEnemy bE2;
 
     private bool canAttack = true;
 

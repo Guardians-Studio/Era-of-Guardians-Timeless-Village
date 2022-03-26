@@ -111,7 +111,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 758715209456402849}
-  - component: {fileID: 7982251541003504040}
   - component: {fileID: 6037698805010113474}
   - component: {fileID: 1590524382078924223}
   - component: {fileID: 7906523696000128123}
@@ -137,24 +136,6 @@ Transform:
   m_Father: {fileID: 4489875275790384131}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7982251541003504040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3746306022511512037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af71939db561c9f41a0deb6c1e0ff917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bowProjectileSpawnPoint: {fileID: 0}
-  bowProjectile: {fileID: 0}
-  bowAttack: {fileID: 0}
-  damage: 40
-  projectileSpeed: 30
-  cooldown: 2.5
 --- !u!33 &6037698805010113474
 MeshFilter:
   m_ObjectHideFlags: 0

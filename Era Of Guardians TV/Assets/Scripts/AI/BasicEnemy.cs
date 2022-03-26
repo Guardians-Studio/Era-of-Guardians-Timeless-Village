@@ -25,7 +25,7 @@ public class BasicEnemy : MonoBehaviour
     // Etats
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
-    public bool patroling, fixedPos;
+    public bool patroling, fixedPos, fixedPath;
 
     private void Awake()
     {
@@ -119,6 +119,7 @@ public class BasicEnemy : MonoBehaviour
     {
         agent.SetDestination(startPosition.position);
     }
+
     public void DestroyEnemy ()
     {
         Destroy(gameObject);

@@ -5,41 +5,40 @@ using UnityEngine.AI;
 
 public class BasicEnemy2 : MonoBehaviour
 {
-
     [SerializeField] NavMeshAgent agent;
     private Transform player;
-    [SerializeField] Transform aller, retour;
+    [SerializeField] Transform[] waypoints;
+    [SerializeField] int waypointIndex;
     [SerializeField] LayerMask whatIsGround, whatIsPlayer;
-
-    [SerializeField] Vector3 walkPoint;
-    bool walkPointSet;
-    [SerializeField] float walkPointRange;
-
-    [SerializeField] float timeBetweenAttacks;
+    // [SerializeField] float health;
 
     public bool attack;
 
+    // Patterns
+    [SerializeField] Vector3 target;
+
+    // Attaques
+    [SerializeField] float timeBetweenAttacks;
     bool alreadyAttacked;
 
+    // Etats
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    
 
-    private void Awake ()
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        UpdateDestination();
     }
 
-    private void Update ()
+    private void Update()
     {
-
         if (GameObject.FindWithTag("Player"))
-        {
             player = GameObject.FindWithTag("Player").transform;
-        }
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
 
         if (!playerInAttackRange && playerInSightRange)
         {
@@ -52,28 +51,46 @@ public class BasicEnemy2 : MonoBehaviour
             attack = true;
             Stop();
         }
+
         else
         {
-            RoundTrip();
+            if (Vector3.Distance(transform.position, target) < 1)
+            {
+                IterateWaypointIndex();
+                UpdateDestination();
+            }
+            else
+                agent.SetDestination(target);
         }
     }
 
-    private void ChasePlayer ()
+    private void UpdateDestination ()
+    {
+        target = waypoints[waypointIndex].position;
+        agent.SetDestination(target);
+    }
+
+    private void IterateWaypointIndex ()
+    {
+        waypointIndex++;
+        if (waypointIndex == waypoints.Length)
+            waypointIndex = 0;
+    }
+
+    private void ChasePlayer()
     {
         agent.SetDestination(player.position);
     }
 
-    private void Stop ()
+    private void Stop()
     {
         agent.SetDestination(this.transform.position);
     }
 
-    private void RoundTrip()
+    public void DestroyEnemy()
     {
-        agent.SetDestination(aller.position);
-        agent.SetDestination(retour.position);
+        Destroy(gameObject);
     }
-
 
     private void OnDrawGizmosSelected()
     {
