@@ -3704,7 +3704,7 @@ PrefabInstance:
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: bowProjectile
       value: 
-      objectReference: {fileID: 1868125399}
+      objectReference: {fileID: 1872872467}
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: timeBetweenAttacks
       value: 10
@@ -7852,9 +7852,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64258415c62eea141abab3a897768ea7, type: 3}
---- !u!1 &1868125399 stripped
+--- !u!1 &1872872467 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5132754280110761679, guid: bbaaf355cb319d04d8d2e4301ae86613, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2409960690162406646, guid: bbaaf355cb319d04d8d2e4301ae86613, type: 3}
   m_PrefabInstance: {fileID: 1256643388}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1877638566

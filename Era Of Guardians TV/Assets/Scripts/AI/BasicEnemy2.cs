@@ -13,14 +13,14 @@ public class BasicEnemy2 : MonoBehaviour
 
     // Bow Attributes 
 
-    /*
+ 
     public GameObject bowProjectileSpawnPoint;
     public GameObject bowProjectile;
     public AudioClip bowAttack;
     public float damage = 40f;
     public float projectileSpeed = 30f;
     public float cooldown = 2.5f;
-    */
+    
 
     public bool attack;
 
@@ -106,11 +106,11 @@ public class BasicEnemy2 : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            /*
+            
             Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-            */
+            
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -121,8 +121,6 @@ public class BasicEnemy2 : MonoBehaviour
     {
         alreadyAttacked = false;
     }
-
-
 
     public void DestroyEnemy()
     {

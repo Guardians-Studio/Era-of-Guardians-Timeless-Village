@@ -462,6 +462,12 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  bowProjectileSpawnPoint: {fileID: 0}
+  bowProjectile: {fileID: 0}
+  bowAttack: {fileID: 0}
+  damage: 40
+  projectileSpeed: 30
+  cooldown: 2.5
   attack: 0
   target: {x: 0, y: 0, z: 0}
   timeBetweenAttacks: 0
@@ -704,10 +710,16 @@ MonoBehaviour:
   waypointIndex: 0
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
+  bowProjectileSpawnPoint: {fileID: 0}
+  bowProjectile: {fileID: 0}
+  bowAttack: {fileID: 0}
+  damage: 40
+  projectileSpeed: 30
+  cooldown: 2.5
   attack: 0
   target: {x: 0, y: 0, z: 0}
   timeBetweenAttacks: 0
