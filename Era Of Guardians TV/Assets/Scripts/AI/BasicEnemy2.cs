@@ -10,17 +10,17 @@ public class BasicEnemy2 : MonoBehaviour
     [SerializeField] Transform[] waypoints;
     [SerializeField] int waypointIndex;
     [SerializeField] LayerMask whatIsGround, whatIsPlayer;
-
+    [SerializeField] float health;
     // Bow Attributes 
 
- 
+
     public GameObject bowProjectileSpawnPoint;
     public GameObject bowProjectile;
     public AudioClip bowAttack;
     public float damage = 40f;
     public float projectileSpeed = 30f;
     public float cooldown = 2.5f;
-    
+
 
     public bool attack;
 
@@ -34,7 +34,7 @@ public class BasicEnemy2 : MonoBehaviour
     // Etats
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
-    
+
 
     private void Awake()
     {
@@ -75,13 +75,13 @@ public class BasicEnemy2 : MonoBehaviour
         }
     }
 
-    private void UpdateDestination ()
+    private void UpdateDestination()
     {
         target = waypoints[waypointIndex].position;
         agent.SetDestination(target);
     }
 
-    private void IterateWaypointIndex ()
+    private void IterateWaypointIndex()
     {
         waypointIndex++;
         if (waypointIndex == waypoints.Length)
@@ -100,28 +100,35 @@ public class BasicEnemy2 : MonoBehaviour
 
     private void AttackPlayer()
     {
-   
+
         agent.SetDestination(transform.position);
         transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
-            
+
             Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-            
+
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
 
-    private void ResetAttack ()
+    private void ResetAttack()
     {
         alreadyAttacked = false;
     }
 
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+            Invoke(nameof(DestroyEnemy), 0.5f);
+    }
+    
     public void DestroyEnemy()
     {
         Destroy(gameObject);
