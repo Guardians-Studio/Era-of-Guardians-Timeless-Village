@@ -3677,6 +3677,14 @@ PrefabInstance:
       value: Enemy2
       objectReference: {fileID: 0}
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: sightRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: attackRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: waypoints.Array.size
       value: 2
       objectReference: {fileID: 0}

@@ -50,6 +50,7 @@ public class BasicEnemy2 : MonoBehaviour
         {
             attack = true;
             Stop();
+            AttackPlayer();
         }
 
         else
@@ -85,6 +86,24 @@ public class BasicEnemy2 : MonoBehaviour
     private void Stop()
     {
         agent.SetDestination(this.transform.position);
+    }
+
+    private void AttackPlayer()
+    {
+        // Ajouter le code d'attaque a l'arc
+        agent.SetDestination(transform.position);
+        transform.LookAt(player);
+
+        if (!alreadyAttacked)
+        {
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+
+    private void ResetAttack ()
+    {
+        alreadyAttacked = false;
     }
 
     public void DestroyEnemy()
