@@ -98,12 +98,16 @@ public class BasicEnemy2 : MonoBehaviour
 
     private void AttackPlayer()
     {
-        // Ajouter le code d'attaque a l'arc
+   
         agent.SetDestination(transform.position);
         transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
+            Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
