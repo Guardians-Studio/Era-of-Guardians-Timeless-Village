@@ -12,6 +12,14 @@ public class BasicEnemy2 : MonoBehaviour
     [SerializeField] LayerMask whatIsGround, whatIsPlayer;
     // [SerializeField] float health;
 
+    // Bow Attributes 
+    public GameObject bowProjectileSpawnPoint;
+    public GameObject bowProjectile;
+    public AudioClip bowAttack;
+    public float damage = 40f;
+    public float projectileSpeed = 30f;
+    public float cooldown = 2.5f;
+
     public bool attack;
 
     // Patterns
