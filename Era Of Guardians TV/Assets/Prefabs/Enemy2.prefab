@@ -129,13 +129,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3746306022511512037}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.583}
+  m_LocalRotation: {x: 0, y: -0.67950535, z: 0, w: 0.7336706}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4489875275790384131}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -85.61, z: 0}
 --- !u!33 &6037698805010113474
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -462,6 +462,12 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  bowProjectileSpawnPoint: {fileID: 0}
+  bowProjectile: {fileID: 0}
+  bowAttack: {fileID: 0}
+  damage: 40
+  projectileSpeed: 30
+  cooldown: 2.5
   attack: 0
   target: {x: 0, y: 0, z: 0}
   timeBetweenAttacks: 0
