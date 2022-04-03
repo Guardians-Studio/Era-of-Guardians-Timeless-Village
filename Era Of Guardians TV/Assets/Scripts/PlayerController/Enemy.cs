@@ -89,7 +89,6 @@ public class Enemy : MonoBehaviour
         canAttack = false;
         anim.SetTrigger("Attack");
         StartCoroutine(ResetAttackCooldown(bowScript.cooldown));
-        // Add Code ...
     }
 
     IEnumerator ResetAttackCooldown(float cd)

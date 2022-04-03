@@ -3677,12 +3677,24 @@ PrefabInstance:
       value: Enemy2
       objectReference: {fileID: 0}
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: bowAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d8e819978b7d7443a972ee1900950a9, type: 3}
+    - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: sightRange
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: attackRange
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: bowProjectile
+      value: 
+      objectReference: {fileID: 1868125399}
+    - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: waypoints.Array.size
@@ -3765,6 +3777,12 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  bowProjectileSpawnPoint: {fileID: 0}
+  bowProjectile: {fileID: 0}
+  bowAttack: {fileID: 0}
+  damage: 40
+  projectileSpeed: 30
+  cooldown: 2.5
   attack: 0
   target: {x: 0, y: 0, z: 0}
   timeBetweenAttacks: 0
@@ -7821,6 +7839,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64258415c62eea141abab3a897768ea7, type: 3}
+--- !u!1 &1868125399 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5132754280110761679, guid: bbaaf355cb319d04d8d2e4301ae86613, type: 3}
+  m_PrefabInstance: {fileID: 1256643388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1877638566
 PrefabInstance:
   m_ObjectHideFlags: 0
