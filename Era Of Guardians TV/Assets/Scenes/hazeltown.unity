@@ -3481,6 +3481,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e3ce63693b169a44937740c014dffd3, type: 3}
   m_PrefabInstance: {fileID: 753246249}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &783569245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4303081919644362606, guid: bbaaf355cb319d04d8d2e4301ae86613, type: 3}
+  m_PrefabInstance: {fileID: 1256643388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &801273860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3628,6 +3633,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1451308437355319169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: bow
+      value: 
+      objectReference: {fileID: 783569245}
+    - target: {fileID: 1451308437355319169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: bowScript
+      value: 
+      objectReference: {fileID: 1251414906}
     - target: {fileID: 5424540079958431775, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -3691,10 +3704,10 @@ PrefabInstance:
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: bowProjectile
       value: 
-      objectReference: {fileID: 1872872467}
+      objectReference: {fileID: 1868125399}
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: timeBetweenAttacks
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: waypoints.Array.size
@@ -5093,7 +5106,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2604262210786944218, guid: bbaaf355cb319d04d8d2e4301ae86613, type: 3}
   m_PrefabInstance: {fileID: 1256643388}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 783569245}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af71939db561c9f41a0deb6c1e0ff917, type: 3}
@@ -7839,9 +7852,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64258415c62eea141abab3a897768ea7, type: 3}
---- !u!1 &1872872467 stripped
+--- !u!1 &1868125399 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 2409960690162406646, guid: bbaaf355cb319d04d8d2e4301ae86613, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5132754280110761679, guid: bbaaf355cb319d04d8d2e4301ae86613, type: 3}
   m_PrefabInstance: {fileID: 1256643388}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1877638566

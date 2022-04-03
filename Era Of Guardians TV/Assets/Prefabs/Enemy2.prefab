@@ -462,12 +462,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
-  bowProjectileSpawnPoint: {fileID: 0}
-  bowProjectile: {fileID: 0}
-  bowAttack: {fileID: 0}
-  damage: 40
-  projectileSpeed: 30
-  cooldown: 2.5
   attack: 0
   target: {x: 0, y: 0, z: 0}
   timeBetweenAttacks: 0
@@ -593,6 +587,10 @@ GameObject:
   - component: {fileID: -7423337121335445823}
   - component: {fileID: -3727576517424735807}
   - component: {fileID: -5848461249663493883}
+  - component: {fileID: 8461637654948743143}
+  - component: {fileID: 4363195218749604044}
+  - component: {fileID: 4329173365283584059}
+  - component: {fileID: 8649589331651798353}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -670,6 +668,87 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 1
   m_UseLocal: 1
+--- !u!114 &8461637654948743143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328033107812310023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b990a07bba1e04396981f0a998a384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarExtern: {fileID: 4329173365283584059}
+  bE: {fileID: 0}
+  bE2: {fileID: 4363195218749604044}
+  sword: {fileID: 0}
+  bow: {fileID: 0}
+  swordScript: {fileID: 0}
+  bowScript: {fileID: 0}
+--- !u!114 &4363195218749604044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328033107812310023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0959738b8533b814e889f92fb20bf09f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 8649589331651798353}
+  waypoints: []
+  waypointIndex: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  attack: 0
+  target: {x: 0, y: 0, z: 0}
+  timeBetweenAttacks: 0
+  sightRange: 0
+  attackRange: 0
+  playerInSightRange: 0
+  playerInAttackRange: 0
+--- !u!114 &4329173365283584059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328033107812310023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb246c8c5c4c3f488436d03b3d6069f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!195 &8649589331651798353
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328033107812310023}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &7449398942971023355
 GameObject:
   m_ObjectHideFlags: 0
