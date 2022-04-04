@@ -357,8 +357,8 @@ MonoBehaviour:
   bowProjectileSpawnPoint: {fileID: 0}
   bowProjectile: {fileID: 6263420066961304771, guid: 7cae955c5a643d84d86e09c178d0ec00, type: 3}
   bowAttack: {fileID: 8300000, guid: 1d8e819978b7d7443a972ee1900950a9, type: 3}
-  damage: 40
-  projectileSpeed: 30
+  damage: 30
+  projectileSpeed: 20
   attack: 0
   target: {x: 0, y: 0, z: 0}
   timeBetweenAttacks: 2.5
