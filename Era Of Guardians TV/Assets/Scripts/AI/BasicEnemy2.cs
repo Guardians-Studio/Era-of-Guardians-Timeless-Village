@@ -10,7 +10,7 @@ public class BasicEnemy2 : MonoBehaviour
     [SerializeField] Transform[] waypoints;
     [SerializeField] int waypointIndex;
     [SerializeField] LayerMask whatIsGround, whatIsPlayer;
-    [SerializeField] float health;
+    [SerializeField] float health = 80;
     // Bow Attributes 
 
 
@@ -43,6 +43,7 @@ public class BasicEnemy2 : MonoBehaviour
 
     private void Update()
     {
+
         if (GameObject.FindWithTag("Player"))
             player = GameObject.FindWithTag("Player").transform;
 
@@ -113,6 +114,7 @@ public class BasicEnemy2 : MonoBehaviour
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
         }
     }
 
@@ -121,16 +123,9 @@ public class BasicEnemy2 : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-            Invoke(nameof(DestroyEnemy), 0.5f);
-    }
-    
     public void DestroyEnemy()
     {
-        Destroy(gameObject);
+        Destroy(agent);
     }
 
     private void OnDrawGizmosSelected()

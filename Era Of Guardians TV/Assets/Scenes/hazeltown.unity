@@ -3633,14 +3633,66 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 842298411300147992, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919013713164422279, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 783569245}
+    - target: {fileID: 919013713164422279, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: health
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 919013713164422279, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325606789691677781, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: bowAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: 1d8e819978b7d7443a972ee1900950a9, type: 3}
+    - target: {fileID: 1325606789691677781, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325606789691677781, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: bowProjectile
+      value: 
+      objectReference: {fileID: 3898444948812218743}
+    - target: {fileID: 1325606789691677781, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: waypoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325606789691677781, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1433203136}
+    - target: {fileID: 1325606789691677781, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 898635253}
     - target: {fileID: 1451308437355319169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: bow
       value: 
       objectReference: {fileID: 783569245}
     - target: {fileID: 1451308437355319169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: health
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451308437355319169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: bowScript
       value: 
       objectReference: {fileID: 1251414906}
+    - target: {fileID: 1451308437355319169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500136667947790251, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4363195218749604044, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: waypoints.Array.size
       value: 2
@@ -3653,6 +3705,14 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 898635253}
+    - target: {fileID: 4819605981787416753, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4975693407647057236, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5424540079958431775, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -3702,9 +3762,17 @@ PrefabInstance:
       value: Enemy2
       objectReference: {fileID: 0}
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: health
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: bowAttack
       value: 
       objectReference: {fileID: 8300000, guid: 1d8e819978b7d7443a972ee1900950a9, type: 3}
+    - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: sightRange
       value: 10
@@ -3717,6 +3785,10 @@ PrefabInstance:
       propertyPath: bowProjectile
       value: 
       objectReference: {fileID: 3898444948812218743}
+    - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: healthBarExtern
+      value: 
+      objectReference: {fileID: 1321782917}
     - target: {fileID: 8930979124442473169, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: timeBetweenAttacks
       value: 2.5
@@ -5207,6 +5279,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e3ce63693b169a44937740c014dffd3, type: 3}
   m_PrefabInstance: {fileID: 1301249562}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1321782917 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5065114065056255911, guid: 90c7a63d796393b478407c56c828185c, type: 3}
+  m_PrefabInstance: {fileID: 1664205403}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bb246c8c5c4c3f488436d03b3d6069f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1401364442
 GameObject:
   m_ObjectHideFlags: 0

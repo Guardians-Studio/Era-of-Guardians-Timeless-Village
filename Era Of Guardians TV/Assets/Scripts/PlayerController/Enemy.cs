@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] HealthBarExtern healthBarExtern;
 
     private string name;
-    private float health = 100;
+    [SerializeField] float health;
     private float armor = 10;
     private List<GameObject> items;
     // public float xpValue = 10;
@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         ac = GetComponentInParent<AudioSource>();
+        TakeDamage(0);
     }
 
     private void Update()
@@ -34,11 +35,6 @@ public class Enemy : MonoBehaviour
         if (bE.attack)
         {
             AttackAuto();
-        }
-
-        if (bE2.attack)
-        {
-            BowAttacking();
         }
     }
 
