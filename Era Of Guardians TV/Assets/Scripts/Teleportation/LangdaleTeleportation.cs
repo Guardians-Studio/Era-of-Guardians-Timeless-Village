@@ -10,7 +10,7 @@ public class LangdaleTeleportation : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        other.transform.position = pos.position; //Can teleport to an another point in the same scene
-        //SceneManager.LoadScene("Langdale");
+        //other.transform.position = pos.position; //Can teleport to an another point in the same scene
+        SceneManager.LoadScene("Langdale");
     }
 }
