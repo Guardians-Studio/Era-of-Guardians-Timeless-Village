@@ -7787,6 +7787,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6263420066961304771, guid: 7cae955c5a643d84d86e09c178d0ec00, type: 3}
+      propertyPath: m_TagString
+      value: Bullet
+      objectReference: {fileID: 0}
     - target: {fileID: 6748630783872235129, guid: 7cae955c5a643d84d86e09c178d0ec00, type: 3}
       propertyPath: m_RootOrder
       value: 1

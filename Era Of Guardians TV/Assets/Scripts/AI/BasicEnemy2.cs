@@ -8,18 +8,19 @@ public class BasicEnemy2 : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     private Transform player;
     [SerializeField] Transform[] waypoints;
-    [SerializeField] int waypointIndex;
+    [SerializeField] int waypointIndex = 0;
     [SerializeField] LayerMask whatIsGround, whatIsPlayer;
     [SerializeField] float health = 80;
+    [SerializeField] HealthBarExtern healthBarExtern;
+    [SerializeField] ParticleSystem hitParticle;
+
     // Bow Attributes 
-
-
-    public GameObject bowProjectileSpawnPoint;
     public GameObject bowProjectile;
-    public AudioClip bowAttack;
     public float damage = 40f;
     public float projectileSpeed = 30f;
 
+    private float enemyDamage;
+    private float playerDamage;
 
     public bool attack;
 
@@ -34,6 +35,10 @@ public class BasicEnemy2 : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    private void Start()
+    {
+        TakeDamage(0);
+    }
 
     private void Awake()
     {
@@ -43,7 +48,6 @@ public class BasicEnemy2 : MonoBehaviour
 
     private void Update()
     {
-
         if (GameObject.FindWithTag("Player"))
             player = GameObject.FindWithTag("Player").transform;
 
@@ -65,7 +69,7 @@ public class BasicEnemy2 : MonoBehaviour
 
         else
         {
-            if (Vector3.Distance(transform.position, target) < 1)
+            if (Vector3.Distance(agent.transform.position, target) < 1)
             {
                 IterateWaypointIndex();
                 UpdateDestination();
@@ -83,9 +87,7 @@ public class BasicEnemy2 : MonoBehaviour
 
     private void IterateWaypointIndex()
     {
-        waypointIndex++;
-        if (waypointIndex == waypoints.Length)
-            waypointIndex = 0;
+        waypointIndex = (waypointIndex + 1) % waypoints.Length;
     }
 
     private void ChasePlayer()
@@ -100,7 +102,6 @@ public class BasicEnemy2 : MonoBehaviour
 
     private void AttackPlayer()
     {
-
         agent.SetDestination(transform.position);
         transform.LookAt(player);
 
@@ -111,10 +112,8 @@ public class BasicEnemy2 : MonoBehaviour
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 
-
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
-
         }
     }
 
@@ -123,9 +122,18 @@ public class BasicEnemy2 : MonoBehaviour
         alreadyAttacked = false;
     }
 
+    private void TakeDamage(float damage)
+    {
+        Debug.Log(this.health);
+        healthBarExtern.UpdateHealth(this.health / 100);
+        this.health -= damage;
+        if (this.health <= 0)
+            DestroyEnemy();
+    }
+
     public void DestroyEnemy()
     {
-        Destroy(agent);
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()
@@ -134,5 +142,22 @@ public class BasicEnemy2 : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Sword":
+                TakeDamage(20f);
+                break;
+            case "Bullet":
+                TakeDamage(40f);
+                break;
+            case "Axe":
+                TakeDamage(40f);
+                break;
+        }
+        
     }
 }

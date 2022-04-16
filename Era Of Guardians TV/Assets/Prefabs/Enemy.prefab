@@ -448,9 +448,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBarExtern: {fileID: 5065114065056255911}
+  health: 100
   bE: {fileID: 4691525764958673112}
+  bE2: {fileID: 0}
   sword: {fileID: 3706882439599546158}
+  bow: {fileID: 0}
   swordScript: {fileID: 7410099891916172411}
+  bowScript: {fileID: 0}
 --- !u!82 &2435268845993967394
 AudioSource:
   m_ObjectHideFlags: 0
@@ -577,6 +581,7 @@ MonoBehaviour:
   playerInAttackRange: 0
   patroling: 0
   fixedPos: 0
+  fixedPath: 0
 --- !u!195 &6806302845409747962
 NavMeshAgent:
   m_ObjectHideFlags: 0
