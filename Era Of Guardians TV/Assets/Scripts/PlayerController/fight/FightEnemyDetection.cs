@@ -7,7 +7,6 @@ public class FightEnemyDetection : MonoBehaviour
 
     [SerializeField] ParticleSystem hitParticle;
     private float damage;
-    private float bowDamage;
 
     private void Start()
     {

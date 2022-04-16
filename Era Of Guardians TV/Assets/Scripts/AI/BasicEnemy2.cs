@@ -158,6 +158,5 @@ public class BasicEnemy2 : MonoBehaviour
                 TakeDamage(40f);
                 break;
         }
-        
     }
 }
