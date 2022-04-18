@@ -334,7 +334,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
-  health: 80
   healthBarExtern: {fileID: 1104596999549750466}
   hitParticle: {fileID: 7774865764944326579}
   bowProjectile: {fileID: 3937634128875471335}
@@ -689,14 +688,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5f672cec95e5c044add7a985051cd5f, type: 3}
---- !u!4 &4362675217992964015 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8253261350659103909, guid: d5f672cec95e5c044add7a985051cd5f, type: 3}
-  m_PrefabInstance: {fileID: 5621104245569866506}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &7774865764944326579 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2731419704269464761, guid: d5f672cec95e5c044add7a985051cd5f, type: 3}
+  m_PrefabInstance: {fileID: 5621104245569866506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4362675217992964015 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8253261350659103909, guid: d5f672cec95e5c044add7a985051cd5f, type: 3}
   m_PrefabInstance: {fileID: 5621104245569866506}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5627298001474884852
@@ -775,6 +774,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8700220929801639187, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
   m_PrefabInstance: {fileID: 5627298001474884852}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1660077941752964361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3937634128875471335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4066df3b5bdb1ea4c9f38d295a37b77f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9132561135925150968
 PrefabInstance:
   m_ObjectHideFlags: 0

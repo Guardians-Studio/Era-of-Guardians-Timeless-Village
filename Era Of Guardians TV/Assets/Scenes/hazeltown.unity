@@ -3710,6 +3710,10 @@ PrefabInstance:
       value: Arrow
       objectReference: {fileID: 0}
     - target: {fileID: 4151949670924590060, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4151949670924590060, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
       propertyPath: waypoints.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -3842,6 +3846,7 @@ PrefabInstance:
     - {fileID: 842298411300147992, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
     - {fileID: 1325606789691677781, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
     - {fileID: 8093038644449478687, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+    - {fileID: 1345989235559659071, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
 --- !u!1001 &860073033
 PrefabInstance:
@@ -5179,6 +5184,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 439422, guid: dd95ee52b2d3a914baa7f842b3cf7592, type: 3}
   m_PrefabInstance: {fileID: 1826013014}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1270962213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3937634128875471335, guid: 8f0091b4853ec4f47b132d402cd972b3, type: 3}
+  m_PrefabInstance: {fileID: 828327106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1270962214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270962213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4066df3b5bdb1ea4c9f38d295a37b77f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1301249562
 PrefabInstance:
   m_ObjectHideFlags: 0

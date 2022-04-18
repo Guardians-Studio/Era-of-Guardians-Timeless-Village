@@ -10,7 +10,7 @@ public class BasicEnemy2 : MonoBehaviour
     [SerializeField] Transform[] waypoints;
     [SerializeField] int waypointIndex = 0;
     [SerializeField] LayerMask whatIsGround, whatIsPlayer;
-    [SerializeField] float health = 80;
+    private float health = 100;
     [SerializeField] HealthBarExtern healthBarExtern;
     [SerializeField] ParticleSystem hitParticle;
 
@@ -124,7 +124,6 @@ public class BasicEnemy2 : MonoBehaviour
 
     private void TakeDamage(float damage)
     {
-        Debug.Log(this.health);
         healthBarExtern.UpdateHealth(this.health / 100);
         this.health -= damage;
         if (this.health <= 0)
