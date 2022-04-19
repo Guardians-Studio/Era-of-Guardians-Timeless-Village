@@ -99,7 +99,7 @@ public class Option : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        SceneManager.LoadScene("MainMenu");  //Pour charger la Scene du menu d'accueil faut modif
+        SceneManager.LoadScene("MainMenu");
         PhotonNetwork.Disconnect();
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - Axe
   - Arrow
   - Shield
+  - Bush
   layers:
   - Default
   - TransparentFX
