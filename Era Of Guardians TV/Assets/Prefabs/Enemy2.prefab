@@ -272,7 +272,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5189340623857197470}
   m_Material: {fileID: 13400000, guid: 58165ce5725c86f4ab44afe06bab681a, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -337,7 +337,6 @@ MonoBehaviour:
   healthBarExtern: {fileID: 1104596999549750466}
   hitParticle: {fileID: 7774865764944326579}
   bowProjectile: {fileID: 3937634128875471335}
-  damage: 40
   projectileSpeed: 30
   attack: 0
   target: {x: 0, y: 0, z: 0}
@@ -760,6 +759,10 @@ PrefabInstance:
     - target: {fileID: 8700220929801639187, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_Name
       value: arrow_enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8700220929801639187, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6680465127955063499, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}

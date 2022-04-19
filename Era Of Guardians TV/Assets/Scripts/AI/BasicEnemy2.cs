@@ -16,7 +16,6 @@ public class BasicEnemy2 : MonoBehaviour
 
     // Bow Attributes 
     public GameObject bowProjectile;
-    public float damage = 40f;
     public float projectileSpeed = 30f;
 
     private float enemyDamage;
@@ -155,6 +154,9 @@ public class BasicEnemy2 : MonoBehaviour
                 break;
             case "Axe":
                 TakeDamage(40f);
+                break;
+            case "Arrow":
+                TakeDamage(50f);
                 break;
         }
     }
