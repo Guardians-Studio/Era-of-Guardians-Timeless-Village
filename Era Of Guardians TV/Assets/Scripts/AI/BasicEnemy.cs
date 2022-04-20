@@ -25,7 +25,7 @@ public class BasicEnemy : MonoBehaviour
     // Etats
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
-    public bool patroling, fixedPos, fixedPath;
+    public bool patroling, fixedPos;
 
     private void Awake()
     {
