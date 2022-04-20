@@ -181,7 +181,28 @@ public class WeaponController : MonoBehaviour
             }
             else if (selectedAbility == 1)
             {
-                selectedWeapon1 = 0;
+                if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+                {
+                    if (selectedWeapon1 >= weapons1.Length - 1)
+                    {
+                        selectedWeapon1 = 0;
+                    }
+                    else
+                    {
+                        selectedWeapon1++;
+                    }
+                }
+                else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+                {
+                    if (selectedWeapon1 <= 0)
+                    {
+                        selectedWeapon1 = weapons1.Length - 1;
+                    }
+                    else
+                    {
+                        selectedWeapon1--;
+                    }
+                }
 
                 SelectWeapon();
 
@@ -197,10 +218,8 @@ public class WeaponController : MonoBehaviour
                     }
                 }
             }
-           /* else if (selectedAbility == 2)
+            else if (selectedAbility == 2)
             {
-                selectedWeapon2 = 0;
-
                 if (Input.GetAxis("Mouse ScrollWheel") > 0f)
                 {
                     if (selectedWeapon2 >= weapons2.Length - 1)
@@ -216,42 +235,56 @@ public class WeaponController : MonoBehaviour
                 {
                     if (selectedWeapon2 <= 0)
                     {
-                        selectedWeapon2 = weapons.Length - 1;
+                        selectedWeapon2 = weapons2.Length - 1;
                     }
                     else
                     {
                         selectedWeapon2--;
                     }
                 }
-                else if (Input.GetKey(keyConfiguration.oneKey))
-                {
-                    selectedWeapon2 = 0;
-                }
-                else if (Input.GetKey(keyConfiguration.twoKey))
-                {
-                    selectedWeapon2 = 1;
-                }
-            }*/
-            else if (selectedAbility == 2)
-            {
-                selectedWeapon1 = 0;
-                if(Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && canAttack)
+
+                SelectWeapon();
+
+                if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && selectedWeapon2 == 0)
                 {
                     player.Heal(20);
                     canAttack = false;
                     StartCoroutine(ResetAttackCooldown(1f));
                 }
-            }
-            else if (selectedAbility == 3)
-            {
-                selectedWeapon3 = 0;
-                if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && canAttack)
+                if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && selectedWeapon2 == 1)
                 {
                     print("xp");
                     player.XP(20);
                     canAttack = false;
                     StartCoroutine(ResetAttackCooldown(1f));
                 }
+            }
+            else if (selectedAbility == 3)
+            { 
+                if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+                {
+                    if (selectedWeapon3 >= weapons3.Length - 1)
+                    {
+                        selectedWeapon3 = 0;
+                    }
+                    else
+                    {
+                        selectedWeapon3++;
+                    }
+                }
+                else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+                {
+                    if (selectedWeapon3 <= 0)
+                    {
+                        selectedWeapon3 = weapons3.Length - 1;
+                    }
+                    else
+                    {
+                        selectedWeapon3--;
+                    }
+                }
+
+                SelectWeapon();
             }
         }
     }
@@ -315,7 +348,7 @@ public class WeaponController : MonoBehaviour
     private void SelectWeapon()
     {
         int i = 0;
-        if (selectedAbility == 1)
+        if (selectedAbility != 0)
         {
             i = 5;
         }
@@ -345,7 +378,7 @@ public class WeaponController : MonoBehaviour
             i++;
         }
         i = 0;
-        if (selectedAbility == 0)
+        if (selectedAbility != 1)
         {
             i = 5;
         }
@@ -365,6 +398,36 @@ public class WeaponController : MonoBehaviour
         foreach (Image img in weaponsImages1)
         {
             if (i == selectedWeapon1)
+            {
+                img.gameObject.SetActive(true);
+            }
+            else
+            {
+                img.gameObject.SetActive(false);
+            }
+            i++;
+        }
+        i = 0;
+        if (selectedAbility != 2)
+        {
+            i = 5;
+        }
+        foreach (GameObject weapon in weapons2)
+        {
+            if (i == selectedWeapon2)
+            {
+                weapon.gameObject.SetActive(true);
+            }
+            else
+            {
+                weapon.gameObject.SetActive(false);
+            }
+            i++;
+        }
+        i = 0;
+        foreach (Image img in weaponsImages2)
+        {
+            if (i == selectedWeapon2)
             {
                 img.gameObject.SetActive(true);
             }
