@@ -39,7 +39,7 @@ public class BasicEnemy : MonoBehaviour
             player = GameObject.FindWithTag("Player").transform;
         }
 
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer); 
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         if (!playerInAttackRange && playerInSightRange)
@@ -48,13 +48,13 @@ public class BasicEnemy : MonoBehaviour
             ChasePlayer();
 
         }
-        
+
         else if (playerInAttackRange && playerInSightRange)
         {
             attack = true;
             Stop();
         }
-       
+
         else
         {
             if (fixedPos)
@@ -69,7 +69,7 @@ public class BasicEnemy : MonoBehaviour
         }
     }
 
-    
+
     private void Patroling ()
     {
         if (!walkPointSet)
@@ -90,7 +90,7 @@ public class BasicEnemy : MonoBehaviour
         }
 
     }
-    
+
 
     private void SearchWalkPoint ()
     {
@@ -130,6 +130,6 @@ public class BasicEnemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRange); 
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

@@ -14,7 +14,7 @@ public class BasicEnemy2 : MonoBehaviour
     [SerializeField] HealthBarExtern healthBarExtern;
     [SerializeField] ParticleSystem hitParticle;
 
-    // Bow Attributes 
+    // Bow Attributes
     public GameObject bowProjectile;
     public float projectileSpeed = 30f;
 
