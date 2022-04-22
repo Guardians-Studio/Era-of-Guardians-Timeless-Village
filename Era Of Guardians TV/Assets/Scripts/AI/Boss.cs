@@ -25,7 +25,7 @@ public class Boss : MonoBehaviour
     bool alreadyAttacked;
 
     private float sightRange = 20f;
-    private float attackRange = 10f;
+    private float attackRange = 1f;
     private bool playerInSightRange;
     private bool playerInAttackRange;
 
@@ -90,6 +90,7 @@ public class Boss : MonoBehaviour
     {
         if (this.health <= 50)
         {
+            attackRange = 10f;
             agent.SetDestination(transform.position);
             transform.LookAt(player);
 
