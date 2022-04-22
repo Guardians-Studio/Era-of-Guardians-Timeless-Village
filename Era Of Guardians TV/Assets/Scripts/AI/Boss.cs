@@ -8,10 +8,9 @@ public class Boss : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     private Transform player;
     [SerializeField] LayerMask whatIsGround, whatIsPlayer;
-    private float health = 100;
+    private float health = 100f;
     [SerializeField] HealthBarExtern healthBarExtern;
     [SerializeField] ParticleSystem hitParticle;
-    private bool halfHP = false;
 
     // Bow Attributes
     public GameObject bowProjectile;
@@ -22,13 +21,11 @@ public class Boss : MonoBehaviour
 
     public bool attack;
 
-    [SerializeField] Vector3 target;
-
     [SerializeField] float timeBetweenAttacks;
     bool alreadyAttacked;
 
-    private float sightRange;
-    private float attackRange;
+    private float sightRange = 20f;
+    private float attackRange = 10f;
     private bool playerInSightRange;
     private bool playerInAttackRange;
 
@@ -44,7 +41,7 @@ public class Boss : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (GameObject.FindWithTag("Player"))
         {
@@ -91,14 +88,13 @@ public class Boss : MonoBehaviour
 
     private void AttackPlayer ()
     {
-        if (halfHP)
+        if (this.health <= 50)
         {
             agent.SetDestination(transform.position);
             transform.LookAt(player);
 
             if (!alreadyAttacked)
             {
-
                 Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.Euler(0, agent.transform.localRotation.y, 90)).GetComponent<Rigidbody>();
                 rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
                 rb.AddForce(transform.up * 8f, ForceMode.Impulse);
