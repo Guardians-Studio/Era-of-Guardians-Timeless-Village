@@ -12,9 +12,13 @@ public class Boss : MonoBehaviour
     [SerializeField] HealthBarExtern healthBarExtern;
     [SerializeField] ParticleSystem hitParticle;
 
-    // Bow Attributes
-    public GameObject bowProjectile;
+    public GameObject bowProjectile, sword;
+    [SerializeField] Sword swordScript;
     public float projectileSpeed = 30f;
+
+    [Header("Sword")]
+    Animator anim;
+    private bool animation = true;
 
     private float enemyDamage;
     private float playerDamage;
@@ -25,7 +29,7 @@ public class Boss : MonoBehaviour
     bool alreadyAttacked;
 
     private float sightRange = 20f;
-    private float attackRange = 1f;
+    private float attackRange = 2f;
     private bool playerInSightRange;
     private bool playerInAttackRange;
 
@@ -91,17 +95,21 @@ public class Boss : MonoBehaviour
         if (this.health <= 50)
         {
             attackRange = 10f;
-            agent.SetDestination(transform.position);
-            transform.LookAt(player);
-
-            if (!alreadyAttacked)
+            animation = false;
+        }
+        agent.SetDestination(transform.position);
+        transform.LookAt(player);
+        if (!alreadyAttacked)
+        {
+            Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.Euler(0, agent.transform.localRotation.y, 90)).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            if (animation)
             {
-                Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.Euler(0, agent.transform.localRotation.y, 90)).GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-                rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-
-                alreadyAttacked = true;
-                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+                anim = sword.GetComponentInChildren<Animator>();
+                anim.SetTrigger("Attack");
             }
         }
     }
