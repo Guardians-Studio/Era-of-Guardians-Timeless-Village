@@ -41,6 +41,13 @@ public class WeaponController : MonoBehaviour
     private int selectedWeapon2 = 0;
     private int selectedWeapon3 = 0;
 
+    [SerializeField] Text slot2;
+    [SerializeField] Text slot3;
+    [SerializeField] Text infoText;
+
+    public int healthPotionCount = 0;
+    public int xpPotionCount = 0;
+
 
     [Header("UI Player Cooldown")]
     [SerializeField] Image cooldownImage;
@@ -77,6 +84,7 @@ public class WeaponController : MonoBehaviour
             ac = GetComponentInParent<AudioSource>();
             canAttack = true;
             cooldownImage.fillAmount = 0.0f;
+            slot2.text = healthPotionCount.ToString();
         }   
     }
 
@@ -243,20 +251,47 @@ public class WeaponController : MonoBehaviour
                     }
                 }
 
+                if (selectedWeapon2 == 0)
+                {
+                    slot2.text = healthPotionCount.ToString();
+                }
+                else
+                {
+                    slot2.text = xpPotionCount.ToString();
+                }
+
                 SelectWeapon();
 
                 if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && selectedWeapon2 == 0)
                 {
-                    player.Heal(20);
-                    canAttack = false;
-                    StartCoroutine(ResetAttackCooldown(1f));
+                    if (healthPotionCount > 0)
+                    {
+                        player.Heal(20);
+                        canAttack = false;
+                        StartCoroutine(ResetAttackCooldown(1f));
+                    }
+                    else
+                    {
+                        infoText.enabled = true;
+                        infoText.text = "You don't have enough xpPotion"; 
+                        StartCoroutine(ResetInfoText());
+                    }
+                   
                 }
                 if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && selectedWeapon2 == 1)
                 {
-                    print("xp");
-                    player.XP(20);
-                    canAttack = false;
-                    StartCoroutine(ResetAttackCooldown(1f));
+                    if (xpPotionCount > 0)
+                    {
+                        player.XP(20);
+                        canAttack = false;
+                        StartCoroutine(ResetAttackCooldown(1f));
+                    }
+                    else
+                    {
+                        infoText.enabled = true;
+                        infoText.text = "You don't have enough xpPotion";
+                        StartCoroutine(ResetInfoText());
+                    }
                 }
             }
             else if (selectedAbility == 3)
@@ -590,5 +625,10 @@ public class WeaponController : MonoBehaviour
     {
         yield return new WaitForSeconds(cd);
         canAttack = true;
+    }
+    IEnumerator ResetInfoText()
+    {
+        yield return new WaitForSeconds(5);
+        infoText.enabled = false;
     }
 }
