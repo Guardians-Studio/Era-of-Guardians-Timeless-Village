@@ -266,14 +266,18 @@ public class WeaponController : MonoBehaviour
                 {
                     if (healthPotionCount > 0)
                     {
-                        player.Heal(20);
-                        canAttack = false;
-                        StartCoroutine(ResetAttackCooldown(1f));
+                        if (player.health < player.maxHealth)
+                        {
+                            player.Heal(20);
+                            healthPotionCount--;
+                            canAttack = false;
+                            StartCoroutine(ResetAttackCooldown(1f));
+                        }
                     }
                     else
                     {
                         infoText.enabled = true;
-                        infoText.text = "You don't have enough xpPotion"; 
+                        infoText.text = "You don't have enough health Potions"; 
                         StartCoroutine(ResetInfoText());
                     }
                    
@@ -283,13 +287,14 @@ public class WeaponController : MonoBehaviour
                     if (xpPotionCount > 0)
                     {
                         player.XP(20);
+                        xpPotionCount--;
                         canAttack = false;
                         StartCoroutine(ResetAttackCooldown(1f));
                     }
                     else
                     {
                         infoText.enabled = true;
-                        infoText.text = "You don't have enough xpPotion";
+                        infoText.text = "You don't have enough xp Potions";
                         StartCoroutine(ResetInfoText());
                     }
                 }

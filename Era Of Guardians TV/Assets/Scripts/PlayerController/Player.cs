@@ -9,10 +9,11 @@ public class Player : MonoBehaviour
     [SerializeField] UIPlayer uiPlayer;
 
     private string name;
-    private float health = 80;
+    public float health = 80;
+    public float maxHealth = 100;
     private float armor = 10;
     private List<GameObject> items;
-    public float xpAmount = 50;
+    private float xpAmount = 10;
     private int level = 1;
 
     private void Start()
@@ -24,8 +25,8 @@ public class Player : MonoBehaviour
     public void TakeDamage(float amount)
     {
         this.health -= amount;
-        healthBarExtern.UpdateHealth(this.health / 100);
-        uiPlayer.UpdateHealth(this.health / 100);
+        healthBarExtern.UpdateHealth(this.health / maxHealth);
+        uiPlayer.UpdateHealth(this.health / maxHealth, maxHealth);
 
         if (this.health <= 0)
         {
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
     public void Heal(float amount)
     {
         this.health += amount;
-        uiPlayer.UpdateHealth(this.health / 100);
+        uiPlayer.UpdateHealth(this.health / maxHealth, maxHealth);
     }
 
     public void XP(float amount)
@@ -46,7 +47,10 @@ public class Player : MonoBehaviour
         {
             this.level++;
             xpAmount = 0;
-            // uiPlayer.UpdateLvl;
+            this.maxHealth += 10;
+            this.health = maxHealth;
+            Heal(0);
+            uiPlayer.UpdateLevel(this.level);
         }
         uiPlayer.UpdateXPBar(this.xpAmount / 100);
     }

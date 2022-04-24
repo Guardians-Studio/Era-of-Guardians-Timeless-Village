@@ -14,7 +14,7 @@ public class UIPlayer : MonoBehaviour
     [SerializeField] Text xpTxt;
     [SerializeField] Image healthBar;
     [SerializeField] Text healthTxt;
-    // [SerializeField] Text levelText;
+    [SerializeField] Text levelText;
     [SerializeField] KeyConfiguration keyConfiguration;
     [SerializeField] GameObject tabMenu;
 
@@ -37,10 +37,10 @@ public class UIPlayer : MonoBehaviour
             tabMenu.SetActive(false);
         }
     }
-    public void UpdateHealth(float fraction)
+    public void UpdateHealth(float fraction, float maxHealth)
     {
         healthBar.fillAmount = fraction;
-        healthTxt.text = (fraction * 100).ToString("0") + " / 100";
+        healthTxt.text = (fraction * maxHealth).ToString("0") + " / " + maxHealth.ToString();
     }
 
     public void UpdateXPBar(float fraction)
@@ -51,7 +51,7 @@ public class UIPlayer : MonoBehaviour
 
     public void UpdateLevel(int level)
     {
-        // levelText.text = (char)level;
+        levelText.text = level.ToString();
     }
 
 }
