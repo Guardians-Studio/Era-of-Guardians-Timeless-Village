@@ -12,6 +12,8 @@ public class Quete1 : MonoBehaviour
     public Text NomPnj;
     public Text QuetePnj;
 
+    [SerializeField] WeaponController weaponController;
+
 
     public void OnCollisionEnter(Collision collision) 
     {
@@ -50,7 +52,7 @@ public class Quete1 : MonoBehaviour
         if(Bush >= 3)
         {
             Bush = 0;
-            potion = potion + 1;
+            weaponController.healthPotionCount++;
         }
     }
 }

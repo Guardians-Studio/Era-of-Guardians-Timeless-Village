@@ -264,14 +264,25 @@ public class WeaponController : MonoBehaviour
 
                 if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && selectedWeapon2 == 0)
                 {
-                    if (healthPotionCount > 0)
+                    if (healthPotionCount >= 10)
+                    {
+                        infoText.enabled = true;
+                        infoText.text = "You carry too much health potions.";
+                        StartCoroutine(ResetInfoText());
+                    }
+                    else if (healthPotionCount > 0)
                     {
                         if (player.health < player.maxHealth)
                         {
                             player.Heal(20);
                             healthPotionCount--;
-                            canAttack = false;
                             StartCoroutine(ResetAttackCooldown(1f));
+                        }
+                        else
+                        {
+                            infoText.enabled = true;
+                            infoText.text = "You don't need to use a potion !";
+                            StartCoroutine(ResetInfoText());
                         }
                     }
                     else
@@ -284,11 +295,16 @@ public class WeaponController : MonoBehaviour
                 }
                 if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && selectedWeapon2 == 1)
                 {
-                    if (xpPotionCount > 0)
+                    if (xpPotionCount >= 10)
+                    {
+                        infoText.enabled = true;
+                        infoText.text = "You carry too much xp potions.";
+                        StartCoroutine(ResetInfoText());
+                    }
+                    else if (xpPotionCount > 0)
                     {
                         player.XP(20);
                         xpPotionCount--;
-                        canAttack = false;
                         StartCoroutine(ResetAttackCooldown(1f));
                     }
                     else

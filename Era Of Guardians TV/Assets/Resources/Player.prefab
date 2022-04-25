@@ -4211,6 +4211,7 @@ MonoBehaviour:
   uiPlayer: {fileID: 7385009143513802934}
   health: 80
   maxHealth: 100
+  gemmeCount: 0
 --- !u!114 &4146235936788497540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4528,6 +4529,7 @@ MonoBehaviour:
   Panel: {fileID: 3193814695837682208}
   NomPnj: {fileID: 7393418260682397841}
   QuetePnj: {fileID: 6278530737759087766}
+  weaponController: {fileID: 8628134175508227912}
 --- !u!114 &1054120501423435262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4544,6 +4546,7 @@ MonoBehaviour:
   image_recompense: {fileID: 3268352514106459660}
   NomPnj: {fileID: 7393418260682397841}
   QuetePnj: {fileID: 6278530737759087766}
+  player: {fileID: 4881315725545461216}
 --- !u!1 &4146235936947553056
 GameObject:
   m_ObjectHideFlags: 0

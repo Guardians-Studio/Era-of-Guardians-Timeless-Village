@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private List<GameObject> items;
     private float xpAmount = 10;
     private int level = 1;
+    public int gemmeCount = 0;
 
     private void Start()
     {
