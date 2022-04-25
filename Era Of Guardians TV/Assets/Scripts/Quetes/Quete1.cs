@@ -12,6 +12,7 @@ public class Quete1 : MonoBehaviour
     public Text QuetePnj;
 
     private bool enter = true;
+    private bool FirstTimeQuest = true;
 
     [SerializeField] WeaponController weaponController;
 
@@ -32,7 +33,7 @@ public class Quete1 : MonoBehaviour
         if(other.gameObject.name == "PNJ 1")
         {
             Panel.SetActive(true);
-            if(potion == 1)
+            if(FirstTimeQuest == false)
             {
                 QuetePnj.text = "je n'ai pas d'autres quêtes à te proposer. Reviens une prochaine fois !!";
             }
@@ -44,6 +45,7 @@ public class Quete1 : MonoBehaviour
             if(weaponController.bushCount >= 3 && potion != 1)
             {
                 QuetePnj.text = "Merci beaucoup !! \nVoici ta potion !";
+                FirstTimeQuest = false;
             }
         }
     }
