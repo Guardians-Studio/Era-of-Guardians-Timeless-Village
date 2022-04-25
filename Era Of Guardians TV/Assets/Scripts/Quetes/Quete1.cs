@@ -21,19 +21,17 @@ public class Quete1 : MonoBehaviour
         if(collision.gameObject.tag == "Bush" && enter)
         {
             Destroy(collision.gameObject);
-            weaponController.bushCount ++;   // probleme ajoute trop de bush dans l'inventaire
+            weaponController.bushCount ++;
             enter = false;
             StartCoroutine(ReinitializeEntryBool());
         }
     }
-
-    // Start is called before the first frame update
+    
     public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name == "PNJ 1")
         {
             Panel.SetActive(true);
-            NomPnj.text = "Inconu";
             if(potion == 1)
             {
                 QuetePnj.text = "je n'ai pas d'autres quêtes à te proposer. Reviens une prochaine fois !!";

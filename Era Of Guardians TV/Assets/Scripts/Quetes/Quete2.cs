@@ -47,7 +47,6 @@ public class Quete2 : MonoBehaviour
         if(other.gameObject.name == "PNJ 2")
         {
             Panel.SetActive(true);
-            NomPnj.text = "Inconu";
             if(gemme)
             {
                 QuetePnj.text = "Si tu es revenu ici ça veut dire que tu as réussi !! \n\n Maintenant il te reste une dernière chose a faire : \n Battre Tidalar au centre de Hazeltown !";

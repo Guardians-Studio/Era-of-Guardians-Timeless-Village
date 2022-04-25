@@ -338,7 +338,7 @@ public class WeaponController : MonoBehaviour
                     }
                 }
 
-                if (selectedWeapon2 == 0)
+                if (selectedWeapon3 == 0)
                 {
                     slot3.text = bushCount.ToString();
                 }
