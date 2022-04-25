@@ -15,11 +15,12 @@ public class Quete2 : MonoBehaviour
     public Text QuetePnj;
     private int jsp = 1;
 
+
     [SerializeField] Player player;
 
     void Update()
     {
-        if (GameObject.Find("Monstres") == null)
+        if (GameObject.Find("Monstres") == null && !gemme)
         {
             player.gemmeCount++;
             gemme = true;

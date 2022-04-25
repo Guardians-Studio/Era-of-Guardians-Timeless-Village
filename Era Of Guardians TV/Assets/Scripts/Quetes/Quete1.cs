@@ -6,21 +6,24 @@ using UnityEngine.UI;
 
 public class Quete1 : MonoBehaviour
 {
-    public int Bush = 0;
     public int potion = 0;
     public GameObject Panel;
     public Text NomPnj;
     public Text QuetePnj;
+
+    private bool enter = true;
 
     [SerializeField] WeaponController weaponController;
 
 
     public void OnCollisionEnter(Collision collision) 
     {
-        if(collision.gameObject.tag == "Bush")
+        if(collision.gameObject.tag == "Bush" && enter)
         {
             Destroy(collision.gameObject);
-            Bush = Bush +1;   // probleme ajoute trop de bush dans l'inventaire
+            weaponController.bushCount ++;   // probleme ajoute trop de bush dans l'inventaire
+            enter = false;
+            StartCoroutine(ReinitializeEntryBool());
         }
     }
 
@@ -40,7 +43,7 @@ public class Quete1 : MonoBehaviour
                 QuetePnj.text = "Pourriez vous me trouver 3 buissons SVP";
             }
 
-            if(Bush >= 3 && potion != 1)
+            if(weaponController.bushCount >= 3 && potion != 1)
             {
                 QuetePnj.text = "Merci beaucoup !! \nVoici ta potion !";
             }
@@ -49,10 +52,16 @@ public class Quete1 : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Panel.SetActive(false);
-        if(Bush >= 3)
+        if(weaponController.bushCount >= 3)
         {
-            Bush = 0;
+            weaponController.bushCount = 0;
             weaponController.healthPotionCount++;
         }
+    }
+
+    IEnumerator ReinitializeEntryBool()
+    {
+        yield return new WaitForSeconds(2);
+        enter = true;
     }
 }

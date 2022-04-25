@@ -25,10 +25,6 @@ public class WeaponController : MonoBehaviour
     [Header("Shield")]
     [SerializeField] GameObject shield;
     [SerializeField] Shield shieldScript;
-    [Header("Shield")]
-    [SerializeField] GameObject healthPot;
-    [Header("Shield")]
-    [SerializeField] GameObject xpPot;
 
     [SerializeField] GameObject[] weapons;
     [SerializeField] GameObject[] weapons1;
@@ -47,6 +43,7 @@ public class WeaponController : MonoBehaviour
 
     public int healthPotionCount = 0;
     public int xpPotionCount = 0;
+    public int bushCount = 0;
 
 
     [Header("UI Player Cooldown")]
@@ -85,6 +82,7 @@ public class WeaponController : MonoBehaviour
             canAttack = true;
             cooldownImage.fillAmount = 0.0f;
             slot2.text = healthPotionCount.ToString();
+            slot3.text = bushCount.ToString();
         }   
     }
 
@@ -340,6 +338,15 @@ public class WeaponController : MonoBehaviour
                     }
                 }
 
+                if (selectedWeapon2 == 0)
+                {
+                    slot3.text = bushCount.ToString();
+                }
+                else
+                {
+                    slot3.text = player.gemmeCount.ToString();
+                }
+
                 SelectWeapon();
             }
         }
@@ -484,6 +491,36 @@ public class WeaponController : MonoBehaviour
         foreach (Image img in weaponsImages2)
         {
             if (i == selectedWeapon2)
+            {
+                img.gameObject.SetActive(true);
+            }
+            else
+            {
+                img.gameObject.SetActive(false);
+            }
+            i++;
+        }
+        i = 0;
+        if (selectedAbility != 3)
+        {
+            i = 15;
+        }
+        foreach (GameObject weapon in weapons3)
+        {
+            if (i == selectedWeapon3)
+            {
+                weapon.gameObject.SetActive(true);
+            }
+            else
+            {
+                weapon.gameObject.SetActive(false);
+            }
+            i++;
+        }
+        i = 0;
+        foreach (Image img in weaponsImages3)
+        {
+            if (i == selectedWeapon3)
             {
                 img.gameObject.SetActive(true);
             }
