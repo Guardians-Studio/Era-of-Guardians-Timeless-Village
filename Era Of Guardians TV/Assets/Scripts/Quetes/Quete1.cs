@@ -8,7 +8,6 @@ public class Quete1 : MonoBehaviour
 {
     public int potion = 0;
     public GameObject Panel;
-    public Text NomPnj;
     public Text QuetePnj;
 
     private bool enter = true;

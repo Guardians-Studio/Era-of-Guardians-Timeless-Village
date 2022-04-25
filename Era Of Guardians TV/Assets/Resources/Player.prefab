@@ -4154,6 +4154,7 @@ GameObject:
   - component: {fileID: 8628134175508227912}
   - component: {fileID: 165978801998416619}
   - component: {fileID: 1054120501423435262}
+  - component: {fileID: -6588086973773192987}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -4211,7 +4212,7 @@ MonoBehaviour:
   uiPlayer: {fileID: 7385009143513802934}
   health: 80
   maxHealth: 100
-  gemmeCount: 1
+  gemmeCount: 0
 --- !u!114 &4146235936788497540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4529,7 +4530,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potion: 0
   Panel: {fileID: 3193814695837682208}
-  NomPnj: {fileID: 0}
   QuetePnj: {fileID: 6278530737759087766}
   weaponController: {fileID: 8628134175508227912}
 --- !u!114 &1054120501423435262
@@ -4549,6 +4549,22 @@ MonoBehaviour:
   NomPnj: {fileID: 0}
   QuetePnj: {fileID: 6278530737759087766}
   player: {fileID: 4881315725545461216}
+--- !u!114 &-6588086973773192987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146235936788497537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5333f32024b7ff4428935fa402f06699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Panel: {fileID: 3193814695837682208}
+  image_recompense: {fileID: 3268352514106459660}
+  QuetePnj: {fileID: 6278530737759087766}
+  weaponController: {fileID: 8628134175508227912}
 --- !u!1 &4146235936947553056
 GameObject:
   m_ObjectHideFlags: 0
@@ -6714,7 +6730,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bravo tu as obtenu une gemme
+  m_Text: "Bravo tu as obtenu une r\xE9compense !"
 --- !u!1 &6220359545250003519
 GameObject:
   m_ObjectHideFlags: 0
@@ -9509,14 +9525,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d027d4bce170c4abf8619a7d7980440e, type: 3}
---- !u!1 &7000297114274450367 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1999239547283070, guid: d027d4bce170c4abf8619a7d7980440e, type: 3}
-  m_PrefabInstance: {fileID: 6998901060774145473}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7003032130523693543 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4173680155241510, guid: d027d4bce170c4abf8619a7d7980440e, type: 3}
+  m_PrefabInstance: {fileID: 6998901060774145473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7000297114274450367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1999239547283070, guid: d027d4bce170c4abf8619a7d7980440e, type: 3}
   m_PrefabInstance: {fileID: 6998901060774145473}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7018950518925261717
@@ -9604,14 +9620,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26430834ea307e24083f9e03d7fc4f0f, type: 3}
---- !u!4 &7413746538300054654 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 26430834ea307e24083f9e03d7fc4f0f, type: 3}
-  m_PrefabInstance: {fileID: 7018950518925261717}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7901912575226955460 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 26430834ea307e24083f9e03d7fc4f0f, type: 3}
+  m_PrefabInstance: {fileID: 7018950518925261717}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7413746538300054654 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 26430834ea307e24083f9e03d7fc4f0f, type: 3}
   m_PrefabInstance: {fileID: 7018950518925261717}
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &8699913908526022360
