@@ -25,10 +25,6 @@ public class WeaponController : MonoBehaviour
     [Header("Shield")]
     [SerializeField] GameObject shield;
     [SerializeField] Shield shieldScript;
-    [Header("Shield")]
-    [SerializeField] GameObject healthPot;
-    [Header("Shield")]
-    [SerializeField] GameObject xpPot;
 
     [SerializeField] GameObject[] weapons;
     [SerializeField] GameObject[] weapons1;
@@ -40,6 +36,14 @@ public class WeaponController : MonoBehaviour
     private int selectedWeapon1 = 0;
     private int selectedWeapon2 = 0;
     private int selectedWeapon3 = 0;
+
+    [SerializeField] Text slot2;
+    [SerializeField] Text slot3;
+    [SerializeField] Text infoText;
+
+    public int healthPotionCount = 0;
+    public int xpPotionCount = 0;
+    public int bushCount = 0;
 
 
     [Header("UI Player Cooldown")]
@@ -77,6 +81,8 @@ public class WeaponController : MonoBehaviour
             ac = GetComponentInParent<AudioSource>();
             canAttack = true;
             cooldownImage.fillAmount = 0.0f;
+            slot2.text = healthPotionCount.ToString();
+            slot3.text = bushCount.ToString();
         }   
     }
 
@@ -181,7 +187,28 @@ public class WeaponController : MonoBehaviour
             }
             else if (selectedAbility == 1)
             {
-                selectedWeapon1 = 0;
+                if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+                {
+                    if (selectedWeapon1 >= weapons1.Length - 1)
+                    {
+                        selectedWeapon1 = 0;
+                    }
+                    else
+                    {
+                        selectedWeapon1++;
+                    }
+                }
+                else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+                {
+                    if (selectedWeapon1 <= 0)
+                    {
+                        selectedWeapon1 = weapons1.Length - 1;
+                    }
+                    else
+                    {
+                        selectedWeapon1--;
+                    }
+                }
 
                 SelectWeapon();
 
@@ -197,10 +224,8 @@ public class WeaponController : MonoBehaviour
                     }
                 }
             }
-           /* else if (selectedAbility == 2)
+            else if (selectedAbility == 2)
             {
-                selectedWeapon2 = 0;
-
                 if (Input.GetAxis("Mouse ScrollWheel") > 0f)
                 {
                     if (selectedWeapon2 >= weapons2.Length - 1)
@@ -216,42 +241,113 @@ public class WeaponController : MonoBehaviour
                 {
                     if (selectedWeapon2 <= 0)
                     {
-                        selectedWeapon2 = weapons.Length - 1;
+                        selectedWeapon2 = weapons2.Length - 1;
                     }
                     else
                     {
                         selectedWeapon2--;
                     }
                 }
-                else if (Input.GetKey(keyConfiguration.oneKey))
+
+                if (selectedWeapon2 == 0)
                 {
-                    selectedWeapon2 = 0;
+                    slot2.text = healthPotionCount.ToString();
                 }
-                else if (Input.GetKey(keyConfiguration.twoKey))
+                else
                 {
-                    selectedWeapon2 = 1;
+                    slot2.text = xpPotionCount.ToString();
                 }
-            }*/
-            else if (selectedAbility == 2)
-            {
-                selectedWeapon1 = 0;
-                if(Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && canAttack)
+
+                SelectWeapon();
+
+                if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && selectedWeapon2 == 0)
                 {
-                    player.Heal(20);
-                    canAttack = false;
-                    StartCoroutine(ResetAttackCooldown(1f));
+                    if (healthPotionCount >= 10)
+                    {
+                        infoText.enabled = true;
+                        infoText.text = "You carry too much health potions.";
+                        StartCoroutine(ResetInfoText());
+                    }
+                    else if (healthPotionCount > 0)
+                    {
+                        if (player.health < player.maxHealth)
+                        {
+                            player.Heal(20);
+                            healthPotionCount--;
+                            StartCoroutine(ResetAttackCooldown(1f));
+                        }
+                        else
+                        {
+                            infoText.enabled = true;
+                            infoText.text = "You don't need to use a potion !";
+                            StartCoroutine(ResetInfoText());
+                        }
+                    }
+                    else
+                    {
+                        infoText.enabled = true;
+                        infoText.text = "You don't have enough health Potions"; 
+                        StartCoroutine(ResetInfoText());
+                    }
+                   
+                }
+                if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && selectedWeapon2 == 1)
+                {
+                    if (xpPotionCount >= 10)
+                    {
+                        infoText.enabled = true;
+                        infoText.text = "You carry too much xp potions.";
+                        StartCoroutine(ResetInfoText());
+                    }
+                    else if (xpPotionCount > 0)
+                    {
+                        player.XP(20);
+                        xpPotionCount--;
+                        StartCoroutine(ResetAttackCooldown(1f));
+                    }
+                    else
+                    {
+                        infoText.enabled = true;
+                        infoText.text = "You don't have enough xp Potions";
+                        StartCoroutine(ResetInfoText());
+                    }
                 }
             }
             else if (selectedAbility == 3)
-            {
-                selectedWeapon3 = 0;
-                if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && canAttack)
+            { 
+                if (Input.GetAxis("Mouse ScrollWheel") > 0f)
                 {
-                    print("xp");
-                    player.XP(20);
-                    canAttack = false;
-                    StartCoroutine(ResetAttackCooldown(1f));
+                    if (selectedWeapon3 >= weapons3.Length - 1)
+                    {
+                        selectedWeapon3 = 0;
+                    }
+                    else
+                    {
+                        selectedWeapon3++;
+                    }
                 }
+                else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+                {
+                    if (selectedWeapon3 <= 0)
+                    {
+                        selectedWeapon3 = weapons3.Length - 1;
+                    }
+                    else
+                    {
+                        selectedWeapon3--;
+                    }
+                }
+
+                if (selectedWeapon3 == 0)
+                {
+                    slot3.text = bushCount.ToString();
+                }
+                else
+                {
+                    slot3.text = player.gemmeCount.ToString();
+                }
+
+                SelectWeapon();
             }
         }
     }
@@ -315,7 +411,7 @@ public class WeaponController : MonoBehaviour
     private void SelectWeapon()
     {
         int i = 0;
-        if (selectedAbility == 1)
+        if (selectedAbility != 0)
         {
             i = 5;
         }
@@ -345,7 +441,7 @@ public class WeaponController : MonoBehaviour
             i++;
         }
         i = 0;
-        if (selectedAbility == 0)
+        if (selectedAbility != 1)
         {
             i = 5;
         }
@@ -365,6 +461,66 @@ public class WeaponController : MonoBehaviour
         foreach (Image img in weaponsImages1)
         {
             if (i == selectedWeapon1)
+            {
+                img.gameObject.SetActive(true);
+            }
+            else
+            {
+                img.gameObject.SetActive(false);
+            }
+            i++;
+        }
+        i = 0;
+        if (selectedAbility != 2)
+        {
+            i = 5;
+        }
+        foreach (GameObject weapon in weapons2)
+        {
+            if (i == selectedWeapon2)
+            {
+                weapon.gameObject.SetActive(true);
+            }
+            else
+            {
+                weapon.gameObject.SetActive(false);
+            }
+            i++;
+        }
+        i = 0;
+        foreach (Image img in weaponsImages2)
+        {
+            if (i == selectedWeapon2)
+            {
+                img.gameObject.SetActive(true);
+            }
+            else
+            {
+                img.gameObject.SetActive(false);
+            }
+            i++;
+        }
+        i = 0;
+        if (selectedAbility != 3)
+        {
+            i = 15;
+        }
+        foreach (GameObject weapon in weapons3)
+        {
+            if (i == selectedWeapon3)
+            {
+                weapon.gameObject.SetActive(true);
+            }
+            else
+            {
+                weapon.gameObject.SetActive(false);
+            }
+            i++;
+        }
+        i = 0;
+        foreach (Image img in weaponsImages3)
+        {
+            if (i == selectedWeapon3)
             {
                 img.gameObject.SetActive(true);
             }
@@ -527,5 +683,10 @@ public class WeaponController : MonoBehaviour
     {
         yield return new WaitForSeconds(cd);
         canAttack = true;
+    }
+    IEnumerator ResetInfoText()
+    {
+        yield return new WaitForSeconds(5);
+        infoText.enabled = false;
     }
 }

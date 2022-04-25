@@ -119,46 +119,6 @@ public class BasicEnemy : MonoBehaviour
     {
         agent.SetDestination(startPosition.position);
     }
-   
-    /*
-    private void AttackPlayer ()
-    {
-        agent.SetDestination(transform.position);
-
-        transform.LookAt(player);
-
-        if (!alreadyAttacked)
-        {
-            /*
-             * Code pour gerer les attaques des ennemis
-             */
-            
-    /*
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
-    }
-    */
-
-    /*
-    private void ResetAttack ()
-    {
-        alreadyAttacked = false;
-    }
-    */
-
-
-    /*
-    public void TakeDamage (int damage)
-    {
-        health -= damage;
-
-        if (health <= 0)
-        {
-            Invoke(nameof(DestroyEnemy), 0.5f);
-        }
-    }
-    */
 
     public void DestroyEnemy ()
     {
