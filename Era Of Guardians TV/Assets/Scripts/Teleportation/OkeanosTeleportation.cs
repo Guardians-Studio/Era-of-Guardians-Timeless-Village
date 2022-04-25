@@ -11,6 +11,6 @@ public class OkeanosTeleportation : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         other.transform.position = pos.position; //Can teleport to an another point in the same scene
-        //SceneManager.LoadScene("Okeanos");
+        //SceneManager.LoadScene("okeanos");
     }
 }

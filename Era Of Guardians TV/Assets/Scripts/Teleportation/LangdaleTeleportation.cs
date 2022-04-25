@@ -6,11 +6,11 @@ using UnityEngine;
 public class LangdaleTeleportation : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] Transform pos;
+    //[SerializeField] Transform pos;
 
     void OnTriggerEnter(Collider other)
     {
         //other.transform.position = pos.position; //Can teleport to an another point in the same scene
-        SceneManager.LoadScene("Langdale");
+        SceneManager.LoadScene("langdale");
     }
 }

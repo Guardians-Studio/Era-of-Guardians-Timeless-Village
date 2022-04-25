@@ -7,7 +7,7 @@ public class HazeltownTeleportation : MonoBehaviour
 {
     // Start is called before the first frame update
     //public Transform teleportTarget;
-    public GameObject thePlayer;
+    //public GameObject thePlayer;
 
     void OnTriggerEnter(Collider other)
     {
