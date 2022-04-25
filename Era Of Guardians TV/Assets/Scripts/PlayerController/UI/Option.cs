@@ -60,6 +60,7 @@ public class Option : MonoBehaviour
                 break;
         }
     }
+
     public void SetVolume()
     {
         audiosource.volume = slider.value;

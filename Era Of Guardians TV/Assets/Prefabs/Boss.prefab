@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 5252306224919667450}
   - component: {fileID: 2635585861534007359}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: FinalBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,7 +298,6 @@ MonoBehaviour:
   hitParticle: {fileID: 8941023856283667755}
   bowProjectile: {fileID: 545397844006530966}
   sword: {fileID: 4706259821525810684}
-  swordScript: {fileID: 0}
   projectileSpeed: 30
   attack: 0
   timeBetweenAttacks: 5
@@ -762,9 +761,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4706259821525810684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e7a32edc89fd18479a6682958074bde, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fc96536f55c71a499a3bf3b86ad62d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swordAttack: {fileID: 0}
+  damage: 20
+  cooldown: 1
 --- !u!1001 &6481548944906070418
 PrefabInstance:
   m_ObjectHideFlags: 0

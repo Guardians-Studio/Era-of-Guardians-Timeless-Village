@@ -13,7 +13,6 @@ public class Boss : MonoBehaviour
     [SerializeField] ParticleSystem hitParticle;
 
     public GameObject bowProjectile, sword;
-    [SerializeField] Sword swordScript;
     public float projectileSpeed = 30f;
 
     [Header("Sword")]
