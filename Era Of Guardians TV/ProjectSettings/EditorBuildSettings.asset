@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/langdale.unity
     guid: 66d7af43d0191ab449d3058ddf95236d
+  - enabled: 1
+    path: Assets/Scenes/turon.unity
+    guid: 199963af60158d84288484255fae718b
   m_configObjects: {}
