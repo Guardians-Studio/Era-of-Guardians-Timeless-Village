@@ -4211,7 +4211,7 @@ MonoBehaviour:
   uiPlayer: {fileID: 7385009143513802934}
   health: 80
   maxHealth: 100
-  gemmeCount: 0
+  gemmeCount: 1
 --- !u!114 &4146235936788497540
 MonoBehaviour:
   m_ObjectHideFlags: 0
