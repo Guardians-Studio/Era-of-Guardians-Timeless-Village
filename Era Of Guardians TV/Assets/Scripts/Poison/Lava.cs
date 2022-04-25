@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Poison : MonoBehaviour
+public class Lava : MonoBehaviour
 {
-    //[SerializeField] GameObject warning; 
+    //[SerializeField] GameObject warning;
     private Coroutine damage;
     private bool triggered = false;
 
@@ -17,28 +17,28 @@ public class Poison : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         //warning.SetActive(true);
-        damage = StartCoroutine(PoisonDmg(other));
+        damage = StartCoroutine(LavaDmg(other));
         triggered = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
         //warning.SetActive(false);
-        StopCoroutine(PoisonDmg(other));
+        StopCoroutine(LavaDmg(other));
         triggered = false;
     }
 
-    IEnumerator PoisonDmg(Collider other)
+    IEnumerator LavaDmg(Collider other)
     {
         while (triggered)
         {
-            other.gameObject.GetComponentInParent<Player>().TakeDamage(2);
+            other.gameObject.GetComponentInParent<Player>().TakeDamage(15);
             yield return new WaitForSeconds(1);
         }
     }
