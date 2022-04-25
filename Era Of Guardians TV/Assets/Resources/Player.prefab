@@ -5859,7 +5859,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Vous avez vaincu Tidalar, bravo \xE0 vous !"
+  m_Text: "Tidalar est vaincu, bien jou\xE9 !"
 --- !u!1 &5321163727166977733
 GameObject:
   m_ObjectHideFlags: 0
@@ -7799,7 +7799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6504649044844491739
 RectTransform:
   m_ObjectHideFlags: 0
