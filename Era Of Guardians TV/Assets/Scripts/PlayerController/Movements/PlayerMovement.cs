@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         if (!view.IsMine && PhotonNetwork.IsConnected)
         {
             GetComponentInChildren<Camera>().gameObject.SetActive(false);
+            Destroy(GetComponent<Rigidbody>());
         }
     }
 

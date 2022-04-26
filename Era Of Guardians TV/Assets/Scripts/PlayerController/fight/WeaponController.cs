@@ -60,7 +60,9 @@ public class WeaponController : MonoBehaviour
     private bool isCooldown = false;
 
     private bool canAttack;
-  
+
+    [SerializeField] GameObject weaponSystem;
+
     private Vector3 rayHit;
 
     Animator anim;
@@ -83,7 +85,11 @@ public class WeaponController : MonoBehaviour
             cooldownImage.fillAmount = 0.0f;
             slot2.text = healthPotionCount.ToString();
             slot3.text = bushCount.ToString();
-        }   
+        }
+        if (!view.IsMine && PhotonNetwork.IsConnected)
+        {
+            Destroy(weaponSystem);
+        }
     }
 
     private void Update()
