@@ -29,9 +29,13 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
             userID = "Solo";
         }
         chatMessageSender.SetUserName(userID);
-        pseudoWorldUIText.text = userID;
 
         view = GetComponentInParent<PhotonView>();
+
+        if (view.IsMine)
+        {
+            pseudoWorldUIText.text = userID;
+        }
 
         chatClient.ChatRegion = "EU";
         chatClient.Connect(appID, appVersion, new AuthenticationValues(userID));
