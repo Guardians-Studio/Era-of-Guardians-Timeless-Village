@@ -33,7 +33,7 @@ public class PlayerLook : MonoBehaviour
 
     private void Update()
     {
-        if (view.IsMine || PhotonNetwork.CurrentRoom == null)
+        if (view.IsMine || !PhotonNetwork.IsConnected)
         {
             GetInput();
             cam.transform.localRotation = Quaternion.Euler(rotationX, 0, wallRun.tilt);

@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
         view = GetComponent<PhotonView>();
 
-        if (!view.IsMine && PhotonNetwork.CurrentRoom != null)
+        if (!view.IsMine && PhotonNetwork.IsConnected)
         {
             GetComponentInChildren<Camera>().gameObject.SetActive(false);
         }
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (view.IsMine || PhotonNetwork.CurrentRoom == null) // detect if it's my pov
+        if (view.IsMine || !PhotonNetwork.IsConnected) // detect if it's my pov
         {
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); // detect if player is grounded or not 
 

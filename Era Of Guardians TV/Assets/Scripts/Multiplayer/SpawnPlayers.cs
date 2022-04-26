@@ -13,7 +13,7 @@ public class SpawnPlayers : MonoBehaviour
 
     private void Update()
     {
-        if (PhotonNetwork.CurrentRoom == null && firstInstantiate)
+        if (!PhotonNetwork.IsConnected && firstInstantiate)
         {
             print("soloPlaying");
             Instantiate(playerPrefab, new Vector3(spawnpoint.transform.position.x, spawnpoint.transform.position.y, spawnpoint.transform.position.z), Quaternion.identity);
