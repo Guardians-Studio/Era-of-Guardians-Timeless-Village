@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class BossManager : MonoBehaviour
 {
-    [SerializeField] Transform statue;
-    [SerializeField] GameObject bossPrefab;
     [SerializeField] Player player;
 
     private bool spawned = false;
@@ -21,19 +19,6 @@ public class BossManager : MonoBehaviour
         endscreenPanel.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            Player playerScript = other.GetComponentInParent<Player>();
-            if (playerScript.gemmeCount > 0)
-            {
-                Instantiate(bossPrefab, statue);
-                Destroy(statue.gameObject);
-                spawned = true;
-            }
-        }  
-    }
 
     private void Update()
     {

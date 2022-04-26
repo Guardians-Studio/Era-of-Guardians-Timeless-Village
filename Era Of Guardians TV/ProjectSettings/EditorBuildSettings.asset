@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/cineTuron.unity
     guid: 8bcbb5e5f7e40f74d87aab6af922e037
+  - enabled: 1
+    path: Assets/Scenes/finalHazeltown.unity
+    guid: 12356df77ab49984481b744bd9d4323e
   m_configObjects: {}

@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     [SerializeField] HealthBarExtern healthBarExtern;
     [SerializeField] UIPlayer uiPlayer;
 
+    [SerializeField] GameObject finalPanel;
+
+
     private string name;
     public float health = 80;
     public float maxHealth = 100;
@@ -21,6 +24,11 @@ public class Player : MonoBehaviour
     {
         XP(0);
         Heal(0);
+    }
+
+    public void StartFinal ()
+    {
+        finalPanel.SetActive(true);
     }
 
     public void TakeDamage(float amount)
