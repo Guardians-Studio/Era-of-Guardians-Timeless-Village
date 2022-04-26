@@ -13,6 +13,7 @@ TagManager:
   - Arrow
   - Shield
   - Bush
+  - Boss
   layers:
   - Default
   - TransparentFX
