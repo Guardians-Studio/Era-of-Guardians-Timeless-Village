@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Linq;
 
 public class PlayerListingMenu : MonoBehaviourPunCallbacks
 {
@@ -24,7 +25,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
             print(playerInfo.Value.NickName);
             AddPlayerListing(playerInfo.Value);
         }
-        photonChatClient.userID = PhotonNetwork.CurrentRoom.Players[1].NickName;
+        photonChatClient.userID = PhotonNetwork.CurrentRoom.Players.ElementAt(0).Value.NickName;
     }
 
     private void AddPlayerListing(Photon.Realtime.Player player)

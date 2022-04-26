@@ -11,7 +11,6 @@ public class ListingRoom : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        print("roomListUpdated");
         foreach (RoomInfo roomInfo in roomList)
         {
             RoomListing listing = Instantiate(roomListing, content);
