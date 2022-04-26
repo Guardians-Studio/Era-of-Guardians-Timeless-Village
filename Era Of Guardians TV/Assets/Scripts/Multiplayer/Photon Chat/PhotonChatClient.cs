@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Chat;
 using ExitGames.Client.Photon;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class PhotonChatClient : MonoBehaviour, IChatClientListener
 {
@@ -15,6 +16,10 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
     public ChatMessageSender chatMessageSender;
     private ChatClient chatClient;
 
+    [SerializeField] Text pseudoWorldUIText;
+
+    private PhotonView view;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +29,9 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
             userID = "Solo";
         }
         chatMessageSender.SetUserName(userID);
+        pseudoWorldUIText.text = userID;
+
+        view = GetComponentInParent<PhotonView>();
 
         chatClient.ChatRegion = "EU";
         chatClient.Connect(appID, appVersion, new AuthenticationValues(userID));
@@ -32,7 +40,10 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
     // Update is called once per frame
     void Update()
     {
-        chatClient.Service();
+        if (view.IsMine)
+        {
+            chatClient.Service();
+        }
     }
 
     public void SendPublicMessage(string _channel, string message)
