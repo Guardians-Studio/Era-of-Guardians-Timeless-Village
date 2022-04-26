@@ -41,6 +41,12 @@ public class WeaponController : MonoBehaviour
     [SerializeField] Text slot3;
     [SerializeField] Text infoText;
 
+    [SerializeField] GameObject background;
+    [SerializeField] GameObject background1;
+    [SerializeField] GameObject background2;
+    [SerializeField] GameObject background3;
+
+
     public int healthPotionCount = 0;
     public int xpPotionCount = 0;
     public int bushCount = 0;
@@ -107,6 +113,11 @@ public class WeaponController : MonoBehaviour
             Destroy(slot2);
             Destroy(slot3);
             Destroy(infoText);
+            Destroy(background);
+            Destroy(background1);
+            Destroy(background2);
+            Destroy(background3);
+
         }
     }
 

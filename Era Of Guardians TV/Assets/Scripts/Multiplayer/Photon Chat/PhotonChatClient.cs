@@ -16,8 +16,6 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
     public ChatMessageSender chatMessageSender;
     private ChatClient chatClient;
 
-    PhotonView view;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +24,6 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
         {
             userID = "Solo";
         }
-        view = GetComponent<PhotonView>();
 
         chatMessageSender.SetUserName(userID);
 
@@ -37,15 +34,13 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
     // Update is called once per frame
     void Update()
     {
-        if (view.IsMine)
-        {
-            chatClient.Service();
-        }
+        chatClient.Service(); 
     }
 
     public void SendPublicMessage(string _channel, string message)
     {
         chatClient.PublishMessage(_channel, message);
+        print(message);
     }
     public void DebugReturn(DebugLevel level, string message)
     {
@@ -73,7 +68,7 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
     {
         for (int i = 0; i < senders.Length; i++)
         {
-            chatMessageDisplayer.DisplayMessage(senders[i] + " : " + messages[i].ToString());
+                chatMessageDisplayer.DisplayMessage(senders[i] + " : " + messages[i].ToString());
         }
     }
 

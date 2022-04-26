@@ -10,8 +10,20 @@ public class ChatMessageDisplayer : MonoBehaviour
 
     private List<GameObject> messages = new List<GameObject>();
 
+    private List<string> messagesContent = new List<string>();
+
     public void DisplayMessage(string message)
-    {
+    { 
+        
+        foreach (var item in messagesContent)
+        {
+            if (message == item)
+            {
+                return;
+            }
+        }
+
+        messagesContent.Add(message);
         GameObject instance = Instantiate(messageItemPrefab, Vector3.zero, Quaternion.identity) as GameObject;
         instance.transform.SetParent(messageItemContainer, false);
         instance.GetComponent<MessageItem>().DiplayMessageContent(message);
@@ -22,7 +34,9 @@ public class ChatMessageDisplayer : MonoBehaviour
             GameObject messageToDestroy = messages[0];
             messages.RemoveAt(0);
             Destroy(messageToDestroy);
+            messagesContent.RemoveAt(0);
         }
+
     }
 }
 
