@@ -21,10 +21,10 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         foreach (KeyValuePair<int, Photon.Realtime.Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
+            print(playerInfo.Value.NickName);
             AddPlayerListing(playerInfo.Value);
         }
-
-        photonChatClient.userID = PhotonNetwork.CurrentRoom.Players[0].NickName;
+        photonChatClient.userID = PhotonNetwork.CurrentRoom.Players[1].NickName;
     }
 
     private void AddPlayerListing(Photon.Realtime.Player player)
