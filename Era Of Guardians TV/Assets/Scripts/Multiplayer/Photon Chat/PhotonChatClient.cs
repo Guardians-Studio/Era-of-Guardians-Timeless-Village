@@ -19,6 +19,10 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
     void Start()
     {
         chatClient = new ChatClient(this);
+        if (PhotonNetwork.CurrentRoom == null)
+        {
+            userID = "Solo";
+        }
         chatMessageSender.SetUserName(userID);
 
         chatClient.ChatRegion = "EU";
