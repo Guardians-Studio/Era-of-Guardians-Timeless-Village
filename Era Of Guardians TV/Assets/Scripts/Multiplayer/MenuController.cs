@@ -10,9 +10,6 @@ public class MenuController : MonoBehaviourPunCallbacks
 {
     [Header("Affectation")]
     [SerializeField] string versionName = "0.1";
-    /*[SerializeField] GameObject userName;
-    [SerializeField] GameObject connectPannel;*/
-
 
     [Header("Canvas")]
     [SerializeField] GameObject mainMenu;
@@ -274,7 +271,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.CreateRoom(createGameInput.text, roomOptions, TypedLobby.Default);
         PhotonNetwork.LoadLevel("hazeltown");
-        
+
         if (PhotonNetwork.IsConnected)
         {
             print("Connected in the room");

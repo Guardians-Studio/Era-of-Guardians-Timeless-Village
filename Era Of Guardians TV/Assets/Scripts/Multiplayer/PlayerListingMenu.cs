@@ -7,9 +7,8 @@ using Photon.Realtime;
 public class PlayerListingMenu : MonoBehaviourPunCallbacks
 {
     [SerializeField] PlayerListing playerListing;
-    [SerializeField] PlayerListingChat playerListingChat;
     [SerializeField] Transform content;
-    [SerializeField] Transform contentChat;
+    [SerializeField] PhotonChatClient photonChatClient;
 
     private List<PlayerListing> _listing = new List<PlayerListing>();
 
@@ -22,8 +21,11 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         foreach (KeyValuePair<int, Photon.Realtime.Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
+            
             AddPlayerListing(playerInfo.Value);
         }
+        photonChatClient.userID = PhotonNetwork.CurrentRoom.Players[1].NickName;
+        print(photonChatClient.userID);
     }
 
     private void AddPlayerListing(Photon.Realtime.Player player)
@@ -36,14 +38,12 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         }
     }
 
-
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
-
         AddPlayerListing(newPlayer);
-        PlayerListingChat listingChat = Instantiate(playerListingChat, contentChat);
-        listingChat.SetPlayerInfo(newPlayer, "has joined the room");
-        Destroy(listingChat.gameObject, 5);
+
+        print(newPlayer.NickName);
+        photonChatClient.SendPublicMessage("MainChannel", newPlayer + "has joined the room");
     }
 
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
@@ -59,9 +59,5 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
             playerListing.SetPlayerInfo(PhotonNetwork.PlayerList[i]);
             i++;
         }
-
-        PlayerListingChat listingChat = Instantiate(playerListingChat, contentChat);
-        listingChat.SetPlayerInfo(otherPlayer, "has left the room");
-        Destroy(listingChat.gameObject, 5);
     }
 }

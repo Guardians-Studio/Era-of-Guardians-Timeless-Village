@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Chat;
 using ExitGames.Client.Photon;
+using Photon.Pun;
 
 public class PhotonChatClient : MonoBehaviour, IChatClientListener
 {
     [SerializeField] string appID;
-    private string userID;
+    public string userID = "";
     private string appVersion = "0.0.1";
 
     public ChatMessageDisplayer chatMessageDisplayer;
@@ -18,7 +19,6 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
     void Start()
     {
         chatClient = new ChatClient(this);
-        userID = "user_" + Random.Range(0, 1000);
         chatMessageSender.SetUserName(userID);
 
         chatClient.ChatRegion = "EU";
@@ -47,8 +47,9 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
 
     public void OnConnected()
     {
-        chatMessageDisplayer.DisplayMessage("You are connected");
+        //chatMessageDisplayer.DisplayMessage(userID + " joined the room !");
         chatClient.Subscribe("MainChannel");
+        SendPublicMessage("MainChannel", "joined the room !");
     }
 
     public void OnDisconnected()
