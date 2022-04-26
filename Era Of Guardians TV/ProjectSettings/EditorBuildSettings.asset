@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/cineLangdale.unity
     guid: 21dd55239d0c0a741a46f5526ecb043c
+  - enabled: 1
+    path: Assets/Scenes/cineTuron.unity
+    guid: 8bcbb5e5f7e40f74d87aab6af922e037
   m_configObjects: {}
