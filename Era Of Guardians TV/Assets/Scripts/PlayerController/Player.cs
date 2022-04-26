@@ -31,12 +31,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Return) && inChat)
+        if (Input.GetKeyDown(KeyCode.Return) && inChat)
         {
             ResumeGame();
             StartCoroutine(Chat());
         }
-        else if (Input.GetKey(KeyCode.Return) && !inChat)
+        else if (Input.GetKeyDown(KeyCode.Return) && !inChat)
         {
             PauseGame();
             StartCoroutine(Chat());
@@ -109,6 +109,7 @@ public class Player : MonoBehaviour
     public void ResumeGame()
     {
         GetComponent<PlayerLook>().enabled = true;
+        GetComponent<PlayerMovement>().enabled = true;
         GetComponent<WeaponController>().enabled = true;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -117,6 +118,7 @@ public class Player : MonoBehaviour
     void PauseGame()
     {
         GetComponent<PlayerLook>().enabled = false;
+        GetComponent<PlayerMovement>().enabled = false;
         GetComponent<WeaponController>().enabled = false;
 
         Cursor.lockState = CursorLockMode.None;

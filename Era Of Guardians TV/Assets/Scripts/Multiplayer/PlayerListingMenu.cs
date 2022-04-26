@@ -24,7 +24,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
             AddPlayerListing(playerInfo.Value);
         }
 
-        photonChatClient.userID = PhotonNetwork.CurrentRoom.Players[1].NickName;
+        photonChatClient.userID = PhotonNetwork.CurrentRoom.Players[0].NickName;
     }
 
     private void AddPlayerListing(Photon.Realtime.Player player)
@@ -41,8 +41,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         AddPlayerListing(newPlayer);
-        print(newPlayer.NickName);
-        photonChatClient.SendPublicMessage("MainChannel", newPlayer.NickName + "has joined the room");
+        // photonChatClient.SendPublicMessage("MainChannel", newPlayer.NickName + "has joined the room");
     }
 
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)

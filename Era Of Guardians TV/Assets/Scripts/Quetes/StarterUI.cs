@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,12 @@ public class StarterUI : MonoBehaviour
 
     private void Start()
     {
-        firstPanel.SetActive(true);
+        PhotonView view = GetComponent<PhotonView>();
+
+        if (!view.IsMine && PhotonNetwork.CurrentRoom != null)
+        {
+            firstPanel.SetActive(true);
+        }
     }
 
     private void Update()
