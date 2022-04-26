@@ -9,6 +9,7 @@ public class ChatMessageSender : MonoBehaviour
     public PhotonChatClient photonChatClient;
     public InputField inputField;
     public TMP_Text userName;
+    public TMP_Text PseudoUIOpenWorld;
 
     public void SendMessageToPhotonChat()
     {
@@ -22,5 +23,6 @@ public class ChatMessageSender : MonoBehaviour
     public void SetUserName(string _userName)
     {
         userName.SetText(_userName);
+        PseudoUIOpenWorld.SetText(_userName);
     }
 }

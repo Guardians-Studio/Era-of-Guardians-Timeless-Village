@@ -13,8 +13,12 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     private List<PlayerListing> _listing = new List<PlayerListing>();
 
+    PhotonView view;
+
     private void Awake()
     {
+        view = GetComponent<PhotonView>();
+
         if (PhotonNetwork.CurrentRoom != null)
         {
             GetCurrentRoomPlayers();
@@ -28,7 +32,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
             print(playerInfo.Value.NickName);
             AddPlayerListing(playerInfo.Value);
         }
-        
+
         photonChatClient.userID = PhotonNetwork.CurrentRoom.Players.ElementAt(0).Value.NickName;
     }
 

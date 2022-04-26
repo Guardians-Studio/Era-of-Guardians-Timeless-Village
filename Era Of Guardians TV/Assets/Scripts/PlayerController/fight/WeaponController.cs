@@ -61,8 +61,6 @@ public class WeaponController : MonoBehaviour
 
     private bool canAttack;
 
-    [SerializeField] GameObject weaponSystem;
-
     private Vector3 rayHit;
 
     Animator anim;
@@ -88,7 +86,27 @@ public class WeaponController : MonoBehaviour
         }
         if (!view.IsMine && PhotonNetwork.IsConnected)
         {
-            Destroy(weaponSystem);
+            foreach (var item in weaponsImages)
+            {
+                Destroy(item);
+            }
+            foreach (var item in weaponsImages1)
+            {
+                Destroy(item);
+            }
+            foreach (var item in weaponsImages2)
+            {
+                Destroy(item);
+            }
+            foreach (var item in weaponsImages3)
+            {
+                Destroy(item);
+            }
+            Destroy(cooldownImage);
+            Destroy(cdFinishedImage);
+            Destroy(slot2);
+            Destroy(slot3);
+            Destroy(infoText);
         }
     }
 

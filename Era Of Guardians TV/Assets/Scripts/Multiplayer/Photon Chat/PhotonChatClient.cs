@@ -16,9 +16,7 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
     public ChatMessageSender chatMessageSender;
     private ChatClient chatClient;
 
-    [SerializeField] Text pseudoWorldUIText;
-
-    private PhotonView view;
+    PhotonView view;
 
     // Start is called before the first frame update
     void Start()
@@ -28,14 +26,9 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
         {
             userID = "Solo";
         }
+        view = GetComponent<PhotonView>();
+
         chatMessageSender.SetUserName(userID);
-
-        view = GetComponentInParent<PhotonView>();
-
-        if (view.IsMine)
-        {
-            pseudoWorldUIText.text = userID;
-        }
 
         chatClient.ChatRegion = "EU";
         chatClient.Connect(appID, appVersion, new AuthenticationValues(userID));
