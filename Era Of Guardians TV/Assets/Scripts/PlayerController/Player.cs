@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] UIPlayer uiPlayer;
 
     [SerializeField] GameObject finalPanel;
+    [SerializeField] GameObject infoPanel;
 
 
     private string name;
@@ -29,6 +30,21 @@ public class Player : MonoBehaviour
     public void StartFinal ()
     {
         finalPanel.SetActive(true);
+    }
+
+    public void InfoFinal()
+    {
+        infoPanel.SetActive(true);
+    }
+
+    public void CancelInfoFinal()
+    {
+        infoPanel.SetActive(false);
+    }
+
+    public void CancelFinal()
+    {
+        finalPanel.SetActive(false);
     }
 
     public void TakeDamage(float amount)

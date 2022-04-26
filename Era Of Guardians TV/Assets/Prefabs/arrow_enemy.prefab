@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7187068424228533446}
   - component: {fileID: 4439461712003257562}
   - component: {fileID: 4776237998556078341}
-  - component: {fileID: 6680465127955063499}
+  - component: {fileID: 7766038223638908419}
   m_Layer: 0
   m_Name: arrow_enemy
   m_TagString: Arrow
@@ -115,7 +115,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.04340656, y: 0.37480313, z: 0.04340653}
   m_Center: {x: -0.0017595729, y: 0.12143442, z: 0.0013805991}
---- !u!114 &6680465127955063499
+--- !u!114 &7766038223638908419
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8700220929801639187}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d962afb05dcf8d4497cdfd022ef6483, type: 3}
+  m_Script: {fileID: 11500000, guid: 4066df3b5bdb1ea4c9f38d295a37b77f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitParticle: {fileID: 0}

@@ -69,7 +69,7 @@ public class Boss : MonoBehaviour
         }
     }
 
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         healthBarExtern.UpdateHealth(this.health / 100);
         this.health -= damage;

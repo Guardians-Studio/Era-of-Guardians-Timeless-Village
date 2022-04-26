@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class finalBossTP : MonoBehaviour
 {
+    private bool isRdy = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,11 +15,36 @@ public class finalBossTP : MonoBehaviour
             if (playerScript.gemmeCount > 0)
             {
                 playerScript.StartFinal();
-                if (Input.GetKey(KeyCode.Space))
-                {
-                    SceneManager.LoadScene("finalHazeltown");
-                    Debug.Log("B has been pressed");
-                }
+                isRdy = true;
+            }
+            else
+            {
+                playerScript.InfoFinal();
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (isRdy && Input.GetKey(KeyCode.F))
+        {
+            SceneManager.LoadScene("finalHazeltown");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Player playerScript = other.GetComponentInParent<Player>();
+            if (playerScript.gemmeCount > 0)
+            {
+                playerScript.CancelFinal();
+                isRdy = false;
+            }
+            else
+            {
+                playerScript.CancelInfoFinal();
             }
         }
     }
