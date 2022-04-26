@@ -1650,9 +1650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerListing: {fileID: 7232283689349815440, guid: bd6f69236a45ba441a0078357acacb79, type: 3}
-  playerListingChat: {fileID: 5235012554864330745, guid: 85013a8ad4a3f5e4882557cd84a00049, type: 3}
   content: {fileID: 6293484218356378986}
-  contentChat: {fileID: 0}
   photonChatClient: {fileID: 4722143541048088252}
 --- !u!1 &1381461518881739019
 GameObject:

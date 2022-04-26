@@ -21,11 +21,10 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         foreach (KeyValuePair<int, Photon.Realtime.Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
-            
             AddPlayerListing(playerInfo.Value);
         }
+
         photonChatClient.userID = PhotonNetwork.CurrentRoom.Players[1].NickName;
-        print(photonChatClient.userID);
     }
 
     private void AddPlayerListing(Photon.Realtime.Player player)
@@ -38,19 +37,19 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         }
     }
 
+
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         AddPlayerListing(newPlayer);
-
         print(newPlayer.NickName);
-        photonChatClient.SendPublicMessage("MainChannel", newPlayer + "has joined the room");
+        photonChatClient.SendPublicMessage("MainChannel", newPlayer.NickName + "has joined the room");
     }
 
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         int i = 0;
         int n = _listing.Count;
-        
+
         Destroy(_listing[n - 1].gameObject);
         _listing.Remove(_listing[n - 1]);
 

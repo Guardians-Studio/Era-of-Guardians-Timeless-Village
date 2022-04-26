@@ -21,12 +21,27 @@ public class Player : MonoBehaviour
     private int level = 1;
     public int gemmeCount = 0;
 
+    private bool inChat = false;
+
     private void Start()
     {
         XP(0);
         Heal(0);
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Return) && inChat)
+        {
+            ResumeGame();
+            StartCoroutine(Chat());
+        }
+        else if (Input.GetKey(KeyCode.Return) && !inChat)
+        {
+            PauseGame();
+            StartCoroutine(Chat());
+        }
+    }
     public void StartFinal ()
     {
         finalPanel.SetActive(true);
@@ -89,5 +104,28 @@ public class Player : MonoBehaviour
         Cursor.visible = true;
         PhotonNetwork.LoadLevel("MainMenu");
         
+    }
+
+    public void ResumeGame()
+    {
+        GetComponent<PlayerLook>().enabled = true;
+        GetComponent<WeaponController>().enabled = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+    void PauseGame()
+    {
+        GetComponent<PlayerLook>().enabled = false;
+        GetComponent<WeaponController>().enabled = false;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    IEnumerator Chat()
+    {
+        yield return new WaitForSeconds(1);
+        inChat = !inChat;
     }
 }
