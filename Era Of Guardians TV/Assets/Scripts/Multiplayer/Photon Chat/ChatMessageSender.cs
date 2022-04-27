@@ -10,7 +10,7 @@ public class ChatMessageSender : MonoBehaviour
     public PhotonChatClient photonChatClient;
     public InputField inputField;
     public TMP_Text userName;
-    public TMP_Text PseudoUIOpenWorld;
+    // public TMP_Text PseudoUIOpenWorld;
 
     private void Start()
     {
