@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        view = GetComponent<PhotonView>();
+
         XP(0);
         Heal(0);
         DontDestroyOnLoad(this.gameObject);
