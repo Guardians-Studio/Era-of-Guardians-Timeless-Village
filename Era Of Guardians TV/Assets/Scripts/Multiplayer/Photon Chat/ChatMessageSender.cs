@@ -29,6 +29,6 @@ public class ChatMessageSender : MonoBehaviour
     public void SetUserName(string _userName)
     {
         userName.SetText(_userName);
-        PseudoUIOpenWorld.SetText(_userName);
+        // PseudoUIOpenWorld.SetText(_userName);
     }
 }
