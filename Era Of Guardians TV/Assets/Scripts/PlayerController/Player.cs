@@ -32,8 +32,12 @@ public class Player : MonoBehaviour
     private bool boss = false;
 
     private bool sout = false;
+
+    PhotonView view;
+
     private void Start()
     {
+        view = GetComponent<PhotonView>();
         XP(0);
         Heal(0);
         DontDestroyOnLoad(this.gameObject);
