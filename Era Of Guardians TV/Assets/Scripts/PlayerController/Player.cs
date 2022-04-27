@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
             this.gameObject.transform.position = tp[0].transform.position;
             StartCoroutine(Sout());
         }
-        else if ((Input.GetKeyDown(KeyCode.M) && !sout2))
+        else if ((Input.GetKeyDown(KeyCode.N) && !sout2))
         {
             GameObject[] tp = GameObject.FindGameObjectsWithTag("sout2");
             this.gameObject.transform.position = tp[0].transform.position;
