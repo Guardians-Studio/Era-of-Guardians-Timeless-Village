@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private bool cineLangdale = false;
     private bool turon = false;
     private bool cineTuron = false;
+    private bool boss = false;
 
     private void Start()
     {
@@ -87,6 +88,12 @@ public class Player : MonoBehaviour
             cineLangdale = false;
             turon = true;
             cineTuron = false;
+            GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
+            this.gameObject.transform.position = tp[0].transform.position;
+        }
+        else if (scene.name == "finalHazeltown" && !boss)
+        {
+            boss = true;
             GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
             this.gameObject.transform.position = tp[0].transform.position;
         }
