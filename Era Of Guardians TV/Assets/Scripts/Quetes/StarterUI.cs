@@ -22,8 +22,8 @@ public class StarterUI : MonoBehaviour
 
         if (!view.IsMine && PhotonNetwork.IsConnected)
         {
-            Destroy(firstPanel);
-            Destroy(secondPanel);
+            firstPanel.SetActive(false);
+            secondPanel.SetActive(false);
         }
     }
 
