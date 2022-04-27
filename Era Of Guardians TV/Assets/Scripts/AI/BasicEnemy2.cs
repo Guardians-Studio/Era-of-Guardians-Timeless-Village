@@ -106,8 +106,12 @@ public class BasicEnemy2 : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-
-            Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.Euler(0, agent.transform.localRotation.y, 90)).GetComponent<Rigidbody>();
+            int rotationPos = (int)transform.localEulerAngles.y;
+            if (rotationPos > 180)
+            {
+                rotationPos -= 360;
+            }
+            Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.Euler(0, rotationPos + 90, 90)).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 
