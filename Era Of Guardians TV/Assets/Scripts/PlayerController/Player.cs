@@ -99,9 +99,11 @@ public class Player : MonoBehaviour
         }
         else if (scene.name == "finalHazeltown" && !boss)
         {
+            
             boss = true;
             GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
             this.gameObject.transform.position = tp[0].transform.position;
+            CancelFinal();
         }
         if (Input.GetKeyDown(KeyCode.Return) && inChat)
         {
