@@ -117,6 +117,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         playMenu.SetActive(true);
         gameCanvas.SetActive(false);
+        PhotonNetwork.Disconnect();
     }
 
     public void MenuBack()

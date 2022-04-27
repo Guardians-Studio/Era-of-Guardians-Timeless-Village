@@ -27,8 +27,11 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
 
         chatMessageSender.SetUserName(userID);
 
-        chatClient.ChatRegion = "EU";
-        chatClient.Connect(appID, appVersion, new AuthenticationValues(userID));
+        if (userID != "Solo")
+        {
+            chatClient.ChatRegion = "EU";
+            chatClient.Connect(appID, appVersion, new AuthenticationValues(userID));
+        }
     }
 
     // Update is called once per frame

@@ -16,6 +16,7 @@ TagManager:
   - Boss
   - Enemy2
   - tp
+  - sout
   layers:
   - Default
   - TransparentFX
