@@ -32,8 +32,7 @@ public class Player : MonoBehaviour
     private bool boss = false;
 
     private bool sout = false;
-
-    PhotonView view;
+    private bool sout2 = false;
 
     private void Start()
     {
@@ -54,6 +53,7 @@ public class Player : MonoBehaviour
             cineLangdale = false;
             turon = false;
             cineTuron = false;
+            sout = false;
             GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
             this.gameObject.transform.position = tp[0].transform.position;
         }
@@ -118,6 +118,12 @@ public class Player : MonoBehaviour
             GameObject[] tp = GameObject.FindGameObjectsWithTag("sout");
             this.gameObject.transform.position = tp[0].transform.position;
             StartCoroutine(Sout());
+        }
+        else if ((Input.GetKeyDown(KeyCode.M) && !sout2))
+        {
+            GameObject[] tp = GameObject.FindGameObjectsWithTag("sout2");
+            this.gameObject.transform.position = tp[0].transform.position;
+            sout2 = true;
         }
     }
     public void StartFinal ()
