@@ -5910,7 +5910,7 @@ MonoBehaviour:
   infoPanel: {fileID: 2885753193100729207}
   health: 80
   maxHealth: 100
-  gemmeCount: 0
+  gemmeCount: 1
 --- !u!114 &4146235936788497540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6144,8 +6144,8 @@ MonoBehaviour:
   background1: {fileID: 8432884565499447759}
   background2: {fileID: 2427600778283129835}
   background3: {fileID: 3793223600808599651}
-  healthPotionCount: 1
-  xpPotionCount: 2
+  healthPotionCount: 5
+  xpPotionCount: 4
   bushCount: 0
   cooldownImage: {fileID: 2153292121019699819}
   cdFinishedImage: {fileID: 731005613518253556}

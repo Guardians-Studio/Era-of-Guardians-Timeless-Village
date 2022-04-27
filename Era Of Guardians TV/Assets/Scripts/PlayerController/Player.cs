@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public float maxHealth = 100;
     private float armor = 10;
     private List<GameObject> items;
-    private float xpAmount = 10;
+    private float xpAmount = 50;
     private int level = 1;
     public int gemmeCount = 0;
 
