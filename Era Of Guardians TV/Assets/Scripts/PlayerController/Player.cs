@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
 
         XP(0);
         Heal(0);
+        uiPlayer.UpdateLevel(this.level);
         DontDestroyOnLoad(this.gameObject);
     }
 
