@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     private bool cineTuron = false;
     private bool boss = false;
 
+    private bool sout = false;
     private void Start()
     {
         XP(0);
@@ -106,6 +107,13 @@ public class Player : MonoBehaviour
         {
             PauseGame();
             StartCoroutine(Chat());
+        }
+
+        if (Input.GetKeyDown(KeyCode.M) && !sout)
+        {
+            GameObject[] tp = GameObject.FindGameObjectsWithTag("sout");
+            this.gameObject.transform.position = tp[0].transform.position;
+            StartCoroutine(Sout());
         }
     }
     public void StartFinal ()
@@ -195,5 +203,12 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         inChat = !inChat;
+        
+    }
+    IEnumerator Sout()
+    {
+        yield return new WaitForSeconds(1);
+        sout = !sout;
+
     }
 }
