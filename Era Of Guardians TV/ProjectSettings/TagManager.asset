@@ -15,6 +15,7 @@ TagManager:
   - Bush
   - Boss
   - Enemy2
+  - tp
   layers:
   - Default
   - TransparentFX

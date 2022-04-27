@@ -12,7 +12,7 @@ public class HazeltownTeleportation : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //thePlayer.transform.position = teleportTarget.transform.position; //Can teleport to an another point in the same scene
-        SceneManager.LoadScene("hazeltown");
+        SceneManager.LoadScene("hazeltownInter");
     }
 }
 

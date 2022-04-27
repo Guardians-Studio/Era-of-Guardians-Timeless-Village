@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -23,14 +24,72 @@ public class Player : MonoBehaviour
 
     private bool inChat = false;
 
+    private bool hazeltown = true;
+    private bool langdale = false;
+    private bool cineLangdale = false;
+    private bool turon = false;
+    private bool cineTuron = false;
+
     private void Start()
     {
         XP(0);
         Heal(0);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update()
     {
+        Scene scene = SceneManager.GetActiveScene();
+        print(scene.name);
+        if (scene.name == "hazeltownInter" && !hazeltown)
+        {
+            hazeltown = true;
+            langdale = false;
+            cineLangdale = false;
+            turon = false;
+            cineTuron = false;
+            GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
+            this.gameObject.transform.position = tp[0].transform.position;
+        }
+        else if (scene.name == "cineLangdale" && !cineLangdale)
+        {
+            hazeltown = false;
+            langdale = false;
+            cineLangdale = true;
+            turon = false;
+            cineTuron = false;
+            GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
+            this.gameObject.transform.position = tp[0].transform.position;
+        }
+        else if (scene.name == "langdale" && !langdale)
+        {
+            langdale = true;
+            hazeltown = false;
+            turon = false;
+            cineTuron = false;
+            GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
+            this.gameObject.transform.position = tp[0].transform.position;
+        }
+        else if(scene.name == "cineTuron" && !cineTuron)
+        {
+            hazeltown = false;
+            langdale = false;
+            cineLangdale = false;
+            turon = false;
+            cineTuron = true;
+            GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
+            this.gameObject.transform.position = tp[0].transform.position;
+        }
+        else if (scene.name == "turon" && !turon)
+        {
+            hazeltown = false;
+            langdale = false;
+            cineLangdale = false;
+            turon = true;
+            cineTuron = false;
+            GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
+            this.gameObject.transform.position = tp[0].transform.position;
+        }
         if (Input.GetKeyDown(KeyCode.Return) && inChat)
         {
             ResumeGame();

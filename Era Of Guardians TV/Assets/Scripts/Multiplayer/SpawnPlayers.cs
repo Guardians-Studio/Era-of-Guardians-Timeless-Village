@@ -10,7 +10,6 @@ public class SpawnPlayers : MonoBehaviour
 
     private bool firstInstantiate = true;
 
-
     private void Update()
     {
         if (!PhotonNetwork.IsConnected && firstInstantiate)

@@ -12,6 +12,11 @@ public class ChatMessageSender : MonoBehaviour
     public TMP_Text userName;
     public TMP_Text PseudoUIOpenWorld;
 
+    private void Start()
+    {
+        inputField.text = "";
+    }
+
     public void SendMessageToPhotonChat()
     {
         string message = inputField.text;
