@@ -14,9 +14,13 @@ public class StarterUI : MonoBehaviour
     private void Start()
     {
         PhotonView view = GetComponentInParent<PhotonView>();
-        firstPanel.SetActive(true);
 
-        if (!view.IsMine)
+        if (view.IsMine)
+        {
+            firstPanel.SetActive(true);
+        }
+
+        if (!view.IsMine && PhotonNetwork.IsConnected)
         {
             Destroy(firstPanel);
             Destroy(secondPanel);
