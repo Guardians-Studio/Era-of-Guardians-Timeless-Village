@@ -581,6 +581,22 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 7543514570492621127, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
+      propertyPath: m_Size.x
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543514570492621127, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
+      propertyPath: m_Size.y
+      value: 1.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543514570492621127, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
+      propertyPath: m_Size.z
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543514570492621127, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
+      propertyPath: m_Center.x
+      value: -0.16
+      objectReference: {fileID: 0}
     - target: {fileID: 8375042199448880473, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -735,8 +751,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.24775085, y: 2.6940036, z: 0.07706466}
-  m_Center: {x: -0.0077828835, y: 0.98549044, z: 0.0000000026609221}
+  m_Size: {x: 0.24775085, y: 2.25, z: 0.07706466}
+  m_Center: {x: -0.0077828835, y: 0.63, z: 0.0000000026609221}
 --- !u!95 &4286386192630388514
 Animator:
   serializedVersion: 3

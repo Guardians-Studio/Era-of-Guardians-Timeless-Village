@@ -54,8 +54,17 @@ public class FightDetection : MonoBehaviour
         {
             ParticleSystem particle = Instantiate(hitParticle, other.gameObject.GetComponentInParent<Transform>());
             particle.Play();
-            other.gameObject.GetComponentInParent<Boss>().TakeDamage(damage);
+            other.gameObject.GetComponentInParent<Boss>().TakeDamage(0);
         }
+
+        if (other.tag == "Enemy2")
+        {
+            ParticleSystem particle = Instantiate(hitParticle, other.gameObject.GetComponentInParent<Transform>());
+            particle.Play();
+            other.gameObject.GetComponentInParent<BasicEnemy2>().TakeDamage(0);
+
+        }
+        
     }
 }
 

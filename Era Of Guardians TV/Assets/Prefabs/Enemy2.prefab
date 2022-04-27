@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5320310422724005426}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 1277917124184750977}
   m_Layer: 5
   m_Name: BackGround
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 4151949670924590060}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Enemy
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,10 +274,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 58165ce5725c86f4ab44afe06bab681a, type: 2}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.55208194
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.033884525}
 --- !u!195 &2500136667947790251
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 4489875275790384131}
   m_Layer: 0
   m_Name: WeaponHolder
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 6043687136986850638}
   m_Layer: 5
   m_Name: Fill
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: -5848461249663493883}
   m_Layer: 0
   m_Name: Enemy2
-  m_TagString: Enemy
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 1104596999549750466}
   m_Layer: 5
   m_Name: HealthBar
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -641,6 +641,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: blood
       objectReference: {fileID: 0}
+    - target: {fileID: 6867952957851584341, guid: d5f672cec95e5c044add7a985051cd5f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy2
+      objectReference: {fileID: 0}
     - target: {fileID: 8253261350659103909, guid: d5f672cec95e5c044add7a985051cd5f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -687,14 +691,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5f672cec95e5c044add7a985051cd5f, type: 3}
---- !u!198 &7774865764944326579 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2731419704269464761, guid: d5f672cec95e5c044add7a985051cd5f, type: 3}
-  m_PrefabInstance: {fileID: 5621104245569866506}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4362675217992964015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8253261350659103909, guid: d5f672cec95e5c044add7a985051cd5f, type: 3}
+  m_PrefabInstance: {fileID: 5621104245569866506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7774865764944326579 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2731419704269464761, guid: d5f672cec95e5c044add7a985051cd5f, type: 3}
   m_PrefabInstance: {fileID: 5621104245569866506}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5627298001474884852
@@ -762,7 +766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8700220929801639187, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Enemy2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6680465127955063499, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
@@ -777,18 +781,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8700220929801639187, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
   m_PrefabInstance: {fileID: 5627298001474884852}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1660077941752964361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3937634128875471335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4066df3b5bdb1ea4c9f38d295a37b77f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &9132561135925150968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -799,6 +791,26 @@ PrefabInstance:
     - target: {fileID: 5566680646621842717, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
       propertyPath: m_Name
       value: Bow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566680646621842717, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
+      propertyPath: m_TagString
+      value: Enemy2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543514570492621127, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
+      propertyPath: m_Size.x
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543514570492621127, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
+      propertyPath: m_Size.y
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543514570492621127, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
+      propertyPath: m_Size.z
+      value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543514570492621127, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
+      propertyPath: m_Center.x
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 8375042199448880473, guid: 2b581f5d7bcbabb4184b8daa42eadb01, type: 3}
       propertyPath: m_RootOrder
