@@ -11918,6 +11918,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paladin WProp J Nordstrom
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 60513c12dbfe6924997fb86c3105ff57, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8ac34c6db4e9d6b4ebe7b82a4e1db4ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60513c12dbfe6924997fb86c3105ff57, type: 3}
 --- !u!4 &317286871265425136 stripped
