@@ -50,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     PhotonView view;
 
+    [SerializeField] Animator animator;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -76,6 +78,17 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask); // detect if player is grounded or not 
 
             GetInput();
+            if (moveDirection != new Vector3(0,0,0))
+            {
+                animator.SetBool("run", true);
+                animator.SetBool("Idle", false);
+            }
+            else
+            {
+                animator.SetBool("run", false);
+                animator.SetBool("Idle", true);
+
+            }
             ControlDrag();
             ControlSpeed();
 
