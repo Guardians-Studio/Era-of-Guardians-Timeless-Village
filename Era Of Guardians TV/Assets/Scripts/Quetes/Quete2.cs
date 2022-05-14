@@ -49,7 +49,7 @@ public class Quete2 : MonoBehaviour
             Panel.SetActive(true);
             if(gemme)
             {
-                QuetePnj.text = "Si tu es revenu ici ça veut dire que tu as réussi !! \n\n Maintenant il te reste une dernière chose a faire : \n Battre Tidalar au centre de Hazeltown !";
+                QuetePnj.text = "Si tu es revenu ici ça veut dire que tu as réussi !! \n\n Il te faut donc trouver 4 de ces gemmes pour pouvoir combattre Tidalar ! \n\n Je t'attendrais à Turon pour obtenir la gemme rouge !";
             }
             else
             {
