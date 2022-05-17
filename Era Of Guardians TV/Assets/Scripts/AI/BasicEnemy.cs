@@ -27,6 +27,14 @@ public class BasicEnemy : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
     public bool patroling, fixedPos;
 
+    // Animation
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -108,16 +116,22 @@ public class BasicEnemy : MonoBehaviour
     private void ChasePlayer ()
     {
         agent.SetDestination(player.position);
+        animator.SetBool("running", true);
+        animator.SetBool("attacking", false);
     }
 
     private void Stop()
     {
         agent.SetDestination(this.transform.position);
+        animator.SetBool("running", false);
+        animator.SetBool("attacking", true);
     }
 
     private void ReturnStartPos ()
     {
         agent.SetDestination(startPosition.position);
+        animator.SetBool("running", false);
+        animator.SetBool("attacking", false);
     }
 
     public void DestroyEnemy ()
