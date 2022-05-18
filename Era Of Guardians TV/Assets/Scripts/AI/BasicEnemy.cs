@@ -42,6 +42,7 @@ public class BasicEnemy : MonoBehaviour
 
     private void Update()
     {
+        
         if (GameObject.FindWithTag("Player"))
         {
             player = GameObject.FindWithTag("Player").transform;
@@ -68,6 +69,11 @@ public class BasicEnemy : MonoBehaviour
             if (fixedPos)
             {
                 ReturnStartPos();
+                if (transform.position.x == startPosition.position.x 
+                    && transform.position.z == startPosition.position.z)
+                {
+                    animator.SetBool("running", false);
+                }
             }
 
             else
@@ -129,9 +135,9 @@ public class BasicEnemy : MonoBehaviour
 
     private void ReturnStartPos ()
     {
-        agent.SetDestination(startPosition.position);
-        animator.SetBool("running", false);
+        animator.SetBool("running", true);
         animator.SetBool("attacking", false);
+        agent.SetDestination(startPosition.position);
     }
 
     public void DestroyEnemy ()
