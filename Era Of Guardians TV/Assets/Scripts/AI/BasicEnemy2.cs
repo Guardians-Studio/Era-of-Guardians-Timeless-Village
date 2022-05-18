@@ -34,9 +34,11 @@ public class BasicEnemy2 : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    private Animator animator;
+
     private void Start()
     {
-        TakeDamage(0);
+        animator = GetComponent<Animator>();
     }
 
     private void Awake()
@@ -68,6 +70,8 @@ public class BasicEnemy2 : MonoBehaviour
 
         else
         {
+            animator.SetBool("attacking", false);
+            animator.SetBool("running", true);
             if (Vector3.Distance(agent.transform.position, target) < 1)
             {
                 IterateWaypointIndex();
@@ -91,18 +95,23 @@ public class BasicEnemy2 : MonoBehaviour
 
     private void ChasePlayer()
     {
+        animator.SetBool("attacking", false);
+        animator.SetBool("running", true);
         agent.SetDestination(player.position);
     }
 
     private void Stop()
     {
         agent.SetDestination(this.transform.position);
+        animator.SetBool("running", false);
     }
 
     private void AttackPlayer()
     {
         agent.SetDestination(transform.position);
         transform.LookAt(player);
+
+        animator.SetBool("attacking", true);
 
         if (!alreadyAttacked)
         {
@@ -111,6 +120,7 @@ public class BasicEnemy2 : MonoBehaviour
             {
                 rotationPos -= 360;
             }
+
             Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.Euler(0, rotationPos + 90, 90)).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
@@ -132,6 +142,7 @@ public class BasicEnemy2 : MonoBehaviour
         if (this.health <= 0)
             DestroyEnemy();
     }
+   
 
     public void DestroyEnemy()
     {
@@ -145,7 +156,7 @@ public class BasicEnemy2 : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         switch (other.gameObject.tag)
@@ -164,4 +175,5 @@ public class BasicEnemy2 : MonoBehaviour
                 break;
         }
     }
+    
 }
