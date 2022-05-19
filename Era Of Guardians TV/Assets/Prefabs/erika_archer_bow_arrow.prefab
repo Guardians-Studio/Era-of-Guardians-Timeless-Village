@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 7972881204786010339}
   m_Layer: 0
   m_Name: Hips
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 3735849855893729141}
   m_Layer: 0
   m_Name: Erika_Archer_Bow_Mesh
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 2100101902511687696}
   m_Layer: 0
   m_Name: Erika_Archer_Eyelashes_Mesh
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -786,7 +786,7 @@ GameObject:
   - component: {fileID: 451481924250281119}
   m_Layer: 0
   m_Name: Erika_Archer_Meshes
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1009,7 +1009,7 @@ GameObject:
   - component: {fileID: 1055152398151402920}
   m_Layer: 0
   m_Name: Erika_Archer_Clothes_Mesh
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1187,7 +1187,7 @@ GameObject:
   - component: {fileID: 6868546880741238490}
   m_Layer: 0
   m_Name: Erika_Archer_Body_Mesh
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1387,7 +1387,7 @@ GameObject:
   - component: {fileID: 5228740969494453616}
   m_Layer: 0
   m_Name: Erika_Archer_Arrow_Mesh
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1467,7 +1467,7 @@ GameObject:
   - component: {fileID: 5886713210697012622}
   m_Layer: 0
   m_Name: Erika_Archer_Eyes_Mesh
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2018,7 +2018,7 @@ GameObject:
   - component: {fileID: 7995017742292622399}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Enemy2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2165,6 +2165,7 @@ GameObject:
   - component: {fileID: 4176818387994086418}
   - component: {fileID: 3545910446499468570}
   - component: {fileID: 8925858248221045631}
+  - component: {fileID: 3774899134045541031}
   m_Layer: 0
   m_Name: erika_archer_bow_arrow
   m_TagString: Enemy2
@@ -2234,7 +2235,7 @@ MonoBehaviour:
     m_Bits: 128
   healthBarExtern: {fileID: 7590542185719054228}
   hitParticle: {fileID: 2879662939926369765}
-  bowProjectile: {fileID: 0}
+  bowProjectile: {fileID: 8357721416531597237}
   projectileSpeed: 30
   attack: 0
   target: {x: 0, y: 0, z: 0}
@@ -2315,9 +2316,25 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.19941741
-  m_Height: 2.2991304
+  m_Height: 1.779505
   m_Direction: 1
-  m_Center: {x: 0, y: 0.6495652, z: -0.028090477}
+  m_Center: {x: 0, y: 0.90937793, z: -0.028090477}
+--- !u!54 &3774899134045541031
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320157227991467344}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7345089258191288158
 GameObject:
   m_ObjectHideFlags: 0
@@ -3386,41 +3403,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7988748690359640042}
     m_Modifications:
+    - target: {fileID: 7187068424228533446, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.141
       objectReference: {fileID: 0}
     - target: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.23
+      value: 1.594
       objectReference: {fileID: 0}
     - target: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.83
+      value: -0.276
       objectReference: {fileID: 0}
     - target: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.14239837
       objectReference: {fileID: 0}
     - target: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.9749143
       objectReference: {fileID: 0}
     - target: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.16927323
       objectReference: {fileID: 0}
     - target: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.02472446
       objectReference: {fileID: 0}
     - target: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 163.38
       objectReference: {fileID: 0}
     - target: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -3428,16 +3449,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 19.7
       objectReference: {fileID: 0}
     - target: {fileID: 8700220929801639187, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
       propertyPath: m_Name
       value: arrow_enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8700220929801639187, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
+      propertyPath: m_TagString
+      value: Enemy2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4439461712003257562, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
+--- !u!1 &8357721416531597237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8700220929801639187, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
+  m_PrefabInstance: {fileID: 811197207170810534}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8698500320713116943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8356064601666654121, guid: d51626526f367ec4cb56d0d39bf440c9, type: 3}
   m_PrefabInstance: {fileID: 811197207170810534}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &1223311202748189319
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8357721416531597237}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

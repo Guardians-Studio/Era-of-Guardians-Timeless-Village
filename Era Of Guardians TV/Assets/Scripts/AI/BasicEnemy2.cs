@@ -39,6 +39,7 @@ public class BasicEnemy2 : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        TakeDamage(0f);
     }
 
     private void Awake()
@@ -104,14 +105,13 @@ public class BasicEnemy2 : MonoBehaviour
     {
         agent.SetDestination(this.transform.position);
         animator.SetBool("running", false);
+        animator.SetBool("attacking", true);
     }
 
     private void AttackPlayer()
     {
         agent.SetDestination(transform.position);
         transform.LookAt(player);
-
-        animator.SetBool("attacking", true);
 
         if (!alreadyAttacked)
         {
