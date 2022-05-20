@@ -71,7 +71,14 @@ public class Boss : MonoBehaviour
         {
             attack = true;
             Stop();
-            AttackPlayer();
+            if (this.health <= 50)
+            {
+                AttackPlayer2();
+            }
+            else
+            {
+                AttackPlayer1();
+            }
         }
     }
 
@@ -99,64 +106,70 @@ public class Boss : MonoBehaviour
         agent.SetDestination(this.transform.position);
     }
 
-    private void AttackPlayer ()
+    private void AttackPlayer1()
     {
         agent.SetDestination(transform.position);
         transform.LookAt(player);
-        if (this.health <= 50)
-        {
-            timeBetweenAttacks = 5f;
-            attackRange = 10f;
-            animation = false;
-            animator.SetBool("shooting", true);
-            animator.SetBool("attacking", false);
+        animator.SetBool("shooting", false);
+        animator.SetBool("attacking", true);
 
-            if (!alreadyAttacked)
+        if (!alreadyAttacked)
+        {
+            int rotationPos = (int)transform.localEulerAngles.y;
+            if (rotationPos > 180)
             {
-                int rotationPos = (int)transform.localEulerAngles.y;
-                if (rotationPos > 180)
-                {
-                    rotationPos -= 360;
-                }
-                Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.Euler(0, rotationPos + 90, 90)).GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-                rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-                alreadyAttacked = true;
-                Invoke(nameof(ResetAttack), timeBetweenAttacks);
-                if (animation)
-                {
-                    // anim = sword.GetComponentInChildren<Animator>();
-                    // anim.SetTrigger("Attack");
-                }
+                rotationPos -= 360;
+            }
+            Rigidbody rb = Instantiate(sword, transform.position, Quaternion.Euler(0, rotationPos + 90, 90)).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            if (animation)
+            {
+                // anim = sword.GetComponentInChildren<Animator>();
+                // anim.SetTrigger("Attack");
             }
         }
-        else
-        {
-            animator.SetBool("shooting", false);
-            animator.SetBool("attacking", true);
-
-            if (!alreadyAttacked)
-            {
-                int rotationPos = (int)transform.localEulerAngles.y;
-                if (rotationPos > 180)
-                {
-                    rotationPos -= 360;
-                }
-                Rigidbody rb = Instantiate(sword, transform.position, Quaternion.Euler(0, rotationPos + 90, 90)).GetComponent<Rigidbody>();
-                rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-                rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-                alreadyAttacked = true;
-                Invoke(nameof(ResetAttack), timeBetweenAttacks);
-                if (animation)
-                {
-                    // anim = sword.GetComponentInChildren<Animator>();
-                    // anim.SetTrigger("Attack");
-                }
-            }
-        }
-        
-        
     }
+
+    IEnumerator Shooting()
+    {
+        yield return new WaitForSeconds(4);
+        if (!alreadyAttacked)
+        {
+            int rotationPos = (int)transform.localEulerAngles.y;
+            if (rotationPos > 180)
+            {
+                rotationPos -= 360;
+            }
+            Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.Euler(0, rotationPos + 90, 90)).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            if (animation)
+            {
+                // anim = sword.GetComponentInChildren<Animator>();
+                // anim.SetTrigger("Attack");
+            }
+        }
+    }
+
+    private void AttackPlayer2 ()
+    {
+        agent.SetDestination(transform.position);
+        transform.LookAt(player);
+        timeBetweenAttacks = 5f;
+        attackRange = 10f;
+        animation = false;
+        animator.SetBool("shooting", true);
+        animator.SetBool("attacking", false);
+
+        StartCoroutine(Shooting());
+    }
+
+
 
     private void ResetAttack()
     {

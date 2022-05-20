@@ -27,7 +27,7 @@ public class BasicEnemy2 : MonoBehaviour
     [SerializeField] Vector3 target;
 
     // Attaques
-    [SerializeField] float timeBetweenAttacks;
+    private float timeBetweenAttacks = 5f;
     bool alreadyAttacked;
 
     // Etats
@@ -103,16 +103,15 @@ public class BasicEnemy2 : MonoBehaviour
 
     private void Stop()
     {
-        agent.SetDestination(this.transform.position);
         animator.SetBool("running", false);
         animator.SetBool("attacking", true);
+        agent.SetDestination(this.transform.position);
     }
 
-    private void AttackPlayer()
+    IEnumerator Shooting ()
     {
-        agent.SetDestination(transform.position);
-        transform.LookAt(player);
-
+        
+        yield return new WaitForSeconds(4);
         if (!alreadyAttacked)
         {
             int rotationPos = (int)transform.localEulerAngles.y;
@@ -120,7 +119,6 @@ public class BasicEnemy2 : MonoBehaviour
             {
                 rotationPos -= 360;
             }
-
             Rigidbody rb = Instantiate(bowProjectile, transform.position, Quaternion.Euler(0, rotationPos + 90, 90)).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 8f, ForceMode.Impulse);
@@ -128,6 +126,14 @@ public class BasicEnemy2 : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+    }
+  
+    private void AttackPlayer()
+    {
+        agent.SetDestination(transform.position);
+        transform.LookAt(player);
+
+        StartCoroutine(Shooting());
     }
 
     private void ResetAttack()
