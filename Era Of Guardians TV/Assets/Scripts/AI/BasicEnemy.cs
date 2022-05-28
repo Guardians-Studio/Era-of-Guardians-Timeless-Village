@@ -27,6 +27,14 @@ public class BasicEnemy : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
     public bool patroling, fixedPos;
 
+    // Animation
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -34,6 +42,7 @@ public class BasicEnemy : MonoBehaviour
 
     private void Update()
     {
+        
         if (GameObject.FindWithTag("Player"))
         {
             player = GameObject.FindWithTag("Player").transform;
@@ -60,6 +69,11 @@ public class BasicEnemy : MonoBehaviour
             if (fixedPos)
             {
                 ReturnStartPos();
+                if (transform.position.x == startPosition.position.x 
+                    && transform.position.z == startPosition.position.z)
+                {
+                    animator.SetBool("running", false);
+                }
             }
 
             else
@@ -108,15 +122,21 @@ public class BasicEnemy : MonoBehaviour
     private void ChasePlayer ()
     {
         agent.SetDestination(player.position);
+        animator.SetBool("running", true);
+        animator.SetBool("attacking", false);
     }
 
     private void Stop()
     {
         agent.SetDestination(this.transform.position);
+        animator.SetBool("running", false);
+        animator.SetBool("attacking", true);
     }
 
     private void ReturnStartPos ()
     {
+        animator.SetBool("running", true);
+        animator.SetBool("attacking", false);
         agent.SetDestination(startPosition.position);
     }
 

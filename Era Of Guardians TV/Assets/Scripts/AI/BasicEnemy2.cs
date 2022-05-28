@@ -27,16 +27,19 @@ public class BasicEnemy2 : MonoBehaviour
     [SerializeField] Vector3 target;
 
     // Attaques
-    [SerializeField] float timeBetweenAttacks;
+    private float timeBetweenAttacks = 5f;
     bool alreadyAttacked;
 
     // Etats
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    private Animator animator;
+
     private void Start()
     {
-        TakeDamage(0);
+        animator = GetComponent<Animator>();
+        TakeDamage(0f);
     }
 
     private void Awake()
@@ -68,6 +71,8 @@ public class BasicEnemy2 : MonoBehaviour
 
         else
         {
+            animator.SetBool("attacking", false);
+            animator.SetBool("running", true);
             if (Vector3.Distance(agent.transform.position, target) < 1)
             {
                 IterateWaypointIndex();
@@ -91,19 +96,22 @@ public class BasicEnemy2 : MonoBehaviour
 
     private void ChasePlayer()
     {
+        animator.SetBool("attacking", false);
+        animator.SetBool("running", true);
         agent.SetDestination(player.position);
     }
 
     private void Stop()
     {
+        animator.SetBool("running", false);
+        animator.SetBool("attacking", true);
         agent.SetDestination(this.transform.position);
     }
 
-    private void AttackPlayer()
+    IEnumerator Shooting ()
     {
-        agent.SetDestination(transform.position);
-        transform.LookAt(player);
-
+        
+        yield return new WaitForSeconds(4);
         if (!alreadyAttacked)
         {
             int rotationPos = (int)transform.localEulerAngles.y;
@@ -119,6 +127,14 @@ public class BasicEnemy2 : MonoBehaviour
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
+  
+    private void AttackPlayer()
+    {
+        agent.SetDestination(transform.position);
+        transform.LookAt(player);
+
+        StartCoroutine(Shooting());
+    }
 
     private void ResetAttack()
     {
@@ -132,6 +148,7 @@ public class BasicEnemy2 : MonoBehaviour
         if (this.health <= 0)
             DestroyEnemy();
     }
+   
 
     public void DestroyEnemy()
     {
@@ -145,7 +162,7 @@ public class BasicEnemy2 : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         switch (other.gameObject.tag)
@@ -164,4 +181,5 @@ public class BasicEnemy2 : MonoBehaviour
                 break;
         }
     }
+    
 }
