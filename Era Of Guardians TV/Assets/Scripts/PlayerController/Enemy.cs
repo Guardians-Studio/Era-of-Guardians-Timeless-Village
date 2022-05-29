@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (bE.attack)
+        if (bE.attack && canAttack)
         {
             AttackAuto();
         }
@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
 
         // ac.PlayOneShot(swordScript.swordAttack);
 
-        StartCoroutine(ResetAttackCooldown(swordScript.cooldown));
+        StartCoroutine(ResetAttackCooldown(swordScript.cooldown * 1.5f));
     }
 
     IEnumerator ResetAttackCooldown(float cd)
