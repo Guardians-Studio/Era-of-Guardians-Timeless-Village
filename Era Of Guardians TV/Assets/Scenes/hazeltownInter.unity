@@ -7735,6 +7735,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 5990869620749458937, guid: df0a30b343b76d345b2b1dd3b473c03a, type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6520539026141758489, guid: df0a30b343b76d345b2b1dd3b473c03a, type: 3}
       propertyPath: m_RootOrder
       value: 5
