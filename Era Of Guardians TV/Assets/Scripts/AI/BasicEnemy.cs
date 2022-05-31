@@ -33,6 +33,16 @@ public class BasicEnemy : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        animator.SetBool("attacking", false);
+        
+        if (patroling && !fixedPos)
+        {
+            animator.SetBool("running", true);
+        }
+        else if (!patroling && fixedPos)
+        {
+            animator.SetBool("running", false);
+        }
     }
 
     private void Awake()
