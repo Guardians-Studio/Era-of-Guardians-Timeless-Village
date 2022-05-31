@@ -12,6 +12,12 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject finalPanel;
     [SerializeField] GameObject infoPanel;
 
+    [SerializeField] GameObject mapHazel;
+    [SerializeField] GameObject mapLang;
+    [SerializeField] GameObject mapTur;
+    [SerializeField] GameObject mapCeltia;
+
+
 
     private string name;
     public float health = 80;
@@ -30,9 +36,11 @@ public class Player : MonoBehaviour
     private bool turon = false;
     private bool cineTuron = false;
     private bool boss = false;
+    private bool celtia = false;
 
     private bool sout = false;
     private bool sout2 = false;
+    private bool onMap = false;
 
     private void Start()
     {
@@ -128,6 +136,23 @@ public class Player : MonoBehaviour
             this.gameObject.transform.position = tp[0].transform.position;
             sout2 = true;
         }
+        
+        if (Input.GetKeyDown(KeyCode.Comma))
+        {
+            if (!onMap)
+            {
+                PrintMap();
+                onMap = true;
+            }
+            else
+            {
+                mapHazel.SetActive(false);
+                mapLang.SetActive(false);
+                mapCeltia.SetActive(false);
+                mapTur.SetActive(false);
+                onMap = false;
+            }
+        }
     }
     public void StartFinal ()
     {
@@ -147,6 +172,38 @@ public class Player : MonoBehaviour
     public void CancelFinal()
     {
         finalPanel.SetActive(false);
+    }
+
+    private void PrintMap()
+    {
+        if (hazeltown)
+        {
+            mapHazel.SetActive(true);
+            mapLang.SetActive(false);
+            mapCeltia.SetActive(false);
+            mapTur.SetActive(false);
+        }
+        else if (langdale)
+        {
+            mapHazel.SetActive(false);
+            mapLang.SetActive(true);
+            mapCeltia.SetActive(false);
+            mapTur.SetActive(false);
+        }
+        else if (celtia)
+        {
+            mapHazel.SetActive(false);
+            mapLang.SetActive(false);
+            mapCeltia.SetActive(true);
+            mapTur.SetActive(false);
+        }
+        else
+        {
+            mapHazel.SetActive(false);
+            mapLang.SetActive(false);
+            mapCeltia.SetActive(false);
+            mapTur.SetActive(true);
+        }
     }
 
     public void TakeDamage(float amount)

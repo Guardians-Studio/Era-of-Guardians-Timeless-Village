@@ -7211,7 +7211,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2511414349977527446, guid: df0a30b343b76d345b2b1dd3b473c03a, type: 3}
       propertyPath: m_Name
-      value: FinalBoss
+      value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 5586987332392331693, guid: df0a30b343b76d345b2b1dd3b473c03a, type: 3}
       propertyPath: sceneViewId
