@@ -22,7 +22,7 @@ public class BossManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameObject.Find("FinalBoss") == null)
+        if (GameObject.Find("Boss") == null)
         {
             endscreenPanel.SetActive(true);
             endscreenText.text = "Tidalar est vaincu, bien joué !";
