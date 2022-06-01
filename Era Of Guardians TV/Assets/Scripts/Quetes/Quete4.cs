@@ -8,7 +8,6 @@ public class Quete4 : MonoBehaviour
 {
     private bool enter = true;
     private bool tresor = false;
-    private bool gemme = false;
     public GameObject Panel;
     public GameObject image_recompense;
     public Text QuetePnj;
@@ -58,7 +57,7 @@ public class Quete4 : MonoBehaviour
             }
             else
             {
-                QuetePnj.text = "Bonjour cher aventurier ! \n Comme tu peux le voir deriere moi, il y a des tranchées de lave. \n Gare à ne pas y tomber ou la vie tu perdras !! \n Pour obtenir la gemme rouge, il te faudra trouver le coffre la contenant";
+                QuetePnj.text = "Bonjour cher aventurier ! \n Comme tu peux le voir derriere moi, il y a des tranchées de lave. \n Gare à ne pas y tomber ou la vie tu perdras !! \n Pour obtenir la gemme rouge, il te faudra trouver le coffre la contenant";
             }
         }
     }

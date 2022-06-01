@@ -6,12 +6,9 @@ using UnityEngine.UI;
 
 public class Quete2 : MonoBehaviour
 {
-
-    private bool Tidalar = false; 
     private bool gemme = false;
     public GameObject Panel;
     public GameObject image_recompense;
-    public Text NomPnj;
     public Text QuetePnj;
     private int jsp = 1;
 
