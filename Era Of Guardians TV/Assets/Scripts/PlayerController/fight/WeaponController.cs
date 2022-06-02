@@ -305,7 +305,7 @@ public class WeaponController : MonoBehaviour
                     }
                     else if (healthPotionCount > 0)
                     {
-                        if (player.health < player.maxHealth)
+                        if (player.health + 20 < player.maxHealth)
                         {
                             player.Heal(20);
                             healthPotionCount--;

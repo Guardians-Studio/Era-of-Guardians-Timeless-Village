@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     private bool cineTuron = false;
     private bool boss = false;
     private bool celtia = false;
+    private bool oceanos = false;
 
     private bool sout = false;
     private bool sout2 = false;
@@ -61,9 +62,8 @@ public class Player : MonoBehaviour
         timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
         time = (int)Time.time;
 
-
         Scene scene = SceneManager.GetActiveScene();
-        print(scene.name);
+
         if (scene.name == "hazeltownInter" && !hazeltown)
         {
             hazeltown = true;
@@ -72,6 +72,8 @@ public class Player : MonoBehaviour
             turon = false;
             cineTuron = false;
             sout = false;
+            celtia = false;
+            oceanos = false;
             GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
             this.gameObject.transform.position = tp[0].transform.position;
         }
@@ -82,6 +84,8 @@ public class Player : MonoBehaviour
             cineLangdale = true;
             turon = false;
             cineTuron = false;
+            celtia = false;
+            oceanos = false;
             GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
             this.gameObject.transform.position = tp[0].transform.position;
         }
@@ -91,6 +95,8 @@ public class Player : MonoBehaviour
             hazeltown = false;
             turon = false;
             cineTuron = false;
+            celtia = false;
+            oceanos = false;
             GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
             this.gameObject.transform.position = tp[0].transform.position;
         }
@@ -101,6 +107,8 @@ public class Player : MonoBehaviour
             cineLangdale = false;
             turon = false;
             cineTuron = true;
+            celtia = false;
+            oceanos = false;
             GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
             this.gameObject.transform.position = tp[0].transform.position;
         }
@@ -111,6 +119,32 @@ public class Player : MonoBehaviour
             cineLangdale = false;
             turon = true;
             cineTuron = false;
+            celtia = false;
+            oceanos = false;
+            GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
+            this.gameObject.transform.position = tp[0].transform.position;
+        }
+        else if (scene.name == "okeanos" && !oceanos)
+        {
+            hazeltown = false;
+            langdale = false;
+            cineLangdale = false;
+            turon = false;
+            cineTuron = false;
+            celtia = false;
+            oceanos = true;
+            GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
+            this.gameObject.transform.position = tp[0].transform.position;
+        }
+        else if (scene.name == "celtia" && !celtia)
+        {
+            hazeltown = false;
+            langdale = false;
+            cineLangdale = false;
+            turon = false;
+            cineTuron = false;
+            celtia = true;
+            oceanos = false;
             GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
             this.gameObject.transform.position = tp[0].transform.position;
         }
