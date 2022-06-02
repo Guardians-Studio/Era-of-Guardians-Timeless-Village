@@ -8,7 +8,6 @@ public class CeltiaTeleportation : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("celtia"); //Can teleport to an another point in the same scene
-        //SceneManager.LoadScene("celtia");
+        SceneManager.LoadScene("cineCeltia"); //Can teleport to an another point in the same scene
     }
 }
