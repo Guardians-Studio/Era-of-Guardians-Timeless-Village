@@ -22,7 +22,7 @@ public class Quete_celtia : MonoBehaviour
             Destroy(collision.gameObject);
             weaponController.healthPotionCount +=1;
             weaponController.xpPotionCount +=2;
-            //player.gemmeCount += 1;
+            player.gemmeCount += 1;
             enter = false;
             StartCoroutine(ReinitializeEntryBool());
             gemme = true;
@@ -32,7 +32,7 @@ public class Quete_celtia : MonoBehaviour
     {
         if (gemme)
         {
-            if (jsp >0)
+            if (jsp > 0)
             {
                 image_recompense.SetActive(true);
                 StartCoroutine(Wait());

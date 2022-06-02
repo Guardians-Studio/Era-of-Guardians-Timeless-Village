@@ -22,7 +22,7 @@ public class Quete4 : MonoBehaviour
             Destroy(collision.gameObject);
             weaponController.healthPotionCount +=1;
             weaponController.xpPotionCount +=2;
-            //player.gemmeCount += 1;
+            player.gemmeCount += 1;
             enter = false;
             StartCoroutine(ReinitializeEntryBool());
             tresor = true;
