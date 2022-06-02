@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject mapTur;
     [SerializeField] GameObject mapCeltia;
 
-
+    public Text timer;
 
     private string name;
     public float health = 80;
@@ -42,6 +43,8 @@ public class Player : MonoBehaviour
     private bool sout2 = false;
     private bool onMap = false;
 
+    private float time;
+
     private void Start()
     {
 
@@ -49,10 +52,16 @@ public class Player : MonoBehaviour
         Heal(0);
         uiPlayer.UpdateLevel(this.level);
         DontDestroyOnLoad(this.gameObject);
+
+        time = (int)Time.time;
     }
 
     private void Update()
     {
+        timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
+        time = (int)Time.time;
+
+
         Scene scene = SceneManager.GetActiveScene();
         print(scene.name);
         if (scene.name == "hazeltownInter" && !hazeltown)

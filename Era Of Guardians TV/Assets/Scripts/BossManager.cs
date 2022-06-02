@@ -13,6 +13,7 @@ public class BossManager : MonoBehaviour
 
     public GameObject endscreenPanel;
     public Text endscreenText;
+    public Text timer;
 
     private void Start()
     {
@@ -30,6 +31,12 @@ public class BossManager : MonoBehaviour
             player.GetComponent<WeaponController>().enabled = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            if (!spawned)
+            {
+                timer.text = ("Vous avez gagné en : " + player.timer.text);
+                spawned = true;
+            }
+            
         }
     }
 
