@@ -5073,6 +5073,7 @@ MonoBehaviour:
   userID: Solo
   chatMessageDisplayer: {fileID: 2119631616457196900}
   chatMessageSender: {fileID: 7325632109684169920}
+  photonChat: {fileID: 8461630423504582385}
 --- !u!114 &7146579136457331292
 MonoBehaviour:
   m_ObjectHideFlags: 0
