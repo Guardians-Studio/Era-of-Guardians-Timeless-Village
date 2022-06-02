@@ -5863,6 +5863,7 @@ MonoBehaviour:
   mapLang: {fileID: 8306839043493241594}
   mapTur: {fileID: 7516166762265938676}
   mapCeltia: {fileID: 7226972124575361637}
+  bossManager: {fileID: 535068936038838182}
   timer: {fileID: 2341388965202251250}
   health: 80
   maxHealth: 100
@@ -6132,6 +6133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4881315725545461216}
+  spawned: 0
   endscreenPanel: {fileID: 7175661576540331644}
   endscreenText: {fileID: 2271977482151978024}
   timer: {fileID: 354913361070161398}

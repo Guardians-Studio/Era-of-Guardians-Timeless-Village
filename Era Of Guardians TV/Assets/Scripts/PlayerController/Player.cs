@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject mapTur;
     [SerializeField] GameObject mapCeltia;
 
+    [SerializeField] BossManager bossManager;
+
     public Text timer;
 
     private string name;
@@ -59,8 +61,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
-        time = (int)Time.time;
+        if (!bossManager.spawned)
+        {
+            timer.text = string.Format("{0:0}:{1:00}", Mathf.Floor(time / 60), time % 60);
+            time = (int)Time.time;
+        }
+       
 
         Scene scene = SceneManager.GetActiveScene();
 

@@ -9,7 +9,7 @@ public class BossManager : MonoBehaviour
 {
     [SerializeField] Player player;
 
-    private bool spawned = false;
+    public bool spawned = false;
 
     public GameObject endscreenPanel;
     public Text endscreenText;
