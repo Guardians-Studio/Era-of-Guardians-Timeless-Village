@@ -50,7 +50,7 @@ public class Quete_okeanos : MonoBehaviour
             }
             else
             {
-                QuetePnj.text = "Combat les Monstres pour obtenir la dernière gemme !!!.";
+                QuetePnj.text = "Combat et élimine tous les ennemis pour obtenir la dernière gemme !!!.";
             }
         }
     }
