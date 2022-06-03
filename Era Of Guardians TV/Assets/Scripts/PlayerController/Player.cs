@@ -186,7 +186,7 @@ public class Player : MonoBehaviour
             sout2 = true;
         }
         
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) && !Cursor.visible)
         {
             if (!onMap)
             {
