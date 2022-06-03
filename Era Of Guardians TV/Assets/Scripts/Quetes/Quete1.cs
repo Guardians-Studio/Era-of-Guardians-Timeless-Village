@@ -34,7 +34,7 @@ public class Quete1 : MonoBehaviour
             Panel.SetActive(true);
             if(FirstTimeQuest == false)
             {
-                QuetePnj.text = "je n'ai pas d'autres quêtes à te proposer. Reviens une prochaine fois !!";
+                QuetePnj.text = "je n'ai pas d'autres quêtes à te proposer. Reviens une prochaine fois !! \n Mais essaie de regarder dans d'autres territoires !";
             }
             else
             {

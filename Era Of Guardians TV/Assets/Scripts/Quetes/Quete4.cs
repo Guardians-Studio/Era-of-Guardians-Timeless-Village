@@ -53,7 +53,7 @@ public class Quete4 : MonoBehaviour
             Panel.SetActive(true);
             if(tresor)
             {
-                QuetePnj.text = "Bravo tu l'as donc trouvé !!\n\n Je t'attendrais à X pour obtenir la prochaine gemme !";
+                QuetePnj.text = "Bravo tu l'as donc trouvé !!\n\n Ma soeur Judith t'attendras à Celtia pour obtenir la prochaine gemme !";
             }
             else
             {
