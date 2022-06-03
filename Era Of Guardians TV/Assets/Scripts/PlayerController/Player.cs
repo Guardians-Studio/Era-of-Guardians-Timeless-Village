@@ -173,7 +173,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Chat());
         }
 
-        if (Input.GetKeyDown(KeyCode.M) && !sout)
+        if (Input.GetKeyDown(KeyCode.Comma) && !sout)
         {
             GameObject[] tp = GameObject.FindGameObjectsWithTag("sout");
             this.gameObject.transform.position = tp[0].transform.position;
@@ -186,7 +186,7 @@ public class Player : MonoBehaviour
             sout2 = true;
         }
         
-        if (Input.GetKeyDown(KeyCode.Comma))
+        if (Input.GetKeyDown(KeyCode.M))
         {
             if (!onMap)
             {
