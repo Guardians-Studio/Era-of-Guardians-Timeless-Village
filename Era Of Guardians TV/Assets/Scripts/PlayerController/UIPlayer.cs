@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class UIPlayer : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] KeyConfiguration keyConfiguration;
     [SerializeField] GameObject tabMenu;
+    [SerializeField] PhotonView view;
 
     private void Start()
     {
@@ -24,6 +26,19 @@ public class UIPlayer : MonoBehaviour
         eText.text = keyConfiguration.eKeyString;
         wText.text = keyConfiguration.wKeyString;
         xText.text = keyConfiguration.xKeyString;
+
+        if (!view.IsMine)
+        {
+            aText.text = "";
+            eText.text = "";
+            wText.text = "";
+            xText.text = "";
+            xpBar.enabled = false;
+            xpTxt.text = "";
+            healthBar.enabled = false;
+            healthTxt.text = "";
+            levelText.text = "";
+        }
     }
 
     private void Update()
