@@ -54,27 +54,27 @@ public class FightDetection : MonoBehaviour
             ParticleSystem particle = Instantiate(hitParticle, other.gameObject.GetComponentInParent<Transform>());
             particle.Play();
             other.gameObject.GetComponentInParent<Enemy>().TakeDamage(damage);
-            HitEvent(other, damage);
+            // HitEvent(other, damage);
         }
         if (other.tag == "Boss")
         {
             ParticleSystem particle = Instantiate(hitParticle, other.gameObject.GetComponentInParent<Transform>());
             particle.Play();
             other.gameObject.GetComponentInParent<Boss>().TakeDamage(0);
-            HitEvent(other, damage);
+           // HitEvent(other, damage);
         }
         if (other.tag == "Enemy2")
         {
             ParticleSystem particle = Instantiate(hitParticle, other.gameObject.GetComponentInParent<Transform>());
             particle.Play();
             other.gameObject.GetComponentInParent<BasicEnemy2>().TakeDamage(0);
-            HitEvent(other, damage);
+            // HitEvent(other, damage);
 
         }
     }
 
 
-    private void HitEvent(Collider other, float damage)
+    /*private void HitEvent(Collider other, float damage)
     {
         object[] content = new object[] {other.name, other.tag, damage};
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others }; // You would have to set the Receivers to All in order to receive this event on the local client as well
@@ -135,6 +135,6 @@ public class FightDetection : MonoBehaviour
                     break;
             }        
         }
-    }
+    }*/
 }
 
