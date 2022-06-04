@@ -771,7 +771,17 @@ public class WeaponController : MonoBehaviour
         print("event sent");
     }
 
-    public void OnEvent(EventData photonEvent)
+    private void OnEnable()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_EventReceived;
+    }
+
+    private void OnDisable()
+    {
+        PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClient_EventReceived;
+    }
+
+    public void NetworkingClient_EventReceived(EventData photonEvent)
     {
         print("receive event");
         byte eventCode = photonEvent.Code;
