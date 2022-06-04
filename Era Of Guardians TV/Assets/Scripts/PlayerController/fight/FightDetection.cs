@@ -14,8 +14,6 @@ public class FightDetection : MonoBehaviour
 
     private bool isCollided = true;
 
-    private const int hitEventCode = 16;
-
     private void Start()
     {
         if (this.tag == "Sword")
