@@ -22,11 +22,9 @@ public class Player : MonoBehaviour
 
     public Text timer;
 
-    private string name;
+
     public float health = 80;
     public float maxHealth = 100;
-    private float armor = 10;
-    private List<GameObject> items;
     private float xpAmount = 50;
     private int level = 1;
     public int gemmeCount = 0;

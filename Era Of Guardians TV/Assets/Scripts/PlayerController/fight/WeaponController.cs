@@ -129,11 +129,13 @@ public class WeaponController : MonoBehaviour
     {
         if (view.IsMine || PhotonNetwork.CurrentRoom == null)
         {
-
+            int tempAb = selectedAbility;
             SelectAbility();
-
+           
             if (selectedAbility == 0)
             {
+                int temp = selectedWeapon0;
+                
                 if (Input.GetAxis("Mouse ScrollWheel") > 0f)
                 {
                     if (selectedWeapon0 >= weapons.Length - 1)
@@ -173,7 +175,11 @@ public class WeaponController : MonoBehaviour
                     selectedWeapon0 = 3;
                 }
 
-                SelectWeapon();
+                if (selectedWeapon0 != temp)
+                {
+                    SelectWeapon();
+                }
+                
 
                 if (Input.GetMouseButtonDown(keyConfiguration.leftMouseKey) && sword.activeSelf)
                 {
@@ -226,6 +232,7 @@ public class WeaponController : MonoBehaviour
             }
             else if (selectedAbility == 1)
             {
+                int temp = selectedWeapon1;
                 if (Input.GetAxis("Mouse ScrollWheel") > 0f)
                 {
                     if (selectedWeapon1 >= weapons1.Length - 1)
@@ -248,8 +255,11 @@ public class WeaponController : MonoBehaviour
                         selectedWeapon1--;
                     }
                 }
-
-                SelectWeapon();
+                if (selectedWeapon1 != temp)
+                {
+                    SelectWeapon();
+                }
+                
 
                 if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && shield.activeSelf)
                 {
@@ -265,6 +275,7 @@ public class WeaponController : MonoBehaviour
             }
             else if (selectedAbility == 2)
             {
+                int temp = selectedWeapon2;
                 if (Input.GetAxis("Mouse ScrollWheel") > 0f)
                 {
                     if (selectedWeapon2 >= weapons2.Length - 1)
@@ -296,8 +307,11 @@ public class WeaponController : MonoBehaviour
                 {
                     slot2.text = xpPotionCount.ToString();
                 }
-
-                SelectWeapon();
+                if (selectedWeapon2 != temp)
+                {
+                    SelectWeapon();
+                }
+                
 
                 if (Input.GetMouseButtonDown(keyConfiguration.rightMouseKey) && selectedWeapon2 == 0)
                 {
@@ -353,7 +367,8 @@ public class WeaponController : MonoBehaviour
                 }
             }
             else if (selectedAbility == 3)
-            { 
+            {
+                int temp = selectedWeapon3;
                 if (Input.GetAxis("Mouse ScrollWheel") > 0f)
                 {
                     if (selectedWeapon3 >= weapons3.Length - 1)
@@ -385,7 +400,15 @@ public class WeaponController : MonoBehaviour
                 {
                     slot3.text = player.gemmeCount.ToString();
                 }
+                if (selectedWeapon3 != temp)
+                {
+                    SelectWeapon();
+                }
+                
+            }
 
+            if (tempAb != selectedAbility)
+            {
                 SelectWeapon();
             }
         }
@@ -450,6 +473,7 @@ public class WeaponController : MonoBehaviour
 
     public void SelectWeapon()
     {
+        print("select");     
         int i = 0;
         if (selectedAbility != 0)
         {
@@ -741,7 +765,7 @@ public class WeaponController : MonoBehaviour
 
     private void ChangeWeaponEvent()
     {
-        object[] content = new object[] { this.gameObject, selectedAbility, selectedWeapon0, selectedWeapon1, selectedWeapon2, selectedWeapon3 };
+        object[] content = new object[] { this.gameObject.transform.position, selectedAbility, selectedWeapon0, selectedWeapon1, selectedWeapon2, selectedWeapon3 };
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others }; // You would have to set the Receivers to All in order to receive this event on the local client as well
         PhotonNetwork.RaiseEvent(ChangeWeaponEventCode, content, raiseEventOptions, SendOptions.SendReliable);
         print("event sent");
@@ -756,9 +780,21 @@ public class WeaponController : MonoBehaviour
         {
             object[] data = (object[])photonEvent.CustomData;
 
-            Player player = (Player)data[0];
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
-            WeaponController playerWeaponController = player.GetComponent<WeaponController>();
+            Transform playerPos = (Transform)data[0];
+
+            GameObject playerInvolved = null;
+
+            foreach (var item in players)
+            {
+                if (item.transform.position == playerPos.position)
+                {
+                    playerInvolved = item;
+                }
+            }
+
+            WeaponController playerWeaponController = playerInvolved.GetComponent<WeaponController>();
 
             playerWeaponController.selectedAbility = (int)data[1];
 
