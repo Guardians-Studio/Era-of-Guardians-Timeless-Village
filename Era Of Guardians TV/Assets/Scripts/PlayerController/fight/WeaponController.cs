@@ -595,7 +595,6 @@ public class WeaponController : MonoBehaviour
             i++;
         }
 
-        ChangeWeaponEvent();
     }
 
 
@@ -761,74 +760,5 @@ public class WeaponController : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         infoText.enabled = false;
-    }
-
-    private void ChangeWeaponEvent()
-    {
-        object[] content = new object[] { this.gameObject.transform.position, selectedAbility, selectedWeapon0, selectedWeapon1, selectedWeapon2, selectedWeapon3 };
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others }; // You would have to set the Receivers to All in order to receive this event on the local client as well
-        PhotonNetwork.RaiseEvent(ChangeWeaponEventCode, content, raiseEventOptions, SendOptions.SendReliable);
-        print("event sent");
-    }
-
-    private void OnEnable()
-    {
-        PhotonNetwork.NetworkingClient.EventReceived += NetworkingClient_EventReceived;
-    }
-
-    private void OnDisable()
-    {
-        PhotonNetwork.NetworkingClient.EventReceived -= NetworkingClient_EventReceived;
-    }
-
-    public void NetworkingClient_EventReceived(EventData photonEvent)
-    {
-        print("receive event");
-        byte eventCode = photonEvent.Code;
-
-        if (eventCode == ChangeWeaponEventCode) // change weapon
-        {
-            object[] data = (object[])photonEvent.CustomData;
-
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-            Transform playerPos = (Transform)data[0];
-
-            GameObject playerInvolved = null;
-
-            foreach (var item in players)
-            {
-                if (item.transform.position == playerPos.position)
-                {
-                    playerInvolved = item;
-                }
-            }
-
-            WeaponController playerWeaponController = playerInvolved.GetComponent<WeaponController>();
-
-            playerWeaponController.selectedAbility = (int)data[1];
-
-            switch(selectedAbility)
-            {
-                case 0:
-                    playerWeaponController.selectedWeapon0 = (int)data[2];
-                    break;
-
-                case 1:
-                    playerWeaponController.selectedWeapon1 = (int)data[3];
-                    break;
-
-                case 2:
-                    playerWeaponController.selectedWeapon2 = (int)data[4];
-                    break;
-
-                case 3:
-                    playerWeaponController.selectedWeapon3 = (int)data[5];
-                    break;
-
-            }
-
-            playerWeaponController.SelectWeapon();
-        }
     }
 }
