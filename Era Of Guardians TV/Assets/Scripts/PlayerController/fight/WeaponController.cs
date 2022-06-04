@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 
 public class WeaponController : MonoBehaviour
 {
@@ -31,11 +33,11 @@ public class WeaponController : MonoBehaviour
     [SerializeField] GameObject[] weapons2;
     [SerializeField] GameObject[] weapons3;
 
-    private int selectedAbility = 0;
-    private int selectedWeapon0 = 0;
-    private int selectedWeapon1 = 0;
-    private int selectedWeapon2 = 0;
-    private int selectedWeapon3 = 0;
+    public int selectedAbility = 0;
+    public int selectedWeapon0 = 0;
+    public int selectedWeapon1 = 0;
+    public int selectedWeapon2 = 0;
+    public int selectedWeapon3 = 0;
 
     [SerializeField] Text slot2;
     [SerializeField] Text slot3;
@@ -74,6 +76,8 @@ public class WeaponController : MonoBehaviour
     PhotonView view;
 
     private Player player;
+
+    public const byte ChangeWeaponEventCode = 1;
 
     private void Start()
     {
@@ -441,9 +445,10 @@ public class WeaponController : MonoBehaviour
             selectors[2].gameObject.SetActive(false);
             selectors[3].gameObject.SetActive(true);
         }
+
     }
 
-    private void SelectWeapon()
+    public void SelectWeapon()
     {
         int i = 0;
         if (selectedAbility != 0)
@@ -565,6 +570,8 @@ public class WeaponController : MonoBehaviour
             }
             i++;
         }
+
+        ChangeWeaponEvent();
     }
 
 
@@ -730,5 +737,52 @@ public class WeaponController : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         infoText.enabled = false;
+    }
+
+    private void ChangeWeaponEvent()
+    {
+        object[] content = new object[] { this.gameObject, selectedAbility, selectedWeapon0, selectedWeapon1, selectedWeapon2, selectedWeapon3 };
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
+        PhotonNetwork.RaiseEvent(ChangeWeaponEventCode, content, raiseEventOptions, SendOptions.SendReliable);
+        print("event sent");
+    }
+
+    public void OnEvent(EventData photonEvent)
+    {
+        print("receive event");
+        byte eventCode = photonEvent.Code;
+
+        if (eventCode == ChangeWeaponEventCode) // change weapon
+        {
+            object[] data = (object[])photonEvent.CustomData;
+
+            Player player = (Player)data[0];
+
+            WeaponController playerWeaponController = player.GetComponent<WeaponController>();
+
+            playerWeaponController.selectedAbility = (int)data[1];
+
+            switch(selectedAbility)
+            {
+                case 0:
+                    playerWeaponController.selectedWeapon0 = (int)data[2];
+                    break;
+
+                case 1:
+                    playerWeaponController.selectedWeapon1 = (int)data[3];
+                    break;
+
+                case 2:
+                    playerWeaponController.selectedWeapon2 = (int)data[4];
+                    break;
+
+                case 3:
+                    playerWeaponController.selectedWeapon3 = (int)data[5];
+                    break;
+
+            }
+
+            playerWeaponController.SelectWeapon();
+        }
     }
 }

@@ -16,12 +16,15 @@ public class UIPlayer : MonoBehaviour
     [SerializeField] Image healthBar;
     [SerializeField] Text healthTxt;
     [SerializeField] Text levelText;
+    [SerializeField] GameObject healthCanvas;
+    [SerializeField] GameObject xpCanvas;
     [SerializeField] KeyConfiguration keyConfiguration;
     [SerializeField] GameObject tabMenu;
     [SerializeField] PhotonView view;
 
     private void Start()
     {
+
         aText.text = keyConfiguration.aKeyString;
         eText.text = keyConfiguration.eKeyString;
         wText.text = keyConfiguration.wKeyString;
@@ -29,15 +32,8 @@ public class UIPlayer : MonoBehaviour
 
         if (!view.IsMine)
         {
-            aText.text = "";
-            eText.text = "";
-            wText.text = "";
-            xText.text = "";
-            xpBar.enabled = false;
-            xpTxt.text = "";
-            healthBar.enabled = false;
-            healthTxt.text = "";
-            levelText.text = "";
+            healthCanvas.SetActive(false);
+            xpCanvas.SetActive(false);
         }
     }
 
