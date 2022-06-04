@@ -30,7 +30,7 @@ public class UIPlayer : MonoBehaviour
         wText.text = keyConfiguration.wKeyString;
         xText.text = keyConfiguration.xKeyString;
 
-        if (!view.IsMine)
+        if (!view.IsMine && PhotonNetwork.IsConnected)
         {
             healthCanvas.SetActive(false);
             xpCanvas.SetActive(false);

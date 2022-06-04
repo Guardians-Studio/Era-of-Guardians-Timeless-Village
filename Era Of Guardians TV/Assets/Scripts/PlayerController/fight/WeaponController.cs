@@ -742,7 +742,7 @@ public class WeaponController : MonoBehaviour
     private void ChangeWeaponEvent()
     {
         object[] content = new object[] { this.gameObject, selectedAbility, selectedWeapon0, selectedWeapon1, selectedWeapon2, selectedWeapon3 };
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.All }; // You would have to set the Receivers to All in order to receive this event on the local client as well
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others }; // You would have to set the Receivers to All in order to receive this event on the local client as well
         PhotonNetwork.RaiseEvent(ChangeWeaponEventCode, content, raiseEventOptions, SendOptions.SendReliable);
         print("event sent");
     }
