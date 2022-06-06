@@ -20,7 +20,7 @@ public class Quete4 : MonoBehaviour
         if(collision.gameObject.name == "Tresors" && enter)
         {
             Destroy(collision.gameObject);
-            weaponController.healthPotionCount +=1;
+            weaponController.healthPotionCount +=2;
             weaponController.xpPotionCount +=2;
             player.gemmeCount += 1;
             enter = false;

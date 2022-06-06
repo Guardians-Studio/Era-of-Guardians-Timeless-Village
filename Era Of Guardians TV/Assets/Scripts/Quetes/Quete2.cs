@@ -14,6 +14,7 @@ public class Quete2 : MonoBehaviour
 
 
     [SerializeField] Player player;
+    [SerializeField] WeaponController weaponController;
 
     void Update()
     {
@@ -21,6 +22,8 @@ public class Quete2 : MonoBehaviour
         {
             player.gemmeCount++;
             gemme = true;
+            weaponController.healthPotionCount += 2;
+            weaponController.xpPotionCount += 2;
 
         }
         if (gemme)

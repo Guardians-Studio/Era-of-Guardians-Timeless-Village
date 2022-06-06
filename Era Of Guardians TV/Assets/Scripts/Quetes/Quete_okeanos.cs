@@ -14,12 +14,15 @@ public class Quete_okeanos : MonoBehaviour
 
 
     [SerializeField] Player player;
+    [SerializeField] WeaponController weaponController;
 
     void Update()
     {
         if (GameObject.Find("enemy_quete") == null && !gemme)
         {
             player.gemmeCount++;
+            weaponController.healthPotionCount += 2;
+            weaponController.xpPotionCount += 2;
             gemme = true;
 
         }

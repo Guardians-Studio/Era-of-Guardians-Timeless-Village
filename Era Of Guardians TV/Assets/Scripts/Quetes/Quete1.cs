@@ -54,7 +54,8 @@ public class Quete1 : MonoBehaviour
         if(weaponController.bushCount >= 3)
         {
             weaponController.bushCount = 0;
-            weaponController.healthPotionCount++;
+            weaponController.healthPotionCount += 2;
+            weaponController.xpPotionCount += 2;
         }
     }
 
