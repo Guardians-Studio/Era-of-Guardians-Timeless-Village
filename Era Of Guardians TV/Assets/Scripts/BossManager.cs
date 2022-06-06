@@ -9,10 +9,11 @@ public class BossManager : MonoBehaviour
 {
     [SerializeField] Player player;
 
-    private bool spawned = false;
+    public bool spawned = false;
 
     public GameObject endscreenPanel;
     public Text endscreenText;
+    public Text timer;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class BossManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameObject.Find("FinalBoss") == null)
+        if (GameObject.Find("Boss") == null)
         {
             endscreenPanel.SetActive(true);
             endscreenText.text = "Tidalar est vaincu, bien joué !";
@@ -30,6 +31,12 @@ public class BossManager : MonoBehaviour
             player.GetComponent<WeaponController>().enabled = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            if (!spawned)
+            {
+                timer.text = ("Vous avez gagné en : " + player.timer.text);
+                spawned = true;
+            }
+            
         }
     }
 

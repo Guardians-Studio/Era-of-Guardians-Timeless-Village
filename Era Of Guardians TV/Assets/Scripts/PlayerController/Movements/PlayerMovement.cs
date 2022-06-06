@@ -50,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     PhotonView view;
 
+    [SerializeField] Animator animator;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -158,6 +160,14 @@ public class PlayerMovement : MonoBehaviour
         // affect the direction
         moveDirection = playerCapsule.transform.forward * verticalMovement + playerCapsule.transform.right * horizontalMovement;
 
+        if (moveDirection != new Vector3(0,0,0))
+        {
+            animator.SetBool("run", true);
+        }
+        else
+        {
+            animator.SetBool("run", false);
+        }
     }
 
     private void ControlDrag()

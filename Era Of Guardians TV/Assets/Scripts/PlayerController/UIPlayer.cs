@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,15 +16,25 @@ public class UIPlayer : MonoBehaviour
     [SerializeField] Image healthBar;
     [SerializeField] Text healthTxt;
     [SerializeField] Text levelText;
+    [SerializeField] GameObject healthCanvas;
+    [SerializeField] GameObject xpCanvas;
     [SerializeField] KeyConfiguration keyConfiguration;
     [SerializeField] GameObject tabMenu;
+    [SerializeField] PhotonView view;
 
     private void Start()
     {
+
         aText.text = keyConfiguration.aKeyString;
         eText.text = keyConfiguration.eKeyString;
         wText.text = keyConfiguration.wKeyString;
         xText.text = keyConfiguration.xKeyString;
+
+        if (!view.IsMine && PhotonNetwork.IsConnected)
+        {
+            healthCanvas.SetActive(false);
+            xpCanvas.SetActive(false);
+        }
     }
 
     private void Update()

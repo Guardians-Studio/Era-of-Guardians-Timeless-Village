@@ -291,4 +291,10 @@ public class MenuController : MonoBehaviourPunCallbacks
         }
     }
 
+
+    public void UpdateList()
+    {
+        PhotonNetwork.Disconnect();
+        Connect();
+    }
 }

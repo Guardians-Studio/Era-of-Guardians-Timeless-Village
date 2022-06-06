@@ -34,11 +34,11 @@ public class Quete1 : MonoBehaviour
             Panel.SetActive(true);
             if(FirstTimeQuest == false)
             {
-                QuetePnj.text = "je n'ai pas d'autres quêtes à te proposer. Reviens une prochaine fois !!";
+                QuetePnj.text = "je n'ai pas d'autres quêtes à te proposer. Reviens une prochaine fois !! \n Mais essaie de regarder dans d'autres territoires !";
             }
             else
             {
-                QuetePnj.text = "Pourriez vous me trouver 3 buissons SVP";
+                QuetePnj.text = "Pourriez vous me trouver 3 buissons s'il vous plaît !";
             }
 
             if(weaponController.bushCount >= 3 && potion != 1)
@@ -54,7 +54,8 @@ public class Quete1 : MonoBehaviour
         if(weaponController.bushCount >= 3)
         {
             weaponController.bushCount = 0;
-            weaponController.healthPotionCount++;
+            weaponController.healthPotionCount += 2;
+            weaponController.xpPotionCount += 2;
         }
     }
 

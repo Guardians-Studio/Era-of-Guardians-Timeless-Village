@@ -32,4 +32,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/hazeltownInter.unity
     guid: 1c689dc29cea3584b9391bd265fcf8ba
+  - enabled: 1
+    path: Assets/Scenes/okeanos.unity
+    guid: ae1896f5f6d844a45a3c472011dd283c
+  - enabled: 1
+    path: Assets/Scenes/celtia.unity
+    guid: 7c34c6a1b26ce02479c21f0243289ac0
+  - enabled: 1
+    path: Assets/Scenes/cineCeltia.unity
+    guid: e260b4b4adb888e41906de842671e8e1
+  - enabled: 1
+    path: Assets/Scenes/cineOkeanos.unity
+    guid: 394307157a9067a419696ab0430d52d9
   m_configObjects: {}

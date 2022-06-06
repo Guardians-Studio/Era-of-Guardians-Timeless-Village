@@ -16,6 +16,8 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
     public ChatMessageSender chatMessageSender;
     private ChatClient chatClient;
 
+    [SerializeField] GameObject photonChat;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class PhotonChatClient : MonoBehaviour, IChatClientListener
         if (PhotonNetwork.CurrentRoom == null)
         {
             userID = "Solo";
+            photonChat.SetActive(false);
         }
 
         chatMessageSender.SetUserName(userID);

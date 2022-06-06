@@ -6,17 +6,15 @@ using UnityEngine.UI;
 
 public class Quete2 : MonoBehaviour
 {
-
-    private bool Tidalar = false; 
     private bool gemme = false;
     public GameObject Panel;
     public GameObject image_recompense;
-    public Text NomPnj;
     public Text QuetePnj;
     private int jsp = 1;
 
 
     [SerializeField] Player player;
+    [SerializeField] WeaponController weaponController;
 
     void Update()
     {
@@ -24,6 +22,8 @@ public class Quete2 : MonoBehaviour
         {
             player.gemmeCount++;
             gemme = true;
+            weaponController.healthPotionCount += 2;
+            weaponController.xpPotionCount += 2;
 
         }
         if (gemme)
@@ -49,7 +49,7 @@ public class Quete2 : MonoBehaviour
             Panel.SetActive(true);
             if(gemme)
             {
-                QuetePnj.text = "Si tu es revenu ici ça veut dire que tu as réussi !! \n\n Maintenant il te reste une dernière chose a faire : \n Battre Tidalar au centre de Hazeltown !";
+                QuetePnj.text = "Si tu es revenu ici ça veut dire que tu as réussi !! \n\n Il te faut donc trouver 4 de ces gemmes pour pouvoir combattre Tidalar ! \n\n Barry est à Turon et t'attend pour obtenir la gemme rouge !";
             }
             else
             {
