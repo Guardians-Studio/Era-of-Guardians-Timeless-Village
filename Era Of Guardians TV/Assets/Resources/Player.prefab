@@ -5946,9 +5946,9 @@ MonoBehaviour:
   mapCeltia: {fileID: 7226972124575361637}
   bossManager: {fileID: 535068936038838182}
   timer: {fileID: 2341388965202251250}
-  health: 80
+  health: 100
   maxHealth: 100
-  gemmeCount: 1
+  gemmeCount: 4
 --- !u!114 &4146235936788497540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6361,6 +6361,7 @@ MonoBehaviour:
   image_recompense: {fileID: 3268352514106459660}
   QuetePnj: {fileID: 6278530737759087766}
   player: {fileID: 4881315725545461216}
+  weaponController: {fileID: 0}
 --- !u!114 &4004038946718489526
 MonoBehaviour:
   m_ObjectHideFlags: 0

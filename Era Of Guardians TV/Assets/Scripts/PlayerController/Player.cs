@@ -41,7 +41,8 @@ public class Player : MonoBehaviour
     private bool oceanos = false;
 
     private bool sout = false;
-    // private bool sout2 = false;
+    private bool sout2 = false;
+    private bool sout3 = false;
     private bool onMap = false;
 
     private float time;
@@ -171,19 +172,25 @@ public class Player : MonoBehaviour
             StartCoroutine(Chat());
         }
 
-        /*if (Input.GetKeyDown(KeyCode.Comma) && !sout)
+        if (Input.GetKeyDown(KeyCode.Keypad0) && !sout)
         {
             GameObject[] tp = GameObject.FindGameObjectsWithTag("sout");
             this.gameObject.transform.position = tp[0].transform.position;
-            StartCoroutine(Sout());
+            sout = true;
         }
-        else if ((Input.GetKeyDown(KeyCode.N) && !sout2))
+        else if ((Input.GetKeyDown(KeyCode.Keypad1) && !sout2))
         {
             GameObject[] tp = GameObject.FindGameObjectsWithTag("sout2");
             this.gameObject.transform.position = tp[0].transform.position;
             sout2 = true;
-        }*/
-        
+        }
+        else if ((Input.GetKeyDown(KeyCode.Keypad2) && !sout3))
+        {
+            GameObject[] tp = GameObject.FindGameObjectsWithTag("sout3");
+            this.gameObject.transform.position = tp[0].transform.position;
+            sout3 = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.M) && !Cursor.visible)
         {
             if (!onMap)

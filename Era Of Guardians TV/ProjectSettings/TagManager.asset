@@ -18,6 +18,7 @@ TagManager:
   - tp
   - sout
   - sout2
+  - sout3
   layers:
   - Default
   - TransparentFX
