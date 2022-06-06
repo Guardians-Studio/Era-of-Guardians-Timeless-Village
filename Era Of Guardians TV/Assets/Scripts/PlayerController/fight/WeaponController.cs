@@ -77,7 +77,7 @@ public class WeaponController : MonoBehaviour
 
     private Player player;
 
-    public const byte ChangeWeaponEventCode = 1;
+    // public const byte ChangeWeaponEventCode = 1;
 
     private void Start()
     {

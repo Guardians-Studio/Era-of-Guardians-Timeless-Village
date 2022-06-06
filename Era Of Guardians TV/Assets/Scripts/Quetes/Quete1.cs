@@ -38,7 +38,7 @@ public class Quete1 : MonoBehaviour
             }
             else
             {
-                QuetePnj.text = "Pourriez vous me trouver 3 buissons SVP";
+                QuetePnj.text = "Pourriez vous me trouver 3 buissons s'il vous plaît !";
             }
 
             if(weaponController.bushCount >= 3 && potion != 1)

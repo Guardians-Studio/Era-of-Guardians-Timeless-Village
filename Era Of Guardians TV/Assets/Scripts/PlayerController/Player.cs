@@ -23,9 +23,9 @@ public class Player : MonoBehaviour
     public Text timer;
 
 
-    public float health = 80;
+    public float health = 100;
     public float maxHealth = 100;
-    private float xpAmount = 50;
+    private float xpAmount = 20;
     private int level = 1;
     public int gemmeCount = 0;
 
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     private bool oceanos = false;
 
     private bool sout = false;
-    private bool sout2 = false;
+    // private bool sout2 = false;
     private bool onMap = false;
 
     private float time;
@@ -171,7 +171,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Chat());
         }
 
-        if (Input.GetKeyDown(KeyCode.Comma) && !sout)
+        /*if (Input.GetKeyDown(KeyCode.Comma) && !sout)
         {
             GameObject[] tp = GameObject.FindGameObjectsWithTag("sout");
             this.gameObject.transform.position = tp[0].transform.position;
@@ -182,7 +182,7 @@ public class Player : MonoBehaviour
             GameObject[] tp = GameObject.FindGameObjectsWithTag("sout2");
             this.gameObject.transform.position = tp[0].transform.position;
             sout2 = true;
-        }
+        }*/
         
         if (Input.GetKeyDown(KeyCode.M) && !Cursor.visible)
         {

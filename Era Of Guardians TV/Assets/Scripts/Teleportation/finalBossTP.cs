@@ -12,7 +12,7 @@ public class finalBossTP : MonoBehaviour
         if (other.tag == "Player")
         {
             Player playerScript = other.GetComponentInParent<Player>();
-            if (playerScript.gemmeCount > 0)
+            if (playerScript.gemmeCount > 3)
             {
                 playerScript.StartFinal();
                 isRdy = true;
@@ -37,7 +37,7 @@ public class finalBossTP : MonoBehaviour
         if (other.tag == "Player")
         {
             Player playerScript = other.GetComponentInParent<Player>();
-            if (playerScript.gemmeCount > 0)
+            if (playerScript.gemmeCount > 3)
             {
                 playerScript.CancelFinal();
                 isRdy = false;
