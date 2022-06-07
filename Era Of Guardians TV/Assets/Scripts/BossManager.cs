@@ -42,8 +42,7 @@ public class BossManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        Destroy(player.gameObject);
         SceneManager.LoadScene("MainMenu");
         PhotonNetwork.Disconnect();
     }

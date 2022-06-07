@@ -57,6 +57,8 @@ public class Quete_okeanos : MonoBehaviour
             }
         }
     }
+
+
     private void OnTriggerExit(Collider other)
     {
         Panel.SetActive(false);
