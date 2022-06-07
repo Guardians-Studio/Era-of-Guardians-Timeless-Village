@@ -77,8 +77,11 @@ public class Player : MonoBehaviour
             turon = false;
             cineTuron = false;
             sout = false;
+            sout2 = false;
+            sout3 = false;
             celtia = false;
             oceanos = false;
+            
             GameObject[] tp = GameObject.FindGameObjectsWithTag("tp");
             this.gameObject.transform.position = tp[0].transform.position;
         }
